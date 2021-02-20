@@ -1,0 +1,47 @@
+\documentclass[a4paper,kulak]{kulakarticle} %options: kul or kulak (default)
+
+\usepackage[utf8]{inputenc}
+\usepackage[dutch]{babel}
+
+\date{Academiejaar 2020 -- 2021}
+\address{
+  Bachelor in de ingenieurswetenschappen \\
+  Probleemoplossen en ontwerpen \\
+  Benjamin Maveau, Kevin Truyaert}
+\title{Overzicht ontwerpspecificaties}
+\author{Team 1: Safety First}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Ontwerpspecificaties}
+
+De basis van het voertuig, zullen we zelf ontwerpen en 3D-printen, we kiezen hierbij voor een rond ontwerp. Dit ontwerp vergemakkelijkt het draaien van het voertuig bij een afslag op een kruispunt, aangezien we minder kans hebben om iets te raken bij het nemen van de bocht. De keuze voor een rechthoekig ontwerp levert niet echt een meerwaarde. 
+
+Als microcontroller gebruiken we bij voorkeur een Raspberry Pi. Deze keuze zorgt ervoor dat we veel hulpbronnen kunnen raadplegen, wanneer nodig. Het is noodzakelijk dat er enkele sensoren worden aangesloten op deze microcontroller, namelijk een reflectiesensor voor het volgen van de lijn, een RGB-sensor voor het detecteren van de verkeerslichten en een afstandssensor om aanrijdingen te kunnen vermijden. Het voertuig bestaat ook uit 2 motoraangedreven achterwielen en 1 'ball caster'. De gebruikte motoren zijn tevens ook aangesloten op een motorshield, aangezien dit zorgt voor een terugloopbeveiliging, zodat we onze microcontroller niet kunnen beschadigen.
+
+We kiezen voor het uitlezen van de gegevens via LabView via een WIFI-verbinding. De manuele 'override' is ook mogelijk via dit programma.
+
+Als energiebron nemen we een powerbank, omdat dit eenvoudig aan te sluiten is op onze microcontroller. Vanuit de microcontroller kunnen we stroom geven aan alle andere componenten van ons voertuig.
+
+\section{Idee van voorlopige materialenlijst}
+
+\begin{itemize}
+	\item Breadboard: onbeslist
+	\item Wielen: Wiel 42x19mm
+	\item Ball Caster: staat vast wegens 1 mogelijkheid
+	\item Motor: onbeslist
+	\item Een set Gearmotor Brackets
+	\item Motor Shield: Allebei, wegens geen eerdere ervaring
+	\item Kleursensor: staat vast wegens 1 mogelijkheid
+	\item Afstandssensor Digitaal, want Raspberry kan enkel met digitaal overweg 
+	\item Reflectiesensor Digitaal, zie hier boven
+	\item Microcontroller: Raspberry Pi
+	\item Batterij powerbank
+	\item Arm voor de kleursensor
+		
+\end{itemize}
+
+\end{document}
