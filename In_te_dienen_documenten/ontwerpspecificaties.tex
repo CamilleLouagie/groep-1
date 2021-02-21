@@ -18,30 +18,13 @@
 
 \section{Ontwerpspecificaties}
 
-De basis van het voertuig, zullen we zelf ontwerpen en 3D-printen, we kiezen hierbij voor een rond ontwerp. Dit ontwerp vergemakkelijkt het draaien van het voertuig bij een afslag op een kruispunt, aangezien we minder kans hebben om iets te raken bij het nemen van de bocht. De keuze voor een rechthoekig ontwerp levert niet echt een meerwaarde. 
+De klant wenst een zelfrijdend wagentje dat zich volgens een voorgeprogrammeerde route door een modelstad beweegt. De modelstad bestaat uit negen identieke kruispunten opgesteld in een vierkant die zich op een afstand van 1 meter van elkaar bevinden. 
+Het robotvoertuig volgt hierbij een lijn van 25mm dik aan de hand van een reflectiesensor. Deze volglijn is een donkere lijn op een heldere ondergrond of een heldere lijn op een donkere ondergrond. De lengte van een te volgen straat is 1 meter en de breedte ervan bedraagt 0.5 meter. Op deze baan bewegen voertuigen zich rechts in de heenrichting en links in de terugrichting. De maximale, totale breedte van het voertuig bedraagt dus 25 cm. Aan een kruispunt interpreteert het voertuig een rood-groen verkeerslicht. De verkeerslichten zijn gemonteerd op een tafelonderstel (zie fig2). Aangezien de hoogte hiervan 300 mm is, is dit ook de maximale hoogte van het te bouwen voertuig. Het midden van het verkeerslicht bevindt zich op 7.5 cm boven de grond. Zoals te zien op de technische tekening (ref..) is dit ook de plaats waar de kleurled zich in het verkeerslicht bevindt. Het verkeerslicht is gemonteerd aan de voorkant van de tafelpoot, zodat de wagen het verkeerslicht langs de rechterkant moet detecteren, zoals ook figuur 1 suggereeert.  Indien het verkeerslicht rood is, stopt het voertuig bij de stopstreep. Deze stopstreep is 50 mm dik en 25 cm lang, zoals we kunnen afleiden uit figuur 1. Indien het verkeerslicht groen is, rijdt het wagentje door of slaat het af, naargelang de gevraagde voorgeprogrammeerde route.
 
-Als microcontroller gebruiken we bij voorkeur een Raspberry Pi. Deze keuze zorgt ervoor dat we veel hulpbronnen kunnen raadplegen, wanneer nodig. Het is noodzakelijk dat er enkele sensoren worden aangesloten op deze microcontroller, namelijk een reflectiesensor voor het volgen van de lijn, een RGB-sensor voor het detecteren van de verkeerslichten en een afstandssensor om aanrijdingen te kunnen vermijden. Het voertuig bestaat ook uit 2 motoraangedreven achterwielen en 1 'ball caster'. De gebruikte motoren zijn tevens ook aangesloten op een motorshield, aangezien dit zorgt voor een terugloopbeveiliging, zodat we onze microcontroller niet kunnen beschadigen.
+Het wagentje kan ook voorliggers detecteren via een afstandssensor. Indien het een voorligger detecteert, vertraagt het wagentje of stopt het om zo een botsing te vermijden.
+Het te volgen traject wordt een week op voorhand bekend gemaakt en kan dan al geprogrammeerd worden.
+De componenten van het prototype mogen verbonden worden via een breadboard. De definitieve versie van het voertuig moet wel via een printplaat kunnen functioneren. Voor de microcontroller dient gebruik te worden gemaakt van een NI myRIO of Raspberry Pi. Tussen de microcontroller en de motoren dient een motorshield te worden aangebracht, gezien dit een terugloopbeveiliging bevat die beschadiging van de microcontroller voorkomt. Het voertuig haalt zijn energie uit een batterij. De maximale kostprijs van het prototype bedraagt 3500 virtuele eenheden.
 
-We kiezen voor het uitlezen van de gegevens via LabView via een WIFI-verbinding. De manuele 'override' is ook mogelijk via dit programma.
-
-Als energiebron nemen we een powerbank, omdat dit eenvoudig aan te sluiten is op onze microcontroller. Vanuit de microcontroller kunnen we stroom geven aan alle andere componenten van ons voertuig.
-
-\section{Idee van voorlopige materialenlijst}
-
-\begin{itemize}
-	\item Breadboard: onbeslist
-	\item Wielen: Wiel 42x19mm
-	\item Ball Caster: staat vast wegens 1 mogelijkheid
-	\item Motor: onbeslist
-	\item Een set Gearmotor Brackets
-	\item Motor Shield: Allebei, wegens geen eerdere ervaring
-	\item Kleursensor: staat vast wegens 1 mogelijkheid
-	\item Afstandssensor Digitaal, want Raspberry kan enkel met digitaal overweg 
-	\item Reflectiesensor Digitaal, zie hier boven
-	\item Microcontroller: Raspberry Pi
-	\item Batterij powerbank
-	\item Arm voor de kleursensor
-		
-\end{itemize}
+De klant wenst ook dat er een draadloze informatieoverdracht is tussen het voertuig en een computer op afstand. Deze draadloze informatieoverdracht verloopt via LabVIEW en er is ook een grafische interface beschikbaar. Via deze interface kan een noodstop worden uitgevoerd of de volledige besturing van het robotvoertuig overgenomen worden.
 
 \end{document}
