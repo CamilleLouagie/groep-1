@@ -1,0 +1,90 @@
+\documentclass[12pt]{article}
+
+% style
+\setlength{\parindent}{0pt}
+\usepackage[left=2.5cm,top=2cm,right=2.5cm,bottom=2cm,a4paper]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Team 1: Safety First}
+\rhead{Taakstructuur}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% table
+\usepackage{etoolbox}
+\usepackage{booktabs}
+\usepackage{xstring}
+\usepackage{xcolor,colortbl}
+\definecolor{gray1}{gray}{0.7}
+\definecolor{gray2}{gray}{0.85}
+\definecolor{gray3}{gray}{0.95}
+
+% counting system		
+\newcounter{counter}
+\newcounter{subcounter}
+\newcounter{subsubcounter}
+\newcommand{\teller}{
+	\stepcounter{counter}
+	\setcounter{subcounter}{0}
+	\setcounter{subsubcounter}{0}
+	\thecounter}
+\newcommand{\subteller}{
+	\stepcounter{subcounter}
+	\setcounter{subsubcounter}{0}
+	\thecounter.\thesubcounter}
+\newcommand{\subsubteller}{
+	\stepcounter{subsubcounter}
+	\thecounter.\thesubcounter.\thesubsubcounter}
+
+% row	
+\newcommand{\row}[3]{
+	\IfEqCase{#1}{
+		{1}{\teller & #2 & \IfEqCase{#3}{{0}{niet OK}{1}{OK}} \\}
+		{2}{\subteller & #2 & \IfEqCase{#3}{{0}{niet OK}{1}{OK}} \\}
+		{3}{\subsubteller & #2 & \IfEqCase{#3}{{0}{niet OK}{1}{OK}} \\}
+	}[PackageError{row}{Undefined option to row: #1}]}
+
+
+
+\begin{document}	
+	
+	\begin{table}
+		\centering
+		\caption{Taakstructuur team Safety First}
+		\begin{tabular}{p{1cm}p{12cm}c}
+			\toprule
+			Code & Taak & Status \\ 
+			\midrule
+			\row{1}{Inwerken}{1}
+			\row{2}{Documenten op Toledo lezen}{1}
+			\row{2}{Handleiding P\&O2}{0}
+			\row{2}{Overleggen en plannen}{1}
+			\row{2}{Brainstorm}{1}
+			\row{2}{Samenvating klantenvereisten}{1}
+			\row{2}{Ontwerpspecificaties}{1}
+			\row{2}{Verantwoordelijkheidsstructuur}{1}
+			\row{2}{Teamkalender}{1}
+			\row{2}{Ganttchart}{1}
+			\midrule
+			\row{1}{Onderdelen van de auto}{0}
+			\row{2}{Chassis ontwerpen}{0}
+			\row{2}{Basisonderdelen kiezen en bestellen}{0}
+			\row{2}{Extra onderdelen kiezen en bestellen}{0}
+			\row{2}{Assembly}{0}
+			\midrule
+			\row{1}{Programmeren}{0}
+			\row{2}{Deeltaken nog te bepalen}{0}
+			\midrule
+			\row{1}{Tests}{0}
+			\row{2}{Algemene tests}{0}
+			\row{2}{Test op parcours}{0}
+			\midrule
+			\row{1}{Evaluatiemomenten}{0}
+			\row{2}{Voorbereiden tussentijdse presentatie}{0}
+			\row{2}{Voorbereiden individueel evaluatiemoment}{0}
+			\row{2}{Voorbereiden eindpresentatie}{0}
+			\bottomrule
+		\end{tabular}
+	\end{table}
+
+
+\end{document}
