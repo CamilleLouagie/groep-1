@@ -59,12 +59,16 @@
 			\ganttmilestone[name=ms]{Bieding}{2021-02-28} \\
 			\ganttlink{12}{mn}
 			\ganttlink{13}{ms}
-			\ganttfoobar[name=15]{Assemblage}{2021-03-15}{2021-03-28} \\
-			\ganttfoobar[name=14]{Chassis ontwerpen}{2021-02-19}{2021-03-14} \\
-			\ganttlink{14}{15}
+			\ganttfoobar[name=15]{Assemblage}{2021-03-19}{2021-03-28} \\
+			\ganttfoobar[name=14]{Chassis ontwerpen}{2021-02-19}{2021-03-05} \\
+			\ganttfoobar[name=18]{Onderdelen ontwerpen}{2021-03-06}{2021-03-12} \\
+			\ganttfoobar[name=19]{Virtuele assemblage}{2021-03-13}{2021-03-18} \\
 			\ganttlink{ms}{15}
-			\ganttfoobar[name=16]{Programmeren}{2021-02-19}{2021-03-28} \\
-			\ganttfoobar[name=17]{Voorbereiden presentatie}{2021-03-19}{2021-03-28}
+			\ganttlink{14}{18}
+			\ganttlink{18}{19}
+			\ganttlink{19}{15}
+			\ganttfoobar[name=16]{Programmeren}{2021-02-19}{2021-03-28} 
+			
 			
 			%\ganttgroup{2}{2021-02-12}{2021-03-04} \\
 			%\ganttfoobar[name=21]{2.1}{2021-02-12}{2021-02-24} \\
