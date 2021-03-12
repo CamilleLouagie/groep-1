@@ -1,0 +1,93 @@
+\documentclass[a4paper,kulak]{kulakarticle} %options: kul or kulak (default)
+
+\usepackage[utf8]{inputenc}
+\usepackage[dutch]{babel}
+
+\date{Academiejaar 2020 -- 2021}
+\address{
+  Ingenieurswetenschappen \\
+  P\&O2 \\
+  Benjamin Maveau, Kevin Truyaert}
+\title{Overzicht: pinnen van RPI}
+\author{Team 1: Safety First}
+
+
+\begin{document}
+
+\maketitle
+
+
+\section*{Vereiste pinnen per component}
+\begin{center}
+
+\begin{tabular}{l|l}
+	Componenten     & Vereiste Pinnen                             \\ 
+	\hline
+	Reflectiesensor & 6 of 8 GPIO's                               \\
+	Afstandssensor  & MISO, MOSI, SCLK, CE0 of CE1, GND, 3.3V, 5V \\
+	Kleursensor     & SCL, SDA, GND, 3.3V                         \\
+	Motoren         & 6 GPIO's, 5V (PMW)						\\
+	DRV8833 & 
+\end{tabular}
+
+\end{center}
+
+\section*{Aansluitingen}
+
+\begin{center}
+
+\begin{tabular}{l|r}
+	3.3v       &        5v \\
+	SDA (i2c)  &        5v \\
+	SCL (i2c)  &       GND \\
+	GPIO4      &    GPIO14 \\
+	GND        &    GPIO15 \\
+	GPIO17     &    GPIO18 \\
+	GPIO27     &       GND \\
+	GPIO22     &    GPIO23 \\
+	3,3v       &    GPIO24 \\
+	MOSI (spi) &       GND \\
+	MISO (spi) &    GPIO25 \\
+	SCLK (spi) & CE0 (spi) \\
+	GND        & CE1 (spi) \\
+	GPIO0      &     GPIO1 \\
+	GPIO5      &       GND \\
+	GPIO6      &    GPIO12 \\
+	GPIO13     &       GND \\
+	GPIO19     &    GPIO16 \\
+	GPIO26     &    GPIO20 \\
+	GND        &    GPIO21
+\end{tabular}
+
+\end{center}
+
+\section*{Onze componenten}
+\begin{center}
+	
+	\begin{tabular}{l|r}
+		3.3v              &                5v \\
+		Kleursensor 6     &                5v \\
+		Kleursensor 2     &               GND \\
+		Reflectiesensor 1 & Reflectiesensor 2 \\
+		GND               & Reflectiesensor 3 \\
+		Reflectiesensor 4 & Reflectiesensor 5 \\
+		Reflectiesensor 6 &               GND \\
+		Reflectiesensor 7 & Reflectiesensor 8 \\
+		3,3v              &            GPIO24 \\
+		ADC 5             &               GND \\
+		ADC 6             &            GPIO25 \\
+		ADC 7             &             ADC 1 \\
+		GND               &                 X \\
+		X                 &                 X \\
+		Motor 1           &               GND \\
+		Motor 2           &           Motor 3 \\
+		Motor 4           &               GND \\
+		Motor 5           &           Motor 6 \\
+		GPIO26            &            GPIO20 \\
+		GND               &            GPIO21
+	\end{tabular}
+	
+\end{center}
+
+
+\end{document}
