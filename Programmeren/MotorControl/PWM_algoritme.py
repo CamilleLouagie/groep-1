@@ -13,10 +13,10 @@ GPIO.setmode(GPIO.BOARD)
 #initialisatiepinnen
 #A staat voor motor 1, de linkermotor
 #B staat voor motor 2, de rechtermotor
-AForwardPin =
-ABackwardsPin = 
-BForwardPin = 
-BBackwardsPin = 
+AForwardPin = 33
+ABackwardsPin = 32
+BForwardPin = 29
+BBackwardsPin = 31
 #EnablePinA =
 #EnablePinB =
 
