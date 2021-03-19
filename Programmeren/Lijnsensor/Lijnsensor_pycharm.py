@@ -6,12 +6,15 @@ Created on Fri Mar  5 14:27:09 2021
 """
 
 
-#de datapins moeten nog ingevuld worden en de waarde voor zwart/wit en dat maximale wachttijd
+#de datapins moeten nog ingevuld worden en de waarde voor zwart/wit en dat maximale wachttijd en de CALIBRATEDMAX, CALIBDRATEDMIN
 #zwart betekent hoge tijd, wit betekent lage tijd
 
 
-import RPi.GPIO as GPIO
-import time
+#NUTTIGE COMMANDO: volglijn!!!
+
+
+from PWM_algoritme.py import leftmotorspeed
+from PWM_algoritme.py import rightmotorspeed
 GPIO.setmode(GPIO.BOARD)
 
 
@@ -31,12 +34,8 @@ def leesSensor(dataPIN): #function to get value from IR sensor
     return tijdsduur
     
 
-def interpreteerTijdsduur(tijdsduur): #maakt van de gevonden tijdsduur een kleur
-    if tijdsduur > 0.0006: #adjust this value to change the SENSITIVITY
-        colour_seen = "black"
-    else:
-        colour_seen = "white"
-    return colour_seen
+
+
 
 
 def lijndataTabel(): #vul nog de pins in, daarna geeft deze functie een lijst terug met als elementen de tijdsdata per sensor
@@ -47,6 +46,73 @@ def lijndataTabel(): #vul nog de pins in, daarna geeft deze functie een lijst te
         tijdsdatalijst.append(leesSensor(pin))
 
     return tijdsdatalijst
+
+
+
+
+
+
+
+
+
+
+def herschaalwaarde(lijndataTabel, minimum, maximum):  # noteert iedere waarde als een getal tussen 0 en 1000 ("read calibrate")
+    # hulpfunctie voor readpositie
+    herschaaltabel = []
+    for k in range(len(lijndataTabel)):
+        herschaaldewaarde = (lijndataTabel[i] - minimum[i]) / (maximum[i] - minimum[i]) * 1000
+        if herschaaldewaarde < minimum[i]:
+            herschaaldewaarde = minimum[i]
+        if herschaaldewaarde > maximum[i]:
+            herschaaldewaarde = maximum[i]
+        herschaaltabel.append(herschaaldewaarde)
+    return herschaaltabel
+
+
+def readpositie(lijndatatabel, minimum, maximum):
+    # gebruikte formule: (0*value0 + 1000*value1+ 2000*value2..) /(value0 + value1 + value2 +...)
+    # geeft een waarde voor de positie
+    herschaaltabel = herschaalwaarde(lijndatatabel, minimum,maximum)  # geeft tabel met de gekalibreerde waardes: tussen 0 en 1000
+    avg = 0
+    som = 0
+    for i in range(len(herschaaltabel)):
+        if herschaaltabel[i] > 50:  # ruis wegwerken
+            avg += (i * 1000) * herschaaltabel[i]
+            som += herschaaltabel[i]
+
+    return avg / som
+
+
+
+
+
+# while True
+def volglijn():
+    global last_error
+    MINIMUM = CALIBRATEDMINIMUM #nog in te vullen
+    MAXIMUM = CALIBRATEDMAXIMUM #nog in te vullen
+    KP = #nog in te vullen
+    KD = #nog in te vullen
+    SETPOINTPOSITIE = 3500 # 3*1000*sensor3 + 4*1000*sensor4 /(sensor3 + sensor 4)
+    LINKSBASISSPEED = 50
+    RECHTSBASISSPEED = 50
+
+
+    tijdsdatalijst = lijndataTabel()
+    positie = readpositie(tijdsdatalijst, MINIMUM, MAXIMUM) #de gekalibreerde positiewaarde
+    error = positie-SETPOINTPOSITIE
+    correctiespeed = KP*error + KD*(error - last_error)
+    last_error = error
+
+    leftmotorspeed(LINKSBASISSPEED + correctiespeed)
+    rightmotorspeed(RECHTSBASISSPEED - correctiespeed)
+
+
+
+
+
+
+
 
 
 

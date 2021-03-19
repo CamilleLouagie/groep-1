@@ -70,6 +70,15 @@ def backwards(speed = 20):
     pwma.ChangeDutyCycle(speed)
     pwmb.ChangeDutyCycle(speed)
 
+def leftmotorspeed(speed):
+    pwma.ChangeDutyCycle(speed)
+
+def rightmotorspeed(speed):
+    pwmb.ChangeDutyCycle(speed)
+
+
+
+
 
 def turnRightNinety():
     #links vooruit, rechts achteruit
