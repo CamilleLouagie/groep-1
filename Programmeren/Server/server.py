@@ -23,7 +23,7 @@ class Server(object):
             A Server object
         """
         self._socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self._socket.bind(('', port))
+        self._socket.bind(('10.45.25.82', port))
         self._client_adr = None
         self._size = message_size
 
@@ -82,10 +82,13 @@ class Server(object):
 
 if __name__ == "__main__":
     server = Server()
-    mess = server.listen(timeout=5)
-    if mess is not None:
-        print(mess)
-        server.send("Message received", timeout=5)
+    while True:
+        print("luisteren")
+        mess = server.listen(timeout=5)
+        print("gedaan met luisteren")
+        if mess is not None:
+            print(mess)
+            server.send("Message received", timeout=5)
 
 
 
