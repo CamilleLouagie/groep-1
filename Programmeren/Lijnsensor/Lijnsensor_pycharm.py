@@ -12,9 +12,11 @@ Created on Fri Mar  5 14:27:09 2021
 
 #NUTTIGE COMMANDO: volglijn!!!
 
-
+import RPI.GPIO as GPIO
 from PWM_algoritme.py import leftmotorspeed
 from PWM_algoritme.py import rightmotorspeed
+import time
+
 GPIO.setmode(GPIO.BOARD)
 
 
