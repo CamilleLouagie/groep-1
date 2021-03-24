@@ -3,7 +3,6 @@ from Lijnsensor.Lijnsensor_pycharm import volglijn, lijninterpretatie
 from opkuisen import opkuis
 from kruispunt import kruispunt
 from MotorControl.PWM_algoritme import stopMotor
-from Kleurensensor.Kleurensensor import detectiekleuren
 
 
 import RPI.GPIO as GPIO
@@ -24,8 +23,8 @@ def main():
     kanaal = 0  # Eerste analoge signaal
 
     # Kleurensensor initialiseren
-    i2c = busio.I2C(board.SCL, board.SDA)
-    sensor = adafruit_tcs34725.TCS34725(i2c)
+    i2c = busio.I2C(5, 3)
+    kleurensensor = adafruit_tcs34725.TCS34725(i2c)
 
     last_error = 0  # Nodig voor de eerst keer volglijn uit te voeren
     while not einde:
@@ -40,17 +39,18 @@ def main():
             for i in range(10):
                 returnwaarde = lijninterpretatie()
                 if returnwaarde == "stopstreep":
-                    kruispunt(kruispuntnr)
+                    stopMotor()
+                    kruispunt(kruispuntnr, kleurensensor, kanaal)
+                    kruispuntnr += 1
                     last_error = 0  #Herinitialisatie van lijnvolgalgoritme
                 else:
                     volglijn(returnwaarde)
 
             # Na 10 maal lijn te volgen, check de sensoren
-            if adc.getAfstand(kanaal) < 10:
+            if adc.getAfstand(kanaal) < 15:
                 stopMotor()
-                while adc.getAfstand(kanaal) < 15:
+                while adc.getAfstand(kanaal) < 20:
                     pass
-                volglijn()
 
         #Bericht uitlezen
         while message != 'Ga door':
