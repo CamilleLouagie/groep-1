@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2154cc5d-84b6-4f15-916b-964f16d5881f" name="Default Changelist" comment="Voor de moment is dit het tweede bestand vanuit discord">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Lijnsensor/runfile_lijn.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MotorControl/runfile_motor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Programmeren.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Programmeren.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MotorControl/wiringmotor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lijnsensor/Lijnsensor_pycharm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Lijnsensor/Lijnsensor_pycharm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MotorControl/runfile_motor.py" beforeDir="false" afterPath="$PROJECT_DIR$/MotorControl/runfile_motor.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +34,7 @@
     <property name="credentialsType com.jetbrains.python.remote.PyCreateRemoteInterpreterDialog$PyCreateRemoteSdkForm" value="SSH Configuration" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.runfile_lijn (1)">
+  <component name="RunManager" selected="Python.runfile_motor">
     <configuration name="Lijnsensor_pycharm" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Programmeren" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -130,8 +125,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.runfile_lijn (1)" />
         <item itemvalue="Python.runfile_motor" />
+        <item itemvalue="Python.runfile_lijn (1)" />
         <item itemvalue="Python.runfile_lijn" />
         <item itemvalue="Python.Lijnsensor_pycharm" />
       </list>
@@ -148,7 +143,7 @@
       <workItem from="1616620939130" duration="287000" />
       <workItem from="1616621461497" duration="125000" />
       <workItem from="1616753751300" duration="3153000" />
-      <workItem from="1616763881843" duration="3150000" />
+      <workItem from="1616763881843" duration="7586000" />
     </task>
     <servers />
   </component>
@@ -174,7 +169,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Lijnsensor_pycharm_py$runfile_lijn__1_.coverage" NAME="runfile_lijn (1) Coverage Results" MODIFIED="1616767260958" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lijnsensor" />
     <SUITE FILE_PATH="coverage/Lijnsensor_pycharm_py$runfile.coverage" NAME="runfile Coverage Results" MODIFIED="1616759731578" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lijnsensor" />
-    <SUITE FILE_PATH="coverage/Lijnsensor_pycharm_py$runfile_motor.coverage" NAME="runfile_motor Coverage Results" MODIFIED="1616764027113" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MotorControl" />
+    <SUITE FILE_PATH="coverage/Lijnsensor_pycharm_py$runfile_motor.coverage" NAME="runfile_motor Coverage Results" MODIFIED="1616771131289" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MotorControl" />
     <SUITE FILE_PATH="coverage/Lijnsensor_pycharm_py$runfile_lijn.coverage" NAME="runfile_lijn Coverage Results" MODIFIED="1616763989616" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lijnsensor" />
     <SUITE FILE_PATH="coverage/Lijnsensor_pycharm_py$Lijnsensor_pycharm.coverage" NAME="Lijnsensor_pycharm Coverage Results" MODIFIED="1616759545641" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lijnsensor" />
   </component>
