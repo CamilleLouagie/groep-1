@@ -48,3 +48,12 @@ def getAfstand(adcnum):
     afstand = 27/voltage
 
     return afstand
+
+def printAfstand(adcnum):
+    print(getAfstand(adcnum))
+
+while True:
+    printAfstand(0)
+    time.sleep(1)
+    getAfstand(adcnum)
+    

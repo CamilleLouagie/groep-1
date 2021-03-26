@@ -20,6 +20,9 @@ import time
 GPIO.setmode(GPIO.BOARD)
 
 
+#pulse_end nog aanpassen voor errors, net zoals time.time()
+
+
 def leesSensor(dataPIN): #function to get value from IR sensor
     GPIO.setup(dataPIN, GPIO.OUT) #Set your chosen pin to an output
     GPIO.output(dataPIN, GPIO.HIGH) #turn on the power 5v to the sensor
