@@ -12,9 +12,11 @@ Created on Fri Mar  5 14:27:09 2021
 
 #NUTTIGE COMMANDO: volglijn!!!
 
-
+import RPI.GPIO as GPIO
 from PWM_algoritme.py import leftmotorspeed
 from PWM_algoritme.py import rightmotorspeed
+import time
+
 GPIO.setmode(GPIO.BOARD)
 
 
@@ -40,7 +42,7 @@ def leesSensor(dataPIN): #function to get value from IR sensor
 
 def lijndataTabel(): #vul nog de pins in, daarna geeft deze functie een lijst terug met als elementen de tijdsdata per sensor
     #verzamelt sensorendata in een lijst
-    pinlijst = [1,2,3,4,5,6,7,8] #vul hier DE PINNUMMERS in
+    pinlijst = [7,8,10,11,12,13,15,16] #vul hier DE PINNUMMERS in
     tijdsdatalijst = []
     for pin in pinlijst:
         tijdsdatalijst.append(leesSensor(pin))
@@ -79,7 +81,8 @@ def readpositie(lijndatatabel, minimum, maximum):
         if herschaaltabel[i] > 50:  # ruis wegwerken
             avg += (i * 1000) * herschaaltabel[i]
             som += herschaaltabel[i]
-
+    if som == 0: #divide by 0
+        som =1
     return avg / som
 
 
@@ -87,7 +90,23 @@ def readpositie(lijndatatabel, minimum, maximum):
 
 
 # while True
-def volglijn():
+def lijninterpretatie(): #geeft weer of er een stopstreep is of anders een gewone lijn
+    MINIMUM = CALIBRATEDMINIMUM #nog in te vullen
+    MAXIMUM = CALIBRATEDMAXIMUM #nog in te vullen
+    tijdsdatalijst = lijndataTabel()
+    herschaaltabel = herschaalwaarde(tijdsdatalijst, MINIMUM, MAXIMUM)
+    zwartewaarden = 0
+
+    for waarde in herschaaltabel:
+        if waarde > 500 :
+            zwartewaarden += 1
+    if zwartewaarden >= 7: # als zeven van de acht sensoren zwart detecteren zijn we al tevreden
+        return "stopstreep"
+    else:
+        return tijdsdatalijst
+
+
+def volglijn(tijdsdatalijst):
     global last_error
     MINIMUM = CALIBRATEDMINIMUM #nog in te vullen
     MAXIMUM = CALIBRATEDMAXIMUM #nog in te vullen
@@ -98,10 +117,11 @@ def volglijn():
     RECHTSBASISSPEED = 50
 
 
-    tijdsdatalijst = lijndataTabel()
+
     positie = readpositie(tijdsdatalijst, MINIMUM, MAXIMUM) #de gekalibreerde positiewaarde
     error = positie-SETPOINTPOSITIE
     correctiespeed = KP*error + KD*(error - last_error)
+    correctiespeed = 0
     last_error = error
 
     leftmotorspeed(LINKSBASISSPEED + correctiespeed)
@@ -109,6 +129,16 @@ def volglijn():
 
 
 
+def zoeklijn():
+    MINIMUM = CALIBRATEDMINIMUM  # nog in te vullen
+    MAXIMUM = CALIBRATEDMAXIMUM  # nog in te vullen
+    tijdsdatalijst = lijndataTabel()
+    herschaaltabel = herschaalwaarde(tijdsdatalijst, MINIMUM, MAXIMUM)
+    for waarde in herschaaltabel:
+        if waarde > 300:
+            return True
+
+    return False
 
 
 
