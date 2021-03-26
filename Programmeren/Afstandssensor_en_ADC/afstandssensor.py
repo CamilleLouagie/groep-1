@@ -50,13 +50,10 @@ def getAfstand(adcnum):
     return afstand
 
 def printAfstand(adcnum):
-<<<<<<< Updated upstream
     print(getAfstand(adcnum))
 
 while True:
     printAfstand(0)
     time.sleep(1)
-=======
     getAfstand(adcnum)
->>>>>>> Stashed changes
     
