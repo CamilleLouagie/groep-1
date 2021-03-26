@@ -12,7 +12,7 @@ GPIO.setmode(GPIO.BOARD)
 
 # SPI-object maken
 CE = 0  #Eerste kanaal op ADC selecteren
-spi = spidev.SpiDev0(0,CE)
+spi = spidev.SpiDev(0,CE)
 spi.max_speed_hz = 1000000
 
 
@@ -45,9 +45,9 @@ def getAfstand(adcnum):
 
     # Eerste versie van de linearisering van de tweede grafiek in de bijgeleverde documenten bij de sensor,
     # waarschijnlijk nog aan te passen.
-    afstand = 27/voltage
+    #afstand = 27/voltage
 
-    return afstand
+    return voltage
 
 def printAfstand(adcnum):
     print(getAfstand(adcnum))
@@ -55,5 +55,3 @@ def printAfstand(adcnum):
 while True:
     printAfstand(0)
     time.sleep(1)
-    getAfstand(adcnum)
-    
