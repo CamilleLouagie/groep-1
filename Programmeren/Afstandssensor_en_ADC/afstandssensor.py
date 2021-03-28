@@ -55,3 +55,8 @@ def printAfstand(adcnum):
 while True:
     printAfstand(0)
     time.sleep(1)
+<<<<<<< Updated upstream
+=======
+
+    
+>>>>>>> Stashed changes
