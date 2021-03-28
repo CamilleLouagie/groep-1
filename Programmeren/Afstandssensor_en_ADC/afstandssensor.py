@@ -56,6 +56,14 @@ while True:
     printAfstand(0)
     time.sleep(1)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 =======
 
     
