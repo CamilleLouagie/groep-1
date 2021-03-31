@@ -10,8 +10,8 @@ GPIO.setmode(GPIO.BOARD)
 # initialisatiepinnen
 # A staat voor motor 1, de linkermotor
 # B staat voor motor 2, de rechtermotor
-AForwardPin = 33
-ABackwardsPin = 32
+AForwardPin = 1
+ABackwardsPin = 23
 BForwardPin = 29
 BBackwardsPin = 31
 
@@ -27,8 +27,7 @@ def motorinitialisatie():
     global pwmb
     wiringpi.wiringPiSetup()
     wiringpi.pinMode(AForwardPin, 2)  # PWM mode
-
-    GPIO.setup(ABackwardsPin, GPIO.OUT)
+    wiringpi.pinMode(ABackwardsPin, 1)
 
     wiringpi.pwmWrite(AForwardPin, 0)
 
@@ -42,13 +41,13 @@ def forward(speed=60):
     # GPIO.output(BForwardPin, GPIO.HIGH)
     # GPIO.output(BBackwardsPin, GPIO.LOW)
 
-    wiringpi.pwmWrite(AForwardPin, 100)
+    wiringpi.pwmWrite(AForwardPin, 0)
     print("vooruit")
     time.sleep(5)
 
-    wiringpi.pwmWrite(AForwardPin, 20)
+    wiringpi.pwmWrite(AForwardPin, 0)
     time.sleep(5)
 
 
 motorinitialisatie()
-forward(100)
+wiringpi.pwmWrite(AForwardPin, 0)

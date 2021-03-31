@@ -51,7 +51,7 @@ def forward(speed=60):
     time.sleep(5)
 
 motorinitialisatie()
-forward(100)
+forward(50)
 
 pwma.ChangeDutyCycle(0)
 pwmb.ChangeDutyCycle(0)
