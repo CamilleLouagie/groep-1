@@ -2,7 +2,7 @@ import Afstandssensor_en_ADC.afstandssensor as adc
 from Lijnsensor.Lijnsensor_pycharm import volglijn, lijninterpretatie
 from opkuisen import opkuis
 from kruispunt import kruispunt
-from MotorControl.PWM_algoritme import stopMotor
+from MotorControl.PWM_algoritme import stopMotor, motorinitialisatie, forward, backwards, turnRightNinety, turnLeftNinety
 
 
 import RPI.GPIO as GPIO
@@ -116,33 +116,44 @@ def main():
 
     last_error = 0  # Nodig voor de eerst keer volglijn uit te voeren
     while not einde:
+        #kijken of de server een bericht stuurt
         bericht = server.listen(timeout=0.01)
+
+        #manuele override starten
         if bericht == "b'start'":
             kruispunt_reserve = kruispuntnr
             override = True
 
         while override == True:
-            mess = server.listen(timeout=0.2)
+            mess = server.listen(timeout=0.01)
             if mess is not None:
                 message = mess
                 print(mess)
-                # server.send(message)
+
                 if mess == "b'vooruit'":
+                    forward()
                     server.send('Vooruit.')
                 elif mess == "b'achteruit'":
+                    backwards()
                     server.send('Achteruit.')
                 elif mess == "b'links'":
+                    turnLeftNinety()
                     server.send('Links.')
                 elif mess == "b'rechts'":
+                    turnRightNinety()
                     server.send('Rechts.')
-                elif mess == "b'linksvooruit'":
-                    server.send('Linksvooruit.')
-                elif mess == "b'linksachteruit'":
-                    server.send('Linksachteruit')
-                elif mess == "b'rechtsvooruit'":
-                    server.send('Rechtsvooruit.')
-                elif mess == "b'rechtsachteruit'":
-                    server.send('Rechtsachteruit')
+
+
+                #elif mess == "b'linksvooruit'":
+                    #server.send('Linksvooruit.')
+                #elif mess == "b'linksachteruit'":
+                    #server.send('Linksachteruit')
+                #elif mess == "b'rechtsvooruit'":
+                    #server.send('Rechtsvooruit.')
+                #elif mess == "b'rechtsachteruit'":
+                    #server.send('Rechtsachteruit')
+
+                #override beeïndigen
                 elif mess[0:6] == "b'stop":
                     server.send('Succesvol gestopt.')
                     kruispunt_manueel = 0
@@ -171,6 +182,11 @@ def main():
                     server.send('Kruispunt = ' + ' ' + finaalBericht)
                     override = False
 
+                #als aan geen van voorgaande if-statements voldaan is, wordt de motor gestopt
+                else:
+                    stopMotor()
+
+
             #last_error = 0
             #break
 
@@ -191,10 +207,6 @@ def main():
                 while adc.getAfstand(kanaal) < 20:
                     pass
 
-        #Bericht uitlezen
-        while message != 'Ga door':
-            # ...
-            message = server.listen()
 
         raise Exception("Fout in de code.")
 
