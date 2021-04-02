@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-from PWM_algoritme.py import leftmotorspeed
+#from PWM_algoritme import leftmotorspeed
 #from PWM_algoritme.py import rightmotorspeed
 import time
 
