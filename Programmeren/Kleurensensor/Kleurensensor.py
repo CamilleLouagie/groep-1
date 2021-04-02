@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Mar 19 11:34:49 2021
+Created on Fri Mar 19 11:34:49
+2021
 
 @author: otto.meerschman
 """
@@ -29,6 +30,13 @@ def detectiekleuren(sensor, functie):
                 time.sleep(1)
                 if g > r and g > b and g > c:
                     return true
+        if g<50:
+            time.sleep(1)
+            if g > r and g > b and g > c:
+                time.sleep(1)
+                if g < 50:
+                    return true
+
 
         else:
             return false

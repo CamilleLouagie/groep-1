@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="889c45dc-58c3-44c2-b0d3-79ce9f9a491f" name="sshConfig://pi@192.168.0.1:22 password/usr/bin/python">
+        <fileTransfer accessType="SFTP" host="192.168.0.1" port="22" sshConfigId="88a579cb-2d6e-479c-bd2a-342393c77f23" sshConfig="sshConfig://pi@192.168.0.1:22 password/usr/bin/python" />
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteMappingsManager">
+    <list>
+      <list>
+        <remote-mappings server-id="python@889c45dc-58c3-44c2-b0d3-79ce9f9a491f" />
+        <remote-mappings server-id="python@sshConfig://pi@192.168.0.1:22 password/usr/bin/python">
+          <settings>
+            <list>
+              <mapping local-root="$PROJECT_DIR$" remote-root="/home/pi/PONB" />
+            </list>
+          </settings>
+        </remote-mappings>
+        <remote-mappings server-id="python@sshConfig://sshConfig://pi@192.168.0.1:22 password/usr/bin/python/usr/bin/python" />
+      </list>
+    </list>
+  </component>
+</project>
