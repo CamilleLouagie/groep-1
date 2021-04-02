@@ -10,8 +10,8 @@ GPIO.setmode(GPIO.BOARD)
 # initialisatiepinnen
 # A staat voor motor 1, de linkermotor
 # B staat voor motor 2, de rechtermotor
-AForwardPin = 33
-ABackwardsPin = 32
+AForwardPin = 1
+ABackwardsPin = 23
 BForwardPin = 29
 BBackwardsPin = 31
 
@@ -20,52 +20,18 @@ BBackwardsPin = 31
 # EnablePinB =
 
 
-LED  = 1 # gpio pin 12 = wiringpi no. 1 (BCM 18)
-
-# Initialize PWM output for LED
-wiringpi.wiringPiSetup()
-wiringpi.pinMode(LED, 2)     # PWM mode
-wiringpi.pwmWrite(LED, 0)    # OFF
-
-# Set LED brightness
-def led(led_value):
-    wiringpi.pwmWrite(LED,led_value)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 def motorinitialisatie():
     global pwma
     global pwmb
-    GPIO.setup(AForwardPin, GPIO.OUT)
-    GPIO.setup(ABackwardsPin, GPIO.OUT)
-    GPIO.setup(BForwardPin, GPIO.OUT)
-    GPIO.setup(BBackwardsPin, GPIO.OUT)
-    # GPIO.setup(EnablePinA, GPIO.OUT)
-    # GPIO.setup(EnablePinB, GPIO.OUT)
+    wiringpi.wiringPiSetup()
+    wiringpi.pinMode(AForwardPin, 2)  # PWM mode
+    wiringpi.pinMode(ABackwardsPin, 1)
 
-    # pwm initialisatie (indien met de L293B kan dit op enable pin )
-    # pwma = GPIO.PWM(EnablePinA, 100)
-    # pwmb = GPIO.PWM(EnablePinB, 100)
+    wiringpi.pwmWrite(AForwardPin, 0)
 
-    # met de DRV:
-    pwma = GPIO.PWM(AForwardPin, 100)  # (pinnumber, frequentie)
-    pwmb = GPIO.PWM(BForwardPin, 100)
 
-    pwma.start(0)  # pwm.start(snelheidsfrequentie)
-    pwmb.start(0)
 
 
 # vooruit
@@ -75,12 +41,13 @@ def forward(speed=60):
     # GPIO.output(BForwardPin, GPIO.HIGH)
     # GPIO.output(BBackwardsPin, GPIO.LOW)
 
-    pwma.ChangeDutyCycle(speed)
-    pwmb.ChangeDutyCycle(speed)
+    wiringpi.pwmWrite(AForwardPin, 0)
+    print("vooruit")
     time.sleep(5)
 
-motorinitialisatie()
-forward(100)
+    wiringpi.pwmWrite(AForwardPin, 0)
+    time.sleep(5)
 
-pwma.ChangeDutyCycle(0)
-pwmb.ChangeDutyCycle(0)
+
+motorinitialisatie()
+wiringpi.pwmWrite(AForwardPin, 0)
