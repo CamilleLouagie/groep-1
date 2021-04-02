@@ -1,12 +1,15 @@
 \documentclass[aspectratio=169,kulak,t,handout]{kulakbeamer} % handout
 
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usepackage{hyperref}
 \usepackage[dutch]{babel}
 \usepackage[T1]{fontenc}
 \usefonttheme[onlymath]{serif}
 
 \title[Beamer]{Miniatuur Robotwagen in een Smart City}
 
-\author{Camille Louagie, Emile Vanspranghels, Otto Meerschman, Ruben Leenknecht, Staf Rys} 
+\author{Camille Louagie, Emiel Vanspranghels, Otto Meerschman, Ruben Leenknecht, Staf Rys} 
 \institute[Kulak]{KU Leuven Kulak}
 \date{Academiejaar 2020 -- 2021}
 
@@ -15,34 +18,30 @@
 			\tableofcontents[currentsection,hideallsubsections]
 	\end{outlineframe}}}
 
-
+\linespread{1.2}
 \begin{document}
 
 \begin{titleframe}
 \titlepage
 \end{titleframe}
 
-\begin{outlineframe}[Overzicht]
-\tableofcontents
-\end{outlineframe}
 
-\section{Inleiding}
+\section{Probleemstelling en oplossing}
 
 \begin{frame}
-	\frametitle{Nood aan efficiëntie}
-	\begin{itemize}
-		\item  Maatschappelijke uitdagingen
+	\frametitle{Hedendaagse maatschappelijke uitdagingen}
+
 		\begin{itemize}
-			\item Toename verstedelijking
-			\item Verscheidene problemen
-			\item Technologie
+			\large\item Toename verstedelijking
+			\item Mobiliteitsproblemen
+			\item Afhankelijkheid technologie
 		\end{itemize}
-		\item Slimme steden als oplossing
-	\end{itemize}
+
+
 	
 	\begin{figure}
 		\centering
-		\includegraphics[width=.60\textwidth]{ruimtelijkestaat}
+		\includegraphics[width=.6\textwidth]{ruimtelijkestaat}
 		%rood= ruimtebeslag > drempelwaarde
 		
 		\label{fig:CAD-model}
@@ -51,7 +50,7 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Smart Cities}
+	\frametitle{Slimme steden als oplossing voor het mobiliteitsprobleem}
 	
 \begin{block}{Definitie}
 	
@@ -59,27 +58,26 @@
 	
 \end{block}	
 	\begin{itemize}
-		\item  Verbeteren van interacties
+		\large\item  Verbeteren van interacties
 		\begin{itemize}
-			\item Fysieke beperkingen
+			\normalsize\item Fysieke beperkingen
 			\item Levenskwaliteit verhogen
 		\end{itemize}
 		\item  Diensten vereenvoudigen
 	\end{itemize}
-
-
-
 \end{frame}
 
-\begin{frame}{Zelfrijdende Auto's}
+
+
+\begin{frame}{Zelfrijdende Auto's als onderdeel van een slimme stad}
 	\begin{columns}
 	\column{0.5\textwidth}\centering
 	{\bf{Voordelen}}\\[.2cm]
 
 		\begin{itemize}
-			\item Rijden nauwkeuriger
+			\large\item Rijden nauwkeuriger
 			\begin{itemize}
-				\item Meer parkeerplaatsen
+				\normalsize\item Meer parkeerplaatsen
 				\item Minder files
 			\end{itemize}
 			\item Respect voor verkeersregels
@@ -89,7 +87,7 @@
 	{\bf{Nadelen}}\\[.2cm]
 
 			\begin{itemize}
-			\item Kwetsbaar voor hackers
+			\large\item Kwetsbaar voor hackers
 			\item Verminderde inkomst overheid
 			\item Stijging werkeloosheid
 			\end{itemize}
@@ -97,26 +95,29 @@
 	\end{columns}
 \end{frame}
 
-\section{Ontwerp}
+\begin{outlineframe}[Overzicht]
+	\tableofcontents
+\end{outlineframe}
 
-\begin{frame}{Ontwerp}
+
+\section{Schets van de situatie}
+
+\begin{frame}{Situatie van de modelstad}
 	\begin{columns}
 		\begin{column}{0.47\textwidth}\centering
-			{\bf{Onderdelen}}\\[.2cm]
+
+
 			\begin{itemize}
-				\item Microcontroller
-				\item Motor
-				\item Sensoren
-				\item Batterij
-				\item Wielen
-				\item Chassis
+				\normalsize\item 9 kruispunten met stopstreep en verkeerslicht
+				\item Detecteerbare volglijn
+				\item Mogelijkheid tot interactie met andere wagens
 			\end{itemize}
+
 		\end{column}
 		\begin{column}{0.75\textwidth}\centering
-		{\bf{CAD-model}}\\[.2cm]
 			\begin{figure}
 				\centering
-				\includegraphics[width=.60\textwidth]{afbchassis}
+				\includegraphics[width=.60\textwidth]{modelstad}
 				
 				\label{fig:CAD-model}
 			\end{figure}
@@ -124,15 +125,62 @@
 	\end{columns}
 \end{frame}
 
-\begin{frame}{Chassis}
+
+
+
+
+
+\section{Robot hardware}
+
+\begin{frame}{Ontwerp}
+\noindent
+\begin{tikzpicture}
+	\node [anchor=west] (Batterij) at (-2,4) {\Large Batterij};
+	\node [anchor=west] (Kleurensensor) at (-2,5.5) {\Large Kleurensensor};
+	\node [anchor=west] (Afstandssensor) at (-2,1) {\Large Afstandssensor};
+	\node [anchor=west] (Microcontroller) at (-2,3) {\Large Microcontroller};
+	\begin{scope}[xshift=1.5cm]
+		\node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.5\textwidth]{afbchassis}};
+		\begin{scope}[x={(image.south east)},y={(image.north west)}]
+			%\draw[cyan,ultra thick,rounded corners] (0.4,0.55) rectangle (0.2,0.3);
+			\draw [-stealth, line width=3pt, cyan] (Batterij) -- ++(1.1,0.0);
+			%\draw[cyan,ultra thick,rounded corners] (0.4,0.55) rectangle (0.2,0.3);
+			\draw [-stealth, line width=3pt, cyan] (Kleurensensor) -- ++(0.4,0.0);
+			\draw [-stealth, line width=3pt, cyan] (Afstandssensor) -- ++(0.4,0.1);
+			\draw [-stealth, line width=3pt, cyan] (Microcontroller) -- ++(0.4,0.0);
+		\end{scope}
+	\end{scope}
+\end{tikzpicture}
+\end{frame}
+
+
+\begin{frame}
+\noindent
+\begin{tikzpicture}
+	\node [anchor=west] (Ball Caster) at (-1,3) {\Large Ball Caster};
+	\node [anchor=west] (Lijnsensor) at (-1,2) {\Large Lijnsensor};
+	\node [anchor=west] (Wielen) at (-1,0) {\Large Wielen};
+	\begin{scope}[xshift=1.5cm]
+		\node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.6\textwidth]{OAZ}};
+		\begin{scope}[x={(image.south east)},y={(image.north west)}]
+			%\draw[cyan,ultra thick,rounded corners] (0.4,0.55) rectangle (0.2,0.3);
+			\draw [-stealth, line width=3pt, cyan] (Ball Caster) -- ++(0.4,0.0);
+			%\draw[cyan,ultra thick,rounded corners] (0.4,0.55) rectangle (0.2,0.3);
+			\draw [-stealth, line width=3pt, cyan] (Lijnsensor) -- ++(0.8,0.0);
+			\draw [-stealth, line width=3pt, cyan] (Wielen) -- ++(0.55,0.1);
+		\end{scope}
+	\end{scope}
+\end{tikzpicture}	
+\end{frame}
+
+\begin{frame}{Keuzes bij het zelfontworpen chassis}
 	\begin{columns}
 	\begin{column}{0.50\textwidth}\centering
 		%{\bf{Onderdelen}}\\[.2cm]
 		\begin{itemize}
-			\item Afmetingen
+			\Large\item Afmetingen
 			\item Hoek met de grond
 			\item Lijnsensor
-			\item Ball Caster
 			\item Wielen
 		\end{itemize}
 	\end{column}
@@ -146,6 +194,37 @@
 		\end{figure}
 	\end{column}
 \end{columns}	
+\end{frame}
+
+\section{Besluit}
+
+
+
+
+
+
+\begin{frame}{Besluit}
+\begin{itemize}
+	\large \item Zelfrijdend wagentje: Legt probleemloos een parcours af
+	\item Toont mogelijkheden op grote schaal
+	\item Budgetoverschot: Veiling anders aanpakken
+	
+\end{itemize}	
+	
+\end{frame}
+
+
+
+
+
+	
+\section{Referenties}
+
+\begin{frame}[allowframebreaks]
+	\frametitle{References}
+	\nocite{*}
+	\bibliographystyle{amsalpha}
+	\bibliography{bibliografietv.bib}
 \end{frame}
 
 \end{document}
