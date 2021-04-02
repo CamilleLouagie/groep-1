@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
-#from PWM_algoritme import leftmotorspeed
-#from PWM_algoritme.py import rightmotorspeed
+from PWM_algoritme import leftmotorspeed
+from PWM_algoritme import rightmotorspeed
 import time
 
 GPIO.setmode(GPIO.BOARD)
@@ -34,4 +34,9 @@ def lijndataTabel():  # vul nog de pins in, daarna geeft deze functie een lijst 
 
     return tijdsdatalijst
 
+
+
+
+
 print(lijndataTabel())
+print("ho")

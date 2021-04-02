@@ -12,9 +12,12 @@ Created on Fri Mar  5 14:27:09 2021
 
 #NUTTIGE COMMANDO: volglijn!!!
 
-import RPI.GPIO as GPIO
-from PWM_algoritme.py import leftmotorspeed
-from PWM_algoritme.py import rightmotorspeed
+import RPi.GPIO as GPIO
+from PWM_algoritme import leftmotorspeed
+from PWM_algoritme import rightmotorspeed
+from PWM_algoritme import forward
+from PWM_algoritme import backwards
+from PWM_algoritme import stopMotor
 import time
 
 GPIO.setmode(GPIO.BOARD)
@@ -85,9 +88,17 @@ def readpositie(lijndatatabel, minimum, maximum):
         som =1
     return avg / som
 
+
+
+
+
 def calibrate():
     global CALIBRATEDMAXIMUM
     global CALIBRATEDMINIMUM
+
+
+
+
 
 
 
@@ -113,8 +124,8 @@ def volglijn(tijdsdatalijst):
     global last_error
     MINIMUM = CALIBRATEDMINIMUM #nog in te vullen
     MAXIMUM = CALIBRATEDMAXIMUM #nog in te vullen
-    KP = #nog in te vullen
-    KD = #nog in te vullen
+    KP = 2 #nog in te vullen
+    KD = 1 #nog in te vullen
     SETPOINTPOSITIE = 3500 # 3*1000*sensor3 + 4*1000*sensor4 /(sensor3 + sensor 4)
     LINKSBASISSPEED = 50
     RECHTSBASISSPEED = 50
