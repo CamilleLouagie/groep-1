@@ -45,9 +45,9 @@ def getAfstand(adcnum):
 
     # Eerste versie van de linearisering van de tweede grafiek in de bijgeleverde documenten bij de sensor,
     # waarschijnlijk nog aan te passen.
-    #afstand = 27/voltage
+    afstand = 27/voltage
 
-    return voltage
+    return afstand
 
 def printAfstand(adcnum):
     print(getAfstand(adcnum))
@@ -55,16 +55,3 @@ def printAfstand(adcnum):
 while True:
     printAfstand(0)
     time.sleep(1)
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
-=======
-
-    
->>>>>>> Stashed changes

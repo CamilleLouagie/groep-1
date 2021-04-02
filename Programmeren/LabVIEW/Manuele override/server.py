@@ -2,6 +2,7 @@
 """Contains the Server object. When this file is executed, it listens for five
 seconds and, if a message is received, responds with 'message received'.  """
 import socket
+import time
 
 class Server(object):
     """A server to send and receive UDP message. Sending of messages is only
@@ -23,7 +24,7 @@ class Server(object):
             A Server object
         """
         self._socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self._socket.bind(('192.168.0.110', port))
+        self._socket.bind(('', port))
         self._client_adr = None
         self._size = message_size
 
@@ -83,13 +84,22 @@ class Server(object):
 if __name__ == "__main__":
     server = Server()
     while True:
-        print("luisteren")
-        mess = server.listen(timeout=5)
-        print("gedaan met luisteren")
+        mess = server.listen(timeout=0.2)
         if mess is not None:
+            message = mess
             print(mess)
-            server.send("Message received", timeout=5)
-        else:
-            print('No message received')
+            # server.send(message)
+            if mess == "b'vooruit'" or mess == "b'achteruit'":
+                server.send('5')
+            elif mess == "b'links'":
+                server.send('1.5')
+            elif mess == "b'linksvooruit'" or mess == "b'linksachteruit'":
+                server.send('3.5')
+            elif mess == "b'rechtsvooruit'" or mess == "b'rechtsachteruit'":
+                server.send('6.5')
+            elif mess == "b'rechts'":
+                server.send('8.5')
+            else:
+                None
 
 

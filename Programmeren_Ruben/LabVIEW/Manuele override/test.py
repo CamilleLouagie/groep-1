@@ -1,8 +1,8 @@
-#! /usr/bin/python3
-"""Contains the Server object. When this file is executed, it listens for five
-seconds and, if a message is received, responds with 'message received'.  """
+import time
 import socket
 
+
+override = False
 class Server(object):
     """A server to send and receive UDP message. Sending of messages is only
     possible when a message has been received.
@@ -23,7 +23,7 @@ class Server(object):
             A Server object
         """
         self._socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self._socket.bind(('192.168.0.110', port))
+        self._socket.bind(('', port))
         self._client_adr = None
         self._size = message_size
 
@@ -66,7 +66,7 @@ class Server(object):
         -------
         bool
             True if the message was succesfuly sent, False if partially sent
-            or if no message was received (i.e. the _socket is None). 
+            or if no message was received (i.e. the _socket is None).
 
         """
         if self._socket is None:
@@ -80,16 +80,68 @@ class Server(object):
                 return False
         return True
 
-if __name__ == "__main__":
-    server = Server()
-    while True:
-        print("luisteren")
-        mess = server.listen(timeout=5)
-        print("gedaan met luisteren")
+#aanmaken van server
+server = Server()
+
+
+while True:
+    kruispuntnr = 3
+    bericht = server.listen(timeout=0.01)
+    if bericht == "b'start'":
+        kruispunt_reserve = kruispuntnr
+        override = True
+    else:
+        None
+    while override == True:
+        mess = server.listen(timeout=0.2)
         if mess is not None:
+            message = mess
             print(mess)
-            server.send("Message received", timeout=5)
-        else:
-            print('No message received')
+            # server.send(message)
+            if mess == "b'vooruit'":
+                server.send('Vooruit.')
+            elif mess == "b'achteruit'":
+                server.send('Achteruit.')
+            elif mess == "b'links'":
+                server.send('Links.')
+            elif mess == "b'rechts'":
+                server.send('Rechts.')
+            elif mess == "b'linksvooruit'":
+                server.send('Linksvooruit.')
+            elif mess == "b'linksachteruit'":
+                server.send('Linksachteruit')
+            elif mess == "b'rechtsvooruit'":
+                server.send('Rechtsvooruit.')
+            elif mess == "b'rechtsachteruit'":
+                server.send('Rechtsachteruit')
+            elif mess[0:6] == "b'stop":
+                server.send('Succesvol gestopt.')
+                kruispunt_manueel = 0
+                cijfer = 0
+                print(mess[-3])
+                print(mess[-2])
+                try:
+                    cijfer = int(mess[-3])
+                    kruispunt_manueel += cijfer*10
+                except:
+                    None
 
 
+                cijfer = 0
+
+                try:
+                    cijfer = int(mess[-2])
+                    kruispunt_manueel += cijfer
+                except:
+                    None
+
+
+                if kruispunt_manueel != 0:
+                    kruispuntnr = kruispunt_manueel
+                else:
+                    kruispuntnr = kruispunt_reserve
+                finaalBericht = str(kruispuntnr)
+                server.send('Kruispunt = ' + ' ' + finaalBericht)
+                override = False
+            else:
+                None

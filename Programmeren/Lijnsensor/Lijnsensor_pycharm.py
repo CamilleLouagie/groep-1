@@ -37,9 +37,6 @@ def leesSensor(dataPIN): #function to get value from IR sensor
     tijdsduur= pulse_end - pulse_start
     print ("tijdsduur:", tijdsduur)
     return tijdsduur
-    
-
-
 
 
 
@@ -88,6 +85,9 @@ def readpositie(lijndatatabel, minimum, maximum):
         som =1
     return avg / som
 
+def calibrate():
+    global CALIBRATEDMAXIMUM
+    global CALIBRATEDMINIMUM
 
 
 
@@ -124,11 +124,16 @@ def volglijn(tijdsdatalijst):
     positie = readpositie(tijdsdatalijst, MINIMUM, MAXIMUM) #de gekalibreerde positiewaarde
     error = positie-SETPOINTPOSITIE
     correctiespeed = KP*error + KD*(error - last_error)
-    correctiespeed = 0
     last_error = error
 
     leftmotorspeed(LINKSBASISSPEED + correctiespeed)
     rightmotorspeed(RECHTSBASISSPEED - correctiespeed)
+
+
+
+
+
+
 
 
 
