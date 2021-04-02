@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 server.py
 =======
@@ -11,3 +12,6 @@ afstandssensor.py
 afstandssensor.py
 >>>>>>> Stashed changes
 >>>>>>> master
+=======
+server.py
+>>>>>>> Stashed changes
