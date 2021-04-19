@@ -192,10 +192,6 @@ def volglijn(tijdsdatalijst):
 
 
 
-
-
-
-
 def zoeklijn():
     MINIMUM = CALIBRATEDMINIMUM  # nog in te vullen
     MAXIMUM = CALIBRATEDMAXIMUM  # nog in te vullen
