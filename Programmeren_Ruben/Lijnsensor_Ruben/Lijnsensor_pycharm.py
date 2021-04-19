@@ -184,6 +184,8 @@ def zoeklijn():
 
 
 
+
+
 calibrate()
 last_error = 0
 
