@@ -10,10 +10,6 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
 
 
-#tijd voor turnleft en right nog aan te passen
-
-
-
 #initialisatiepinnen
 #A staat voor motor 1, de linkermotor
 #B staat voor motor 2, de rechtermotor
@@ -121,11 +117,4 @@ def motorcleanup():
     #stop van het programma
     pwma.stop()
     pwmb.stop()
-
-
-
-motorinitialisatie()
-
-#forward(100)
-#time.sleep(10)
-#motorcleanup()
+    pwm.cleanup()
