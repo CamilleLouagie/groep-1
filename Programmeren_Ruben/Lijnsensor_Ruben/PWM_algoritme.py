@@ -119,7 +119,8 @@ def motorcleanup():
     pwmb.stop()
 
 
-motorinitialisatie()
+
+#motorinitialisatie()
 #forward(100)
 #time.sleep(10)
 #motorcleanup()

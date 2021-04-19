@@ -9,7 +9,7 @@ GPIO.setmode(GPIO.BOARD)
 #pulse_end nog aanpassen voor errors, net zoals time.time()
 
 
-def leesSensor(dataPIN):  # function to get value from IR sensor
+def leesSensor(dataPIN):  # function to get value from one IR sensor
     GPIO.setup(dataPIN, GPIO.OUT)  # Set your chosen pin to an output
     GPIO.output(dataPIN, GPIO.HIGH)  # turn on the power 5v to the sensor
     time.sleep(0.00001)  # opladen
