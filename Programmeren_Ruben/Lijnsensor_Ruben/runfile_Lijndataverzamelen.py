@@ -35,4 +35,4 @@ def lijndataTabel():  # vul nog de pins in, daarna geeft deze functie een lijst 
 
 while True:
     print(lijndataTabel())
-    time.sleep(5)
+    time.sleep(3)

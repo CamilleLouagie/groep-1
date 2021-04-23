@@ -167,10 +167,11 @@ def volglijn(tijdsdatalijst):
 
 
     positie = readpositie(tijdsdatalijst, MINIMUM, MAXIMUM) #de gekalibreerde positiewaarde
-    print(positie)
-    error = (positie-SETPOINTPOSITIE)/1000
-    print error
-    print last_error
+    print("positie:", positie)
+    error = (positie-SETPOINTPOSITIE)/1000.
+    print("error", error)
+
+    #print last_error
 
 
     correctiespeedlinks = LINKSBASISSPEED + KP*error + KD*(error - last_error)
@@ -214,9 +215,18 @@ motorinitialisatie()
 calibrate()
 last_error = 0
 
-for k in range(200):
+for k in range(20):
     data = lijndataTabel()
-    volglijn(data)
+    print data
+    print herschaalwaarde(data, CALIBRATEDMINIMUM, CALIBRATEDMAXIMUM)
+    print
+
+    #print(readpositie(data, CALIBRATEDMINIMUM, CALIBRATEDMAXIMUM))
+    #volglijn(data)
+    time.sleep(4)
+
+
+
 
 GPIO.cleanup()
 motorcleanup()
