@@ -218,10 +218,10 @@ last_error = 0
 
 for k in range(2000):
     data = lijndataTabel()
-    print data
-    print herschaalwaarde(data, CALIBRATEDMINIMUM, CALIBRATEDMAXIMUM)
+    print(data)
+    print(herschaalwaarde(data, CALIBRATEDMINIMUM, CALIBRATEDMAXIMUM))
     print(readpositie(data, CALIBRATEDMINIMUM, CALIBRATEDMAXIMUM))
-    print
+    print()
 
     volglijn(data)
 

@@ -12,6 +12,13 @@
           </settings>
         </remote-mappings>
         <remote-mappings server-id="python@sshConfig://sshConfig://pi@192.168.0.1:22 password/usr/bin/python/usr/bin/python" />
+        <remote-mappings server-id="python@sshConfig://pi@192.168.0.1:22 password/usr/bin/python3">
+          <settings>
+            <list>
+              <mapping local-root="$PROJECT_DIR$" remote-root="/home/pi/PORuben" />
+            </list>
+          </settings>
+        </remote-mappings>
       </list>
     </list>
   </component>
