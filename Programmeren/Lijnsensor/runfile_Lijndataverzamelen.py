@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
-#from PWM_algoritme import leftmotorspeed
-#from PWM_algoritme.py import rightmotorspeed
+from PWM_algoritme import leftmotorspeed
+from PWM_algoritme import rightmotorspeed
 import time
 
 GPIO.setmode(GPIO.BOARD)
@@ -9,7 +9,7 @@ GPIO.setmode(GPIO.BOARD)
 #pulse_end nog aanpassen voor errors, net zoals time.time()
 
 
-def leesSensor(dataPIN):  # function to get value from IR sensor
+def leesSensor(dataPIN):  # function to get value from one IR sensor
     GPIO.setup(dataPIN, GPIO.OUT)  # Set your chosen pin to an output
     GPIO.output(dataPIN, GPIO.HIGH)  # turn on the power 5v to the sensor
     time.sleep(0.00001)  # opladen
@@ -21,7 +21,6 @@ def leesSensor(dataPIN):  # function to get value from IR sensor
     if GPIO.input(dataPIN) == 0:
         pulse_end = time.time()  # when it hits zero stop the stopwatch
     tijdsduur = pulse_end - pulse_start
-    print ("tijdsduur:", tijdsduur)
     return tijdsduur
 
 
@@ -34,4 +33,6 @@ def lijndataTabel():  # vul nog de pins in, daarna geeft deze functie een lijst 
 
     return tijdsdatalijst
 
-print(lijndataTabel())
+while True:
+    print(lijndataTabel())
+    time.sleep(5)

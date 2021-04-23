@@ -5,14 +5,20 @@ Created on Fri Mar  5 14:27:09 2021
 @author: Ruben Leenknecht
 """
 
-
-#de datapins moeten nog ingevuld worden en de waarde voor zwart/wit en dat maximale wachttijd en de CALIBRATEDMAX, CALIBDRATEDMIN
 #zwart betekent hoge tijd, wit betekent lage tijd
-
-#opgelet, vaak worden de pins niet uigelezen, vandaar PULSE_END!!!
-
-
 #NUTTIGE COMMANDO: volglijn!!!
+
+
+# Een betere waarde dan 0.5 is welkom om de tijd op lijn 35 in te vullen! (maximale wachttijd)
+
+#gevaar: lijn 94 werk ik ruis weg: alle gekalibreerde waardes boven 50 worden 0!
+
+# op lijn 145-146 moeten nog basisspeeds komen
+#laatste aanpassingen: time.time < 0.5 aangepast
+#de functie calibrate staat nog niet op actief
+
+
+
 
 import RPi.GPIO as GPIO
 from PWM_algoritme import leftmotorspeed
@@ -21,12 +27,13 @@ from PWM_algoritme import forward
 from PWM_algoritme import backwards
 from PWM_algoritme import stopMotor
 from PWM_algoritme import motorcleanup
+from PWM_algoritme import motorinitialisatie
+
 import time
 
 GPIO.setmode(GPIO.BOARD)
 
 
-#pulse_end nog aanpassen voor errors, net zoals time.time()
 
 
 def leesSensor(dataPIN): #function to get value from IR sensor
@@ -35,15 +42,16 @@ def leesSensor(dataPIN): #function to get value from IR sensor
     time.sleep(0.00001) #opladen 
     pulse_start = time.time() #start the stopwatch
     GPIO.setup(dataPIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # set pin to pull down to ground 0v
-    while GPIO.input(dataPIN)> 0: # and time.time()< 0.5: #NOG AAN TE PASSEN
+    while GPIO.input(dataPIN)> 0 and (time.time()-pulse_start)< 0.5: #NOG AAN TE PASSEN
         pass #wait while the capacitor discharges to zero
         
     if  GPIO.input(dataPIN)==0:
         pulse_end = time.time() #when it hits zero stop the stopwatch
 
-    #als dit wegdoet, werkt het niet meer
-    else:
+    else: #Stel dat we geen waarde vinden, is het veiligste om op wit te zetten zeker?
         pulse_end =pulse_start
+
+
     tijdsduur= pulse_end - pulse_start
     return tijdsduur
 
@@ -98,13 +106,30 @@ def readpositie(lijndatatabel, minimum, maximum):
 
 
 
-def calibrate():
+def calibrate(): #autootje rijdt ongeveer 5 seconden vooruit, laat hem over wit en zwart gaan!
     global CALIBRATEDMAXIMUM
     global CALIBRATEDMINIMUM
     CALIBRATEDMINIMUM = [0.00045800209045410156, 0.00043201446533203125, 0.00043702125549316406, 0.0004038810729980469, 0.0004088878631591797, 0.00042819976806640625, 0.0004119873046875, 0.000431060791015625]
     CALIBRATEDMAXIMUM = [0.0005309581756591797, 0.0005199909210205078, 0.0005052089691162109, 0.0005011558532714844, 0.0005130767822265625, 0.0004990100860595703, 0.0005171298980712891, 0.0004990100860595703]
 
 
+    #begin met hem op wit te zetten, we laten hem over de zwarte lijn rijden
+    """
+    forward(30)
+    data = lijndataTabel()
+    CALIBRATEDMINIMUM = data
+    CALIBRATEDMAXIMUM = data
+    for k in range(100):
+        data = lijndataTabel()
+        for i in range(len(data)):
+            if data[i] < CALIBRATEDMINIMUM[i] and data[i] != 0:
+                CALIBRATEDMINIMUM[i] = data[i]
+            if data[i] > CALIBRATEDMAXIMUM:
+                CALIBRATEDMAXIMUM[i] = data[i]
+        time.sleep(0.05)
+
+    stopMotor()
+    """
 
 
 
@@ -114,8 +139,8 @@ def calibrate():
 
 # while True
 def lijninterpretatie(): #geeft weer of er een stopstreep is of anders een gewone lijn
-    MINIMUM = CALIBRATEDMINIMUM #nog in te vullen
-    MAXIMUM = CALIBRATEDMAXIMUM #nog in te vullen
+    MINIMUM = CALIBRATEDMINIMUM
+    MAXIMUM = CALIBRATEDMAXIMUM
     tijdsdatalijst = lijndataTabel()
     herschaaltabel = herschaalwaarde(tijdsdatalijst, MINIMUM, MAXIMUM)
     zwartewaarden = 0
@@ -145,7 +170,8 @@ def volglijn(tijdsdatalijst):
     print(positie)
     error = (positie-SETPOINTPOSITIE)/1000
     print error
-    last_error = error
+    print last_error
+
 
     correctiespeedlinks = LINKSBASISSPEED + KP*error + KD*(error - last_error)
     correctiespeedrechts = RECHTSBASISSPEED - KP*error + KD*(error - last_error)
@@ -160,9 +186,7 @@ def volglijn(tijdsdatalijst):
     leftmotorspeed(correctiespeedlinks)
     rightmotorspeed(correctiespeedrechts)
 
-
-
-
+    last_error = error
 
 
 
@@ -184,9 +208,11 @@ def zoeklijn():
 
 
 
+
+#voorlopig programmaatje
+motorinitialisatie()
 calibrate()
 last_error = 0
-
 
 for k in range(200):
     data = lijndataTabel()

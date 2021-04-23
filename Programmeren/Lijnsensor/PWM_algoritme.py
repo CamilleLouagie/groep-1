@@ -117,4 +117,10 @@ def motorcleanup():
     #stop van het programma
     pwma.stop()
     pwmb.stop()
-    pwm.cleanup()
+
+
+
+#motorinitialisatie()
+#forward(100)
+#time.sleep(10)
+#motorcleanup()

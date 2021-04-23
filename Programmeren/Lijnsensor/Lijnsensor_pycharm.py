@@ -9,12 +9,18 @@ Created on Fri Mar  5 14:27:09 2021
 #de datapins moeten nog ingevuld worden en de waarde voor zwart/wit en dat maximale wachttijd en de CALIBRATEDMAX, CALIBDRATEDMIN
 #zwart betekent hoge tijd, wit betekent lage tijd
 
+#opgelet, vaak worden de pins niet uigelezen, vandaar PULSE_END!!!
+
 
 #NUTTIGE COMMANDO: volglijn!!!
 
-import RPI.GPIO as GPIO
-from PWM_algoritme.py import leftmotorspeed
-from PWM_algoritme.py import rightmotorspeed
+import RPi.GPIO as GPIO
+from PWM_algoritme import leftmotorspeed
+from PWM_algoritme import rightmotorspeed
+from PWM_algoritme import forward
+from PWM_algoritme import backwards
+from PWM_algoritme import stopMotor
+from PWM_algoritme import motorcleanup
 import time
 
 GPIO.setmode(GPIO.BOARD)
@@ -29,13 +35,16 @@ def leesSensor(dataPIN): #function to get value from IR sensor
     time.sleep(0.00001) #opladen 
     pulse_start = time.time() #start the stopwatch
     GPIO.setup(dataPIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # set pin to pull down to ground 0v
-    while GPIO.input(dataPIN)> 0 and time.time()< 0.5: #NOG AAN TE PASSEN
+    while GPIO.input(dataPIN)> 0: # and time.time()< 0.5: #NOG AAN TE PASSEN
         pass #wait while the capacitor discharges to zero
         
     if  GPIO.input(dataPIN)==0:
         pulse_end = time.time() #when it hits zero stop the stopwatch
+
+    #als dit wegdoet, werkt het niet meer
+    else:
+        pulse_end =pulse_start
     tijdsduur= pulse_end - pulse_start
-    print ("tijdsduur:", tijdsduur)
     return tijdsduur
 
 
@@ -61,12 +70,12 @@ def lijndataTabel(): #vul nog de pins in, daarna geeft deze functie een lijst te
 def herschaalwaarde(lijndataTabel, minimum, maximum):  # noteert iedere waarde als een getal tussen 0 en 1000 ("read calibrate")
     # hulpfunctie voor readpositie
     herschaaltabel = []
-    for k in range(len(lijndataTabel)):
+    for i in range(len(lijndataTabel)):
         herschaaldewaarde = (lijndataTabel[i] - minimum[i]) / (maximum[i] - minimum[i]) * 1000
-        if herschaaldewaarde < minimum[i]:
-            herschaaldewaarde = minimum[i]
-        if herschaaldewaarde > maximum[i]:
-            herschaaldewaarde = maximum[i]
+        if herschaaldewaarde < 0:
+            herschaaldewaarde = 0
+        if herschaaldewaarde > 1000:
+            herschaaldewaarde = 0
         herschaaltabel.append(herschaaldewaarde)
     return herschaaltabel
 
@@ -85,9 +94,20 @@ def readpositie(lijndatatabel, minimum, maximum):
         som =1
     return avg / som
 
+
+
+
+
 def calibrate():
     global CALIBRATEDMAXIMUM
     global CALIBRATEDMINIMUM
+    CALIBRATEDMINIMUM = [0.00045800209045410156, 0.00043201446533203125, 0.00043702125549316406, 0.0004038810729980469, 0.0004088878631591797, 0.00042819976806640625, 0.0004119873046875, 0.000431060791015625]
+    CALIBRATEDMAXIMUM = [0.0005309581756591797, 0.0005199909210205078, 0.0005052089691162109, 0.0005011558532714844, 0.0005130767822265625, 0.0004990100860595703, 0.0005171298980712891, 0.0004990100860595703]
+
+
+
+
+
 
 
 
@@ -113,8 +133,8 @@ def volglijn(tijdsdatalijst):
     global last_error
     MINIMUM = CALIBRATEDMINIMUM #nog in te vullen
     MAXIMUM = CALIBRATEDMAXIMUM #nog in te vullen
-    KP = #nog in te vullen
-    KD = #nog in te vullen
+    KP = 0.1 #nog in te vullen
+    KD = 0 #nog in te vullen
     SETPOINTPOSITIE = 3500 # 3*1000*sensor3 + 4*1000*sensor4 /(sensor3 + sensor 4)
     LINKSBASISSPEED = 50
     RECHTSBASISSPEED = 50
@@ -122,12 +142,23 @@ def volglijn(tijdsdatalijst):
 
 
     positie = readpositie(tijdsdatalijst, MINIMUM, MAXIMUM) #de gekalibreerde positiewaarde
-    error = positie-SETPOINTPOSITIE
-    correctiespeed = KP*error + KD*(error - last_error)
+    print(positie)
+    error = (positie-SETPOINTPOSITIE)/1000
+    print error
     last_error = error
 
-    leftmotorspeed(LINKSBASISSPEED + correctiespeed)
-    rightmotorspeed(RECHTSBASISSPEED - correctiespeed)
+    correctiespeedlinks = LINKSBASISSPEED + KP*error + KD*(error - last_error)
+    correctiespeedrechts = RECHTSBASISSPEED - KP*error + KD*(error - last_error)
+    if correctiespeedlinks > 100:
+        correctiespeedlinks = 100
+    if correctiespeedrechts < 0:
+        correctiespeedrechts = 0
+    if correctiespeedlinks < 0 :
+        correctiespeedlinks = 0
+    if correctiespeedrechts > 100:
+        correctiespeedrechts = 100
+    leftmotorspeed(correctiespeedlinks)
+    rightmotorspeed(correctiespeedrechts)
 
 
 
@@ -154,8 +185,14 @@ def zoeklijn():
 
 
 
-while True:
-    print(lijndataTabel()) #geeft de tabel met waarden weer
-    time.sleep(0.1) #pause for 0,1 second before repeating, use ctrl+z to stop
 
-GPIO.cleanup() 
+calibrate()
+last_error = 0
+
+
+for k in range(200):
+    data = lijndataTabel()
+    volglijn(data)
+
+GPIO.cleanup()
+motorcleanup()
