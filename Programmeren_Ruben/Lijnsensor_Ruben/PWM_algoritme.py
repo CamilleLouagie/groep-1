@@ -126,6 +126,6 @@ def motorcleanup():
 
 #motorinitialisatie()
 
-#forward(100)
+#forward(10)
 #time.sleep(10)
 #motorcleanup()

@@ -59,7 +59,7 @@ def leesSensor(dataPIN): #function to get value from IR sensor
 
 def lijndataTabel(): #vul nog de pins in, daarna geeft deze functie een lijst terug met als elementen de tijdsdata per sensor
     #verzamelt sensorendata in een lijst
-    pinlijst = [7,8,10,11,12,13,15,16] #vul hier DE PINNUMMERS in
+    pinlijst = [16,15,13,12,11,10,8,7]  # de inverse[7,8,10,11,12,13,15,16] #vul hier DE PINNUMMERS in
     tijdsdatalijst = []
     for pin in pinlijst:
         tijdsdatalijst.append(leesSensor(pin))
@@ -83,7 +83,7 @@ def herschaalwaarde(lijndataTabel, minimum, maximum):  # noteert iedere waarde a
         if herschaaldewaarde < 0:
             herschaaldewaarde = 0
         if herschaaldewaarde > 1000:
-            herschaaldewaarde = 0
+            herschaaldewaarde = 1000
         herschaaltabel.append(herschaaldewaarde)
     return herschaaltabel
 
@@ -109,8 +109,9 @@ def readpositie(lijndatatabel, minimum, maximum):
 def calibrate(): #autootje rijdt ongeveer 5 seconden vooruit, laat hem over wit en zwart gaan!
     global CALIBRATEDMAXIMUM
     global CALIBRATEDMINIMUM
-    CALIBRATEDMINIMUM = [0.00045800209045410156, 0.00043201446533203125, 0.00043702125549316406, 0.0004038810729980469, 0.0004088878631591797, 0.00042819976806640625, 0.0004119873046875, 0.000431060791015625]
-    CALIBRATEDMAXIMUM = [0.0005309581756591797, 0.0005199909210205078, 0.0005052089691162109, 0.0005011558532714844, 0.0005130767822265625, 0.0004990100860595703, 0.0005171298980712891, 0.0004990100860595703]
+    CALIBRATEDMINIMUM = [0.00035691261291503906, 0.00034880638122558594, 0.0003559589385986328, 0.0003330707550048828, 0.00032711029052734375, 0.0003390312194824219, 0.000308990478515625, 0.0003020763397216797]
+    CALIBRATEDMAXIMUM = [0.0005331039428710938, 0.0005230903625488281, 0.0005099773406982422, 0.0005021095275878906, 0.0005109310150146484, 0.0004990100860595703, 0.0005199909210205078, 0.0004978179931640625]
+
 
 
     #begin met hem op wit te zetten, we laten hem over de zwarte lijn rijden
@@ -158,11 +159,11 @@ def volglijn(tijdsdatalijst):
     global last_error
     MINIMUM = CALIBRATEDMINIMUM #nog in te vullen
     MAXIMUM = CALIBRATEDMAXIMUM #nog in te vullen
-    KP = 0.1 #nog in te vullen
+    KP = 40 #nog in te vullen
     KD = 0 #nog in te vullen
     SETPOINTPOSITIE = 3500 # 3*1000*sensor3 + 4*1000*sensor4 /(sensor3 + sensor 4)
-    LINKSBASISSPEED = 50
-    RECHTSBASISSPEED = 50
+    LINKSBASISSPEED = 30
+    RECHTSBASISSPEED = 30
 
 
 
@@ -215,15 +216,15 @@ motorinitialisatie()
 calibrate()
 last_error = 0
 
-for k in range(20):
+for k in range(2000):
     data = lijndataTabel()
     print data
     print herschaalwaarde(data, CALIBRATEDMINIMUM, CALIBRATEDMAXIMUM)
+    print(readpositie(data, CALIBRATEDMINIMUM, CALIBRATEDMAXIMUM))
     print
 
-    #print(readpositie(data, CALIBRATEDMINIMUM, CALIBRATEDMAXIMUM))
-    #volglijn(data)
-    time.sleep(4)
+    volglijn(data)
+    #time.sleep(4)
 
 
 
