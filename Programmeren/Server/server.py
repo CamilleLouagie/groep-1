@@ -65,7 +65,7 @@ class Server(object):
         Returns
         -------
         bool
-            True if the message was succesfuly sent, False if partially sent
+            True if the message was successfully sent, False if partially sent
             or if no message was received (i.e. the _socket is None). 
 
         """

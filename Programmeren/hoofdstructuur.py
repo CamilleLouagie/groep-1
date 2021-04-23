@@ -2,13 +2,16 @@ import Afstandssensor_en_ADC.afstandssensor as adc
 from Lijnsensor.Lijnsensor_pycharm import volglijn, lijninterpretatie
 from opkuisen import opkuis
 from kruispunt import kruispunt
-from MotorControl.PWM_algoritme import stopMotor
+from MotorControl.PWM_algoritme import stopMotor,forward # Een meer verfijnde versie van links en rechts draaien moet geïmplementeerd worden.
 
 
 import RPI.GPIO as GPIO
 import time
 import spidev
 import busio
+import Adafruit_TCS34725
+import Server.server as Server
+
 
 
 def main():
@@ -24,7 +27,10 @@ def main():
 
     # Kleurensensor initialiseren
     i2c = busio.I2C(5, 3)
-    kleurensensor = adafruit_tcs34725.TCS34725(i2c)
+    kleurensensor = Adafruit_TCS34725.TCS34725(i2c)
+
+    # Server initialiseren
+    server = Server.Server()
 
     last_error = 0  # Nodig voor de eerst keer volglijn uit te voeren
     while not einde:
@@ -54,7 +60,14 @@ def main():
 
         #Bericht uitlezen
         while message != 'Ga door':
-            # ...
+            if message == 'rechtdoor':
+                forward(10)
+                time.sleep(0.0000001)
+                stopMotor()
+                message = server.listen()
+            elif  message == 'links':
+                pass
+
             message = server.listen()
 
         raise Exception("Fout in de code.")

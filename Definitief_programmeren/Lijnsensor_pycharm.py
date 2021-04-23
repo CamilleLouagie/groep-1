@@ -212,18 +212,18 @@ def zoeklijn():
 
 
 #voorlopig programmaatje
-motorinitialisatie()
-calibrate()
-last_error = 0
+#motorinitialisatie()
+#calibrate()
+#last_error = 0
 
-for k in range(2000):
-    data = lijndataTabel()
-    print(data)
-    print(herschaalwaarde(data, CALIBRATEDMINIMUM, CALIBRATEDMAXIMUM))
-    print(readpositie(data, CALIBRATEDMINIMUM, CALIBRATEDMAXIMUM))
-    print()
+#for k in range(2000):
+#    data = lijndataTabel()
+#    print data
+#    print herschaalwaarde(data, CALIBRATEDMINIMUM, CALIBRATEDMAXIMUM)
+#    print(readpositie(data, CALIBRATEDMINIMUM, CALIBRATEDMAXIMUM))
+#    print
 
-    volglijn(data)
+#    volglijn(data)
 
-GPIO.cleanup()
-motorcleanup()
+#GPIO.cleanup()
+#motorcleanup()
