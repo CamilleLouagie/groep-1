@@ -2,6 +2,7 @@ from Kleurensensor.Kleurensensor import detectiekleuren
 import MotorControl.PWM_algoritme as motor
 from Lijnsensor.Lijnsensor_pycharm import zoeklijn
 import Afstandssensor_en_ADC.afstandssensor as adc
+import time
 
 
 def kruispunt(nummer, kleurensensor, kanaal):
@@ -62,7 +63,8 @@ def kruispunt(nummer, kleurensensor, kanaal):
     elif nummer == 25:
         pass
 
-def oversteken():
+
+def oversteken(kanaal):
     while zoeklijn():
         motor.forward(10)
 
@@ -73,24 +75,32 @@ def oversteken():
         while adc.getAfstand(kanaal) <= 12:
             motor.stopMotor()
 
-def rechtsInslaan():
+def rechtsInslaan(kanaal):
     while zoeklijn():
         motor.forward(10)
 
     while not zoeklijn():
 
         motor.forward(30)
+        while adc.getAfstand(kanaal) <= 12:
+            motor.stopMotor()
         time.sleep(0.2)
         motor.turnRightNinety()
         motor.forward(30)
+        while adc.getAfstand(kanaal) <= 12:
+            motor.stopMotor()
 
-def linksInslaan():
+def linksInslaan(kanaal):
     while zoeklijn():
         motor.forward(10)
 
     while not zoeklijn():
 
         motor.forward(30)
+        while adc.getAfstand(kanaal) <= 12:
+            motor.stopMotor()
         time.sleep(0.2)
         motor.turnLeftNinety()
         motor.forward(30)
+        while adc.getAfstand(kanaal) <= 12:
+            motor.stopMotor()

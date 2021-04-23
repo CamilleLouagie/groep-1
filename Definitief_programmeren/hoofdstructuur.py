@@ -1,8 +1,8 @@
-import Afstandssensor_en_ADC.afstandssensor as adc
-from Lijnsensor.Lijnsensor_pycharm import volglijn, lijninterpretatie
+import afstandssensor as adc
+from Lijnsensor_pycharm import volglijn, lijninterpretatie
 from opkuisen import opkuis
 from kruispunt import kruispunt
-from MotorControl.PWM_algoritme import stopMotor,forward # Een meer verfijnde versie van links en rechts draaien moet geïmplementeerd worden.
+from PWM_algoritme import forward, turnLeft, turnRight, # Een meer verfijnde versie van links en rechts draaien moet geïmplementeerd worden.
 
 
 import RPI.GPIO as GPIO
@@ -62,11 +62,14 @@ def main():
         while message != 'Ga door':
             if message == 'rechtdoor':
                 forward(10)
-                time.sleep(0.0000001)
-                stopMotor()
-                message = server.listen()
-            elif  message == 'links':
-                
+            elif message == 'links':
+                turnLeft()
+            elif message == 'rechts':
+                turnRight()
+            elif message == 'achteruit':
+                pass
+            else:
+                pass
 
             message = server.listen()
 
