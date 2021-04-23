@@ -2,7 +2,7 @@ import afstandssensor as adc
 from Lijnsensor_pycharm import volglijn, lijninterpretatie
 from opkuisen import opkuis
 from kruispunt import kruispunt
-from PWM_algoritme import forward, turnLeft, turnRight # Een meer verfijnde versie van links en rechts draaien moet geïmplementeerd worden.
+from PWM_algoritme import forward, turnLeft, turnRight # Een functie voor achterwaarts te gaan moet nog geïmp
 
 import socket
 import RPI.GPIO as GPIO
@@ -74,7 +74,7 @@ class Server(object):
         Returns
         -------
         bool
-            True if the message was succesfuly sent, False if partially sent
+            True if the message was successfully sent, False if partially sent
             or if no message was received (i.e. the _socket is None).
 
         """
@@ -123,7 +123,7 @@ def main():
                 override = True
 
             # Manuele override
-            while override == True:
+            while override:
                 msg = str(server.listen(timeout=0.2))
                 print(msg)
                 if msg.find('vooruit') >= 0:
@@ -154,22 +154,20 @@ def main():
                 elif msg.find('stop') >= 0:
 
                     kruispunt_manueel = 0
-                    cijfer = 0
                     print(msg[-3])
                     print(msg[-2])
                     try:
                         cijfer = int(msg[-3])
                         kruispunt_manueel += cijfer * 10
                     except:
-                        None
+                        pass
 
-                    cijfer = 0
 
                     try:
                         cijfer = int(msg[-2])
                         kruispunt_manueel += cijfer
                     except:
-                        None
+                        pass
 
                     if kruispunt_manueel != 0:
                         kruispuntnr = kruispunt_manueel
@@ -210,8 +208,7 @@ def main():
                     pass
 
 
-
-        raise Exception("Fout in de code.")
+    raise Exception("Fout in de code.")
 
 
 if __name__ == "__main__":

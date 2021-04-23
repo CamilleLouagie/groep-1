@@ -33,6 +33,11 @@ def lijndataTabel():  # vul nog de pins in, daarna geeft deze functie een lijst 
 
     return tijdsdatalijst
 
+<<<<<<< Updated upstream
 while True:
     print(lijndataTabel())
     time.sleep(5)
+=======
+print(lijndataTabel())
+
+>>>>>>> Stashed changes
