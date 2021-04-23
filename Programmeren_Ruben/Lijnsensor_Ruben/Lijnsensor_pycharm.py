@@ -159,11 +159,11 @@ def volglijn(tijdsdatalijst):
     global last_error
     MINIMUM = CALIBRATEDMINIMUM #nog in te vullen
     MAXIMUM = CALIBRATEDMAXIMUM #nog in te vullen
-    KP = 40 #nog in te vullen
-    KD = 0 #nog in te vullen
+    KP = 80 #nog in te vullen
+    KD = 10 #nog in te vullen
     SETPOINTPOSITIE = 3500 # 3*1000*sensor3 + 4*1000*sensor4 /(sensor3 + sensor 4)
-    LINKSBASISSPEED = 30
-    RECHTSBASISSPEED = 30
+    LINKSBASISSPEED = 70
+    RECHTSBASISSPEED = 70
 
 
 
@@ -224,10 +224,6 @@ for k in range(2000):
     print
 
     volglijn(data)
-    #time.sleep(4)
-
-
-
 
 GPIO.cleanup()
 motorcleanup()
