@@ -81,6 +81,15 @@ def rightmotorspeed(speed):
     pwmb.ChangeDutyCycle(speed)
 
 
+def turnRight():
+    #links vooruit, rechts achteruit
+    #GPIO.output(AForwardPin, GPIO.HIGH)
+    #GPIO.output(ABackwardsPin, GPIO.LOW)
+    #GPIO.output(BForwardPin, GPIO.LOW)
+    #GPIO.output(BBackwardsPin, GPIO.HIGH)
+    pwma.ChangeDutyCycle(20)
+    pwmb.ChangeDutyCycle(20)
+
 
 
 
@@ -96,7 +105,16 @@ def turnRightNinety():
     pwma.ChangeDutyCycle(0)
     pwmb.ChangeDutyCycle(0)
         
-    
+
+def turnLeft():
+    #links achteruit, rechts vooruit
+    #GPIO.output(AForwardPin, GPIO.LOW)
+    #GPIO.output(ABackwardsPin, GPIO.HIGH)
+    #GPIO.output(BForwardPin, GPIO.HIGH)
+    #GPIO.output(BBackwardsPin, GPIO.LOW)
+    pwma.ChangeDutyCycle(20)
+    pwmb.ChangeDutyCycle(20)
+
     
 def turnLeftNinety():
     #links achteruit, rechts vooruit
