@@ -10,11 +10,11 @@ import time
 import Adafruit_TCS34725
 
 import RPi.GPIO as GPIO
-import busio
+
 
 GPIO.setmode(GPIO.BOARD)
-i2c = busio.I2C(5, 3)
-sensor = Adafruit_TCS34725.TCS34725(i2c)
+
+sensor = Adafruit_TCS34725.TCS34725()
 
 
 def detectiekleuren(sensor):
@@ -48,8 +48,3 @@ def detectiekleuren(sensor):
 
     else:
         return 'rood'
-
-
-if __name__ == '__main__':
-    while True:
-        print(detectiekleuren(sensor))
