@@ -97,9 +97,13 @@ def linksInslaan(kanaal):
     while not zoeklijn():
 
         motor.forward(30)
+<<<<<<< Updated upstream
         while adc.getAfstand(kanaal) <= 12:
             motor.stopMotor()
         time.sleep(0.2)
+=======
+        time.sleep(0.25)
+>>>>>>> Stashed changes
         motor.turnLeftNinety()
         motor.forward(30)
         while adc.getAfstand(kanaal) <= 12:
