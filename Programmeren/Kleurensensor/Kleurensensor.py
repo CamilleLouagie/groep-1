@@ -5,6 +5,7 @@ Created on Fri Mar 19 11:34:49
 
 @author: otto.meerschman
 """
+print('halllo')
 
 import time
 import Adafruit_TCS34725
@@ -52,3 +53,8 @@ def detectiekleuren(sensor):
 
     else:
         return 'rood'
+
+if __name__ == '__main__':
+    while True:
+        print(sensor.get_raw_data())
+        print(detectiekleuren(sensor))
