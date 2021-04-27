@@ -33,18 +33,22 @@ def detectiekleuren(sensor):
     """
     r, g, b, c = sensor.get_raw_data()  # of rgb_golor_bytes
 
-    if g > r and g > b and g > c:
+    if g > r and g > b:
         time.sleep(1)
+        r, g, b, c = sensor.get_raw_data()
         if g < 50: #kan aangepast worden
             time.sleep(1)
-            if g > r and g > b and g > c:
+            r, g, b, c = sensor.get_raw_data()
+            if g > r and g > b:
                 return 'groen'
     if g < 50:
         time.sleep(1)
-        if g > r and g > b and g > c:
+        r, g, b, c = sensor.get_raw_data()
+        if g > r and g > b:
+            r, g, b, c = sensor.get_raw_data()
             time.sleep(1)
             if g < 50:
-                return 'rood'
+                return 'groen'
 
     else:
         return 'rood'
