@@ -2,6 +2,8 @@
 
 \usepackage{tikz}
 \usetikzlibrary{positioning}
+\usepackage{pgfplots}
+\pgfplotsset{width=15cm,compat=1.7}  
 \usepackage[dutch]{babel}
 \usepackage{hyperref}
 \usepackage{graphicx}
@@ -60,7 +62,7 @@ bevat die beschadiging van de microcontroller voorkomt. Er moet ook een draadloz
 \subsection{Chassis}
 De ontwerpruimte werd sterk beperkt door de gelimiteerde materiaaldatabank. De belangrijkste keuzes betroffen de wielen, de motor, de microcontroller, het chassis, het type sensoren, de batterij en het experimenteerbord.
 \\\\ \textbf{\large De wielen} \\
-Voor de wielen van de miniatuurwagen hebben we gekozen voor de kleinste wielen met een diameter van 32 mm. Het voordeel aan deze wielen is dat ze meer nauwkeurigheid bieden bij het roteren van de miniatuurwagen en minder kracht nodig hebben om rond gedraaid te worden. Daarnaast kunnen kleinere wielen ook sneller ronddraaien, waardoor de elektrische motoren die de wielen aandrijven ook sneller ronddraaien. Dit leidt tot een verhoogde efficiëntie. Het nadeel aan deze wielen is echter wel dat de topsnelheid lager ligt. De wielen komen aan de voorkant, zoals te zien op figuur \ref{fig:Onderkant}, zodat dit het besturen van de miniatuurwagen vergemakkelijkt. De Bal Caster zullen we in het midden van achteren plaatsen. Deze zullen we proberen op dezelfde hoogte te plaatsen als de wielen door er plastic plaatjes onder te bevestigen. We positioneren de ball caster zodanig dat het chassis een minimale hoek maakt met de grond. Op deze manier verzekeren we dat de lijnsensor en de afstandssensor, respectievelijk, parallel en loodrecht staat met het grondoppervlak". De keuze voor deze wielen legt ook beperkingen op aan het type motoren.
+Voor de wielen van de miniatuurwagen hebben we gekozen voor de kleinste wielen met een diameter van 32 mm. Het voordeel aan deze wielen is dat ze meer nauwkeurigheid bieden bij het roteren van de miniatuurwagen en minder kracht nodig hebben om rond gedraaid te worden. Daarnaast kunnen kleinere wielen ook sneller ronddraaien, waardoor de elektrische motoren die de wielen aandrijven ook sneller ronddraaien. Dit leidt tot een verhoogde efficiëntie. Het nadeel aan deze wielen is echter wel dat de topsnelheid lager ligt. De wielen komen aan de voorkant, zoals te zien op figuur \ref{fig:Onderkant}, zodat dit het besturen van de miniatuurwagen vergemakkelijkt. De Bal Caster zullen we in het midden van achteren plaatsen. Deze zullen we op eenzelfde hoogte plaatsen als de wielen door er plastic plaatjes onder te bevestigen. We positioneren de Bal Caster zodanig dat het chassis een minimale hoek maakt met de grond. Op deze manier verzekeren we dat de lijnsensor en de afstandssensor, respectievelijk, parallel en loodrecht staat met het grondoppervlak". De keuze voor deze wielen legt ook beperkingen op aan het type motoren.
 \\\\ \textbf{\large De motor}
 
 \begin{table}
@@ -99,7 +101,7 @@ Wij kozen voor de 30:1 HP motor aangezien deze met een snelheid van ca. 6 km per
 		\end{scope}
 	\end{tikzpicture}
 	\label{fig:Onderkant}
-	\caption{Onderaanzicht van het CAD-model}
+	\caption{De lijnsensor is bevestigd tussen de wielen, aan de onderkant van de wagen. Dit zorgt ervoor dat het wagentje nauwkeurig rijdt en sneller correcties kan uitvoeren. De figuur toont de onderkant van de wagen}
 \end{figure}
 
 \textbf{\large De microcontroller} \\
@@ -129,7 +131,7 @@ De Raspberry Pi wordt geplaatst op vier afstandsbussen van 15mm hoog waardoor hi
 	\caption{De volledige miniatuurwagen}
 \end{figure}
 
-Het chassis is handmatig ontworpen naar de behoeften van het miniatuurwagentje en zal ge-3D-print worden. Dit chassis zal 140 mm lang, 110 mm breed en 3 mm dik zijn met afgeronde hoeken, zoals te zien op figuur \ref{fig:chassis}. Hiermee bekomen we een chassis waarmee we genoeg ruimte hebben in de lengte om onze microcontroller en onze powerbank op te plaatsen. De afgeronde hoeken zorgen ervoor dat bochten makkelijker genomen kunnen worden. Vooraan het chassis zal er een gleuf voorzien worden van 6,5 mm breed en 45,8 mm lang voor de verbindingsdraden naar de lijnsensor die onder het chassis hangt, zie figuur \ref{fig:Onderkant}. Er zullen ook gaten in het chassis bevinden die kunnen gebruikt worden voor het bevestigen van componenten met schroeven en moeren. Het chassis zal aan een dichtheid van 70\% ge-3D-print worden zodat hij genoeg steun kan bieden en niet zal doorzakken.
+Het chassis is handmatig ontworpen naar de behoeften van het miniatuurwagentje en zal ge-3D-print worden. Dit chassis zal 140 mm lang, 110 mm breed en 3 mm dik zijn met afgeronde hoeken, zoals te zien op figuur \ref{fig:chassis}. Hiermee bekomen we een chassis waarmee we genoeg ruimte hebben in de lengte om onze microcontroller en onze powerbank op te plaatsen. De afgeronde hoeken zorgen ervoor dat bochten makkelijker genomen kunnen worden. Vooraan het chassis zal er een gleuf voorzien worden van 6,5 mm breed en 45,8 mm lang voor de verbindingsdraden naar de lijnsensor die onder het chassis hangt, zie figuur \ref{fig:Onderkant}. Er zullen ook gaten in het chassis bevinden die kunnen gebruikt worden voor het bevestigen van componenten met schroeven en moeren. Het chassis zal aan een dichtheid van 70\% ge-3D-print worden zodat hij genoeg steun kan bieden.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=.5\textwidth] {chassis3d}
@@ -138,12 +140,15 @@ Het chassis is handmatig ontworpen naar de behoeften van het miniatuurwagentje e
 \end{figure}
 
 \subsection{Sensoren}
-De kleurensensor zal bevestigt worden aan een MakerBeam-staaf op een hoogte van 75mm van de grond zodat deze het verkeerslicht, die op dezelfde hoogte hangt, kan detecteren. Hierbij zal een constructie van MakerBeams ervoor zorgen dat de kleurensensor kan verplaatst worden in alle richtingen indien nodig. \ref{fig:Linksaanzicht} Deze constructie bestaat uit een MakerBeam die horizontaal in het midden van ons chassis ligt onder de Raspberry Pi met daarop een MakerBeam verticaal omhoog aan het rechter uiteinde. De kleurensensor wordt bevestigd aan de horizontale MakerBeam
+De kleurensensor zal bevestigt worden aan een MakerBeam-staaf op een hoogte van 75 mm van de grond zodat deze het verkeerslicht, die op dezelfde hoogte hangt, kan detecteren. Deze constructie laat toe om de positie van de kleurensensor eenvoudig (en handmatig) bij te stellen. \ref{fig:Linksaanzicht} Deze constructie bestaat uit een MakerBeam die horizontaal in het midden van ons chassis ligt onder de Raspberry Pi met daarop een MakerBeam verticaal omhoog aan het rechter uiteinde. De kleurensensor wordt bevestigd aan de horizontale MakerBeam
 
 \begin{figure}[h]
 	\begin{tikzpicture}
 		\node [anchor=west] (Afstandsbussen) at (-2,2) {\Large Afstandsbussen};
 		\node [anchor=west] (Kleurensensor) at (-2,5) {\Large Kleurensensor};
+		\node [anchor=west] (Afstand) at (11,2.5) {\Large 75 mm};
+		\node[inner sep=0pt] (verkeerslicht) at (10,5)
+		{\includegraphics[width=.1\textwidth]{verkeerslicht_image.png}};
 		\begin{scope}[xshift=1.5cm]
 			\node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=.5\textwidth] {rechterkant}
 				
@@ -153,16 +158,17 @@ De kleurensensor zal bevestigt worden aan een MakerBeam-staaf op een hoogte van 
 				\draw [-stealth, line width=3pt, cyan] (Afstandsbussen) -- ++(0.55,0.0);
 				\draw [-stealth, line width=3pt, cyan] (Kleurensensor) -- ++(0.75,0.0);
 			\end{scope}
-			
+			\draw[thick,->] (8.5,0.5) -- (8.5,4.5);
+			\draw[thick,->] (8.5,4.5) -- (8.5,0.5);
 		\end{scope}
 	\end{tikzpicture}
 	\label{fig:Linksaanzicht}
-	\caption{Linkeraanzicht van de miniatuurwagen met de constructie voor de kleurensensor}
+	\caption{De kleurensensor wordt bevestigd aan een MakerBeam-constructie die toelaat om de sensor optimaal te positioneren. De figuur toont het linkeraanzicht van het wagentje.}
 \end{figure}
 
-Voor de afstandssensor hebben we gekozen voor een analoge sensor, opdat we nauwkeurig kunnen meten hoever het wagentje verwijderd is van een obstakel of een andere weggebruiker. Doordat we dit onderscheid kunnen maken moet onze miniatuur miniatuurwagen niet direct stoppen wanneer hij een voorligger detecteert, maar kan hij er voor  zorgen dat hij eerst wat trager rijdt vooraleer volledig te stoppen. Deze afstandssensor plaatsen we logischer wijze aan de voorkant van ons chassis aan een MakerBeam zodat hij zo vroeg mogelijk een voorligger kan detecteren aangezien zijn detectie bereik maar 100mm is. 
+Voor de afstandssensor hebben we gekozen voor een analoge sensor, opdat we nauwkeurig kunnen meten hoever het wagentje verwijderd is van een obstakel of een andere weggebruiker. Doordat we dit onderscheid kunnen maken moet onze miniatuur miniatuurwagen niet direct stoppen wanneer hij een voorligger detecteert, maar kan hij er voor  zorgen dat hij eerst wat trager rijdt vooraleer volledig te stoppen. De afstandssensor wordt aan de voorzijde van het chassis bevestigd met behulp van een MakerBeam.
 
-De lijnsensor wordt gebruikt om de volglijn te detecteren. Hierbij hebben we een digitale sensor gekozen omdat deze compatibel is met de Raspberry Pi microcontroller en de sensor geen onderscheid moet kunnen maken tussen de soort lijn. Deze wordt aan de voorkant onder het chassis bevestigd met behulp van afstandsbuizen zodat deze de volglijn als eerst detecteert en we zo sneller correcties kunnen uitvoeren. Aangezien de sensor dicht bij de wielen ligt zal het wagentje ook nauwkeuriger bewegen.
+De lijnsensor wordt gebruikt om de volglijn te detecteren. Hierbij hebben we een digitale sensor gekozen omdat deze compatibel is met de Raspberry Pi microcontroller en de sensor geen onderscheid moet kunnen maken tussen de lijnsoort. Deze wordt aan de voorkant onder het chassis bevestigd met behulp van afstandsbuizen zodat deze de volglijn als eerst detecteert en we zo sneller correcties kunnen uitvoeren. Aangezien de sensor dicht bij de wielen ligt, zal het wagentje ook nauwkeuriger bewegen.
 
 Het volledige ontwerp is te zien in figuur \ref{fig:chassis}.
 
@@ -176,8 +182,26 @@ Tot en met week 5 is alles verlopen zoals gepland en vastgelegd in de Gantt-graf
 
 \subsection{Financiën}
 
-Doordat we de laatste keuze hadden bij het bestellen, liepen we achter op onze planning, onze financiële situatie kende hier dan weer voordelen door. We zijn gestart met een budget van 3500 kredietpunten, dat werd gereduceerd tot een tegoed van 1768 na het plaatsen van een eerste bestelling. In deze  order werden alle grote onderdelen en zaken die we zeker nodig hadden besteld.  Aan onze eerste levering ontbraken nog Maker Beams en afstandsbussen. Onze tweede bestelling zal voorlopig 61 kredietpunten kosten, waardoor we stranden op een budget van 1646 kredietpunten. Door eigen keuze wordt het chassis zelf ontworpen en 3D-geprint. Dit is vermoedelijk een grote kost die werd geschat op 500 kredietpunten. Onze financiële toestand zorgt ervoor dat we in een comfortabele situatie zitten en kunnen we het ons veroorloven om fouten te maken en risico's te nemen. 
+Doordat we de laatste keuze hadden bij het bestellen, liepen we achter op onze planning, onze financiële situatie kende hier dan weer voordelen door. We zijn gestart met een budget van 3500 kredietpunten, dat werd gereduceerd tot een tegoed van 1768 na het plaatsen van een eerste bestelling. In deze  order werden alle grote onderdelen en zaken die we zeker nodig hadden besteld.  Aan onze eerste levering ontbraken nog Maker Beams en afstandsbussen. Onze tweede bestelling zal voorlopig 61 kredietpunten kosten, waardoor we een budget van 1646 kredietpunten overhouden. Door de vele keuzemogelijkheden, waaronder vorm en dikte, werd ervoor gekozen het chassis zelf te ontwerpen en te 3D-printen. Dit is vermoedelijk een grote kost die werd geschat op 500 kredietpunten. Onze financiële toestand zorgt ervoor dat we in een comfortabele situatie zitten en kunnen we het ons veroorloven om fouten te maken en risico's te nemen. 
+\\ \\
+\begin{tikzpicture}
+	\begin{axis}[
+		enlargelimits=0.10,
+		ylabel={\# Credits}, % the ylabel must precede a # symbol. 
+		symbolic x coords={Motor, Chassis, Sensoren, Makerbeams, Microcontroller, Powerbank},
+		xtick=data
+		]
+		\addplot[ybar,fill=blue, bar width=25pt] coordinates {
+			(Motor,   640)
+			(Sensoren,  460)
+			(Makerbeams,   115)
+			(Chassis, 0)
+			(Microcontroller, 240)
+			(Powerbank, 180)
+		};	
+	\end{axis}
 
+\end{tikzpicture}
 
 \section{Besluit}
 
