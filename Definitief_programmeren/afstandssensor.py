@@ -11,9 +11,11 @@ GPIO.setmode(GPIO.BOARD)
 
 
 # SPI-object maken
+
 CE = 0  #Eerste kanaal op ADC selecteren
 spi = spidev.SpiDev(0,CE)
 spi.max_speed_hz = 1000000
+kanaal = 0
 
 
 # ADC uitlezen
@@ -49,9 +51,6 @@ def getAfstand(adcnum):
 
     return afstand
 
-def printAfstand(adcnum):
-    print(getAfstand(adcnum))
+def printAfstand():
+    print(getAfstand(0))
 
-while True:
-    printAfstand(0)
-    time.sleep(1)

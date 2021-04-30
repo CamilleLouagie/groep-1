@@ -1,14 +1,13 @@
 import afstandssensor as adc
-from Lijnsensor_pycharm import volglijn, lijninterpretatie
-from opkuisen import opkuis
+from Lijnsensor_pycharm import volglijn, lijninterpretatie, calibrate
+#from opkuisen import opkuis
 from kruispunt import kruispunt
-from PWM_algoritme import forward, turnLeft, turnRight # Een functie voor achterwaarts te gaan moet nog geïmp
+from PWM_algoritme import forward, turnLeft, turnRight, motorinitialisatie, stopMotor, backwards # Een functie voor achterwaarts te gaan moet nog geïmp
 
 import socket
-import RPI.GPIO as GPIO
+import RPi.GPIO as GPIO
 import time
 import spidev
-import busio
 import Adafruit_TCS34725
 
 
@@ -90,23 +89,31 @@ class Server(object):
         return True
 
 
-#override is en blijft False totdat er een bericht 'start' binnenkomt uit de manuele override
-override = False
+
+
+
+
+
+
+
 
 def main():
+
+    # override is en blijft False totdat er een bericht 'start' binnenkomt uit de manuele override
+    override = False
     kruispuntnr = 1
     einde = False   # True waarde nog te implementeren
     GPIO.setmode(GPIO.BOARD)
 
     # SPI-object maken voor afstandssensor
+
     CE = 0  # Eerste kanaal op ADC selecteren
-    spi = spidev.SpiDev0(0, CE)
+    spi = spidev.SpiDev(0, CE)
     spi.max_speed_hz = 1000000
     kanaal = 0  # Eerste analoge signaal
 
     # Kleurensensor initialiseren
-    i2c = busio.I2C(5, 3)
-    kleurensensor = Adafruit_TCS34725.TCS34725(i2c)
+    kleurensensor = Adafruit_TCS34725.TCS34725()
 
     # Server initialiseren
     server = Server()
@@ -135,22 +142,29 @@ def main():
                     server.send('Achteruit.')
 
                 elif msg.find('links') >= 0:
-                    turnLeftNinety()
+                    turnLeft()
                     server.send('Links.')
 
                 elif msg.find('rechts') >= 0:
-                    turnRightNinety()
+                    turnRight()
                     server.send('Rechts.')
 
                 elif msg.find('linksvooruit') >= 0:
-
                     server.send('Linksvooruit.')
+
+
                 elif msg.find('linksachteruit') >= 0:
                     server.send('Linksachteruit')
+
+
                 elif msg.find('rechtsvooruit') >= 0:
                     server.send('Rechtsvooruit.')
+
+
                 elif msg.find('rechtsachteruit') >= 0:
                     server.send('Rechtsachteruit')
+
+
                 elif msg.find('stop') >= 0:
 
                     kruispunt_manueel = 0
@@ -161,7 +175,6 @@ def main():
                         kruispunt_manueel += cijfer * 10
                     except:
                         pass
-
 
                     try:
                         cijfer = int(msg[-2])
@@ -175,7 +188,7 @@ def main():
                         kruispuntnr = kruispunt_reserve
 
                     finaalBericht = str(kruispuntnr)
-                    server.send('Kruispunt = ' + ' ' + finaalBericht)
+                    server.send('Kruispunt = ' + finaalBericht)
 
 
                     server.send('Succesvol gestopt.')
@@ -186,16 +199,15 @@ def main():
                     stopMotor()
 
 
-
-
-
-
             # Volg de lijn 10 keer
             for i in range(10):
+                print("lijnvolg")
                 returnwaarde = lijninterpretatie()
+                print(returnwaarde)
                 if returnwaarde == "stopstreep":
+                    print("kruispunt")
                     stopMotor()
-                    kruispunt(kruispuntnr, kleurensensor, kanaal)
+                    kruispunt(kruispuntnr)
                     kruispuntnr += 1
                     last_error = 0  #Herinitialisatie van lijnvolgalgoritme
                 else:
@@ -203,21 +215,27 @@ def main():
 
             # Na 10 maal lijn te volgen, check de sensoren
             if adc.getAfstand(kanaal) < 15:
+                print("afstandssensor")
                 stopMotor()
-                while adc.getAfstand(kanaal) < 20:
+                while adc.getAfstand(kanaal) > 20: #<20
+                    print('nog steeds')
                     pass
 
 
     raise Exception("Fout in de code.")
 
 
+
+
 if __name__ == "__main__":
     # Dit wordt enkel uitgevoerd als het programma uitgevoerd wordt, niet als het geïmporteerd wordt.
     try:
+        calibrate()
+        motorinitialisatie()
         main()
     except Exception as err:
         print("De volgende fout werd tegengekomen: ", err)
     else:
         print('Geen fout.')
     finally:
-        opkuis()
+        pass
