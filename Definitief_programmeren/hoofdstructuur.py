@@ -114,96 +114,95 @@ def main():
 
     last_error = 0  # Nodig voor de eerst keer volglijn uit te voeren
     while not einde:
-        while True:
-            bericht = server.listen(timeout=0.01)
-            mesg = str(bericht)
-            if mesg.find('start') >= 0:
-                kruispunt_reserve = kruispuntnr
-                override = True
+        bericht = server.listen(timeout=0.01)
+        mesg = str(bericht)
+        if mesg.find('start') >= 0:
+            kruispunt_reserve = kruispuntnr
+            override = True
 
-            # Manuele override
-            while override:
-                msg = str(server.listen(timeout=0.2))
-                print(msg)
-                if msg.find('vooruit') >= 0:
-                    forward()
-                    server.send('Vooruit.')
+        # Manuele override
+        while override:
+            msg = str(server.listen(timeout=0.2))
+            print(msg)
+            if msg.find('vooruit') >= 0:
+                forward()
+                server.send('Vooruit.')
 
-                elif msg.find('achteruit') >= 0:
-                    backwards()
-                    server.send('Achteruit.')
+            elif msg.find('achteruit') >= 0:
+                backwards()
+                server.send('Achteruit.')
 
-                elif msg.find('links') >= 0:
-                    turnLeft()
-                    server.send('Links.')
+            elif msg.find('links') >= 0:
+                turnLeft()
+                server.send('Links.')
 
-                elif msg.find('rechts') >= 0:
-                    turnRight()
-                    server.send('Rechts.')
+            elif msg.find('rechts') >= 0:
+                turnRight()
+                server.send('Rechts.')
 
-                elif msg.find('stop') >= 0:
+            elif msg.find('stop') >= 0:
 
-                    kruispunt_manueel = 0
-                    print(msg[-3])
-                    print(msg[-2])
-                    try:
-                        cijfer = int(msg[-3])
-                        kruispunt_manueel += cijfer * 10
-                    except:
-                        pass
-
-                    try:
-                        cijfer = int(msg[-2])
-                        kruispunt_manueel += cijfer
-                    except:
-                        pass
-
-                    if kruispunt_manueel != 0:
-                        kruispuntnr = kruispunt_manueel
-                    else:
-                        kruispuntnr = kruispunt_reserve
-
-                    finaalBericht = str(kruispuntnr)
-                    server.send('Kruispunt = ' + finaalBericht)
-
-
-
-
-                    override = False
-
-                else:
-                    server.send(str(kruispuntnr))
-                    stopMotor()
-
-
-            # Volg de lijn 20 keer
-            for i in range(20):
-                print("lijnvolg")
-                returnwaarde = lijninterpretatie()
-                print(returnwaarde)
-                if returnwaarde == "stopstreep":
-                    print("kruispunt")
-                    stopMotor()
-
-                    #while detectiekleuren(kleurensensor) == 'rood':
-                        #pass
-
-                    kruispunt(kruispuntnr)
-                    kruispuntnr += 1
-                    server.send(str(kruispuntnr))
-                    last_error = 0  #Herinitialisatie van lijnvolgalgoritme
-                else:
-                    volglijn(returnwaarde)
-
-            # Na 20 maal lijn te volgen, check de sensoren
-            if adc.getAfstand(kanaal) < 15:
-                print("afstandssensor")
-                stopMotor()
-                while adc.getAfstand(kanaal) < 20:
-                    print('nog steeds')
+                kruispunt_manueel = 0
+                print(msg[-3])
+                print(msg[-2])
+                try:
+                    cijfer = int(msg[-3])
+                    kruispunt_manueel += cijfer * 10
+                except:
                     pass
 
+                try:
+                    cijfer = int(msg[-2])
+                    kruispunt_manueel += cijfer
+                except:
+                    pass
 
+                if kruispunt_manueel != 0:
+                    kruispuntnr = kruispunt_manueel
+                else:
+                    kruispuntnr = kruispunt_reserve
+
+                finaalBericht = str(kruispuntnr)
+                server.send('Kruispunt = ' + finaalBericht)
+
+                override = False
+
+            else:
+                server.send(str(kruispuntnr))
+                stopMotor()
+
+
+
+
+        # Volg de lijn 20 keer
+        for i in range(20):
+            print("lijnvolg")
+            returnwaarde = lijninterpretatie()
+            print(returnwaarde)
+            if returnwaarde == "stopstreep":
+                print("kruispunt")
+                stopMotor()
+
+                # while detectiekleuren(kleurensensor) == 'rood':
+                # pass
+
+                kruispunt(kruispuntnr)
+                kruispuntnr += 1
+                server.send(str(kruispuntnr))
+                if kruispuntnr >= 26:
+                    einde = True
+                    break
+                last_error = 0  # Herinitialisatie van lijnvolgalgoritme
+            else:
+                volglijn(returnwaarde)
+
+        # Na 20 maal lijn te volgen, check de sensoren
+        if adc.getAfstand(kanaal) < 15:
+            print("afstandssensor")
+            stopMotor()
+            while adc.getAfstand(kanaal) < 20:
+                print('nog steeds')
+                pass
 
     raise Exception("Fout in de code.")
 
