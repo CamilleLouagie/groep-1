@@ -200,11 +200,15 @@ def zoeklijn():
     MAXIMUM = CALIBRATEDMAXIMUM  # nog in te vullen
     tijdsdatalijst = lijndataTabel()
     herschaaltabel = herschaalwaarde(tijdsdatalijst, MINIMUM, MAXIMUM)
+    waarden = []
     for waarde in herschaaltabel:
-        if waarde > 300:
-            return True
+        if waarde > 500:
+            waarden.append(waarde)
 
-    return False
+    if len(waarden) >= 2:
+        return True
+    else:
+        return False
 
 
 
