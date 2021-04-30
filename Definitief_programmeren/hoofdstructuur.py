@@ -141,22 +141,6 @@ def main():
                     turnRight()
                     server.send('Rechts.')
 
-                elif msg.find('linksvooruit') >= 0:
-                    server.send('Linksvooruit.')
-
-
-                elif msg.find('linksachteruit') >= 0:
-                    server.send('Linksachteruit')
-
-
-                elif msg.find('rechtsvooruit') >= 0:
-                    server.send('Rechtsvooruit.')
-
-
-                elif msg.find('rechtsachteruit') >= 0:
-                    server.send('Rechtsachteruit')
-
-
                 elif msg.find('stop') >= 0:
 
                     kruispunt_manueel = 0
@@ -183,15 +167,16 @@ def main():
                     server.send('Kruispunt = ' + finaalBericht)
 
 
-                    server.send('Succesvol gestopt.')
+
 
                     override = False
 
                 else:
+                    server.send(str(kruispuntnr))
                     stopMotor()
 
 
-            # Volg de lijn 10 keer
+            # Volg de lijn 20 keer
             for i in range(20):
                 print("lijnvolg")
                 returnwaarde = lijninterpretatie()
@@ -203,8 +188,9 @@ def main():
                     #while detectiekleuren(kleurensensor) == 'rood':
                         #pass
 
-                    kruispunt(kruispuntnr, kleurensensor)
+                    kruispunt(kruispuntnr)
                     kruispuntnr += 1
+                    server.send(str(kruispuntnr))
                     last_error = 0  #Herinitialisatie van lijnvolgalgoritme
                 else:
                     volglijn(returnwaarde)
@@ -216,6 +202,7 @@ def main():
                 while adc.getAfstand(kanaal) < 20:
                     print('nog steeds')
                     pass
+
 
 
     raise Exception("Fout in de code.")
