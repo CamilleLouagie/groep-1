@@ -11,18 +11,21 @@ GPIO.setmode(GPIO.BOARD)
 
 
 #tijd voor turnleft en right nog aan te passen
+#opgepast: bij de meeste functies worden GPIO.output telkens opnieuw geconfigureerd als je ze oproept, maar bij lefmotorspeed en rightmotorspeed niet
+#normaal zou dit toch geen probleem mogen opleveren: bij de server doe je telkens stopmotor en bij een kruispunt doe je eerst vooruit
 
 
 
 #initialisatiepinnen
 #A staat voor motor 1, de linkermotor
 #B staat voor motor 2, de rechtermotor
-AForwardPin = 33
-ABackwardsPin = 32
-BForwardPin = 29
-BBackwardsPin = 31
-#EnablePinA =
-#EnablePinB =
+AForwardPin = 31
+ABackwardsPin = 33
+
+BForwardPin = 38
+BBackwardsPin = 40
+EnablePinA = 29
+EnablePinB = 36
 
 
 def motorinitialisatie():
@@ -32,17 +35,13 @@ def motorinitialisatie():
     GPIO.setup(ABackwardsPin, GPIO.OUT)
     GPIO.setup(BForwardPin, GPIO.OUT)
     GPIO.setup(BBackwardsPin, GPIO.OUT)
-    #GPIO.setup(EnablePinA, GPIO.OUT)
-    #GPIO.setup(EnablePinB, GPIO.OUT)
+    GPIO.setup(EnablePinA, GPIO.OUT)
+    GPIO.setup(EnablePinB, GPIO.OUT)
 
 
     #pwm initialisatie (indien met de L293B kan dit op enable pin )
-    #pwma = GPIO.PWM(EnablePinA, 100)
-    #pwmb = GPIO.PWM(EnablePinB, 100)
-    
-    #met de DRV:
-    pwma = GPIO.PWM(AForwardPin, 100) # (pinnumber, frequentie)
-    pwmb = GPIO.PWM(BForwardPin, 100)
+    pwma = GPIO.PWM(EnablePinA, 100)
+    pwmb = GPIO.PWM(EnablePinB, 100)
     
     
     pwma.start(0) #pwm.start(snelheidsfrequentie)
@@ -56,10 +55,10 @@ def motorinitialisatie():
 
 #vooruit
 def forward(speed = 60):
-    #GPIO.output(AForwardPin, GPIO.HIGH)
-    #GPIO.output(ABackwardsPin, GPIO.LOW)
-    #GPIO.output(BForwardPin, GPIO.HIGH)
-    #GPIO.output(BBackwardsPin, GPIO.LOW)
+    GPIO.output(AForwardPin, GPIO.HIGH)
+    GPIO.output(ABackwardsPin, GPIO.LOW)
+    GPIO.output(BForwardPin, GPIO.HIGH)
+    GPIO.output(BBackwardsPin, GPIO.LOW)
     
     pwma.ChangeDutyCycle(speed)
     pwmb.ChangeDutyCycle(speed)
@@ -67,26 +66,28 @@ def forward(speed = 60):
 
 
 def backwards(speed = 20):
-    #GPIO.output(AForwardPin, GPIO.LOW)
-    #GPIO.output(ABackwardsPin, GPIO.HIGH)
-    #GPIO.output(BForwardPin, GPIO.LOW)
-    #GPIO.output(BBackwardsPin, GPIO.HIGH)
+    GPIO.output(AForwardPin, GPIO.LOW)
+    GPIO.output(ABackwardsPin, GPIO.HIGH)
+    GPIO.output(BForwardPin, GPIO.LOW)
+    GPIO.output(BBackwardsPin, GPIO.HIGH)
     pwma.ChangeDutyCycle(speed)
     pwmb.ChangeDutyCycle(speed)
 
-def leftmotorspeed(speed):
+
+def leftmotorspeed(speed): #voor het PID-algoritme
     pwma.ChangeDutyCycle(speed)
 
-def rightmotorspeed(speed):
+def rightmotorspeed(speed): #voor het PID-algoritme
     pwmb.ChangeDutyCycle(speed)
 
 
-def turnRight():
+
+def turnRight(): #voor de server
     #links vooruit, rechts achteruit
-    #GPIO.output(AForwardPin, GPIO.HIGH)
-    #GPIO.output(ABackwardsPin, GPIO.LOW)
-    #GPIO.output(BForwardPin, GPIO.LOW)
-    #GPIO.output(BBackwardsPin, GPIO.HIGH)
+    GPIO.output(AForwardPin, GPIO.HIGH)
+    GPIO.output(ABackwardsPin, GPIO.LOW)
+    GPIO.output(BForwardPin, GPIO.LOW)
+    GPIO.output(BBackwardsPin, GPIO.HIGH)
     pwma.ChangeDutyCycle(20)
     pwmb.ChangeDutyCycle(20)
 
@@ -95,10 +96,10 @@ def turnRight():
 
 def turnRightNinety():
     #links vooruit, rechts achteruit
-    #GPIO.output(AForwardPin, GPIO.HIGH)
-    #GPIO.output(ABackwardsPin, GPIO.LOW)
-    #GPIO.output(BForwardPin, GPIO.LOW)
-    #GPIO.output(BBackwardsPin, GPIO.HIGH)
+    GPIO.output(AForwardPin, GPIO.HIGH)
+    GPIO.output(ABackwardsPin, GPIO.LOW)
+    GPIO.output(BForwardPin, GPIO.LOW)
+    GPIO.output(BBackwardsPin, GPIO.HIGH)
     pwma.ChangeDutyCycle(20)
     pwmb.ChangeDutyCycle(20)
     time.sleep(0.5)
@@ -108,20 +109,20 @@ def turnRightNinety():
 
 def turnLeft():
     #links achteruit, rechts vooruit
-    #GPIO.output(AForwardPin, GPIO.LOW)
-    #GPIO.output(ABackwardsPin, GPIO.HIGH)
-    #GPIO.output(BForwardPin, GPIO.HIGH)
-    #GPIO.output(BBackwardsPin, GPIO.LOW)
+    GPIO.output(AForwardPin, GPIO.LOW)
+    GPIO.output(ABackwardsPin, GPIO.HIGH)
+    GPIO.output(BForwardPin, GPIO.HIGH)
+    GPIO.output(BBackwardsPin, GPIO.LOW)
     pwma.ChangeDutyCycle(20)
     pwmb.ChangeDutyCycle(20)
 
     
 def turnLeftNinety():
     #links achteruit, rechts vooruit
-    #GPIO.output(AForwardPin, GPIO.LOW)
-    #GPIO.output(ABackwardsPin, GPIO.HIGH)
-    #GPIO.output(BForwardPin, GPIO.HIGH)
-    #GPIO.output(BBackwardsPin, GPIO.LOW)
+    GPIO.output(AForwardPin, GPIO.LOW)
+    GPIO.output(ABackwardsPin, GPIO.HIGH)
+    GPIO.output(BForwardPin, GPIO.HIGH)
+    GPIO.output(BBackwardsPin, GPIO.LOW)
     pwma.ChangeDutyCycle(20)
     pwmb.ChangeDutyCycle(20)
     time.sleep(0.5)
@@ -132,6 +133,12 @@ def turnLeftNinety():
 def stopMotor():
     pwma.ChangeDutyCycle(0)
     pwmb.ChangeDutyCycle(0)
+
+    #herconfigureren voor vooruit
+    GPIO.output(AForwardPin, GPIO.HIGH)
+    GPIO.output(ABackwardsPin, GPIO.LOW)
+    GPIO.output(BForwardPin, GPIO.HIGH)
+    GPIO.output(BBackwardsPin, GPIO.LOW)
 
 
 
