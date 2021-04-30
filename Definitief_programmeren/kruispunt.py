@@ -84,6 +84,7 @@ def rechtsInslaan(kanaal):
         motor.forward(30)
         while adc.getAfstand(kanaal) <= 12:
             motor.stopMotor()
+
         time.sleep(0.2)
         motor.turnRightNinety()
         motor.forward(30)

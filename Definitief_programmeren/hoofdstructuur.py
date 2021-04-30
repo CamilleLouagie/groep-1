@@ -207,7 +207,7 @@ def main():
                 if returnwaarde == "stopstreep":
                     print("kruispunt")
                     stopMotor()
-                    kruispunt(kruispuntnr)
+                    kruispunt(kruispuntnr, kleurensensor)
                     kruispuntnr += 1
                     last_error = 0  #Herinitialisatie van lijnvolgalgoritme
                 else:

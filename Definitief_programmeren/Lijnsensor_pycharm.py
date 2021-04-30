@@ -109,8 +109,9 @@ def readpositie(lijndatatabel, minimum, maximum):
 def calibrate(): #autootje rijdt ongeveer 5 seconden vooruit, laat hem over wit en zwart gaan!
     global CALIBRATEDMAXIMUM
     global CALIBRATEDMINIMUM
-    CALIBRATEDMINIMUM = [0.00035691261291503906, 0.00034880638122558594, 0.0003559589385986328, 0.0003330707550048828, 0.00032711029052734375, 0.0003390312194824219, 0.000308990478515625, 0.0003020763397216797]
-    CALIBRATEDMAXIMUM = [0.0005331039428710938, 0.0005230903625488281, 0.0005099773406982422, 0.0005021095275878906, 0.0005109310150146484, 0.0004990100860595703, 0.0005199909210205078, 0.0004978179931640625]
+    CALIBRATEDMINIMUM = [0.00040030479431152344, 0.0003581047058105469, 0.00037288665771484375, 0.00033473968505859375, 0.00034308433532714844, 0.00035643577575683594, 0.0003376007080078125, 0.0003521442413330078]
+    CALIBRATEDMAXIMUM = [0.000553131103515625, 0.0005443096160888672, 0.000518798828125, 0.0005092620849609375, 0.0005242824554443359, 0.0005102157592773438, 0.0005254745483398438, 0.000507354736328125]
+
 
 
 
@@ -168,15 +169,15 @@ def volglijn(tijdsdatalijst):
 
 
     positie = readpositie(tijdsdatalijst, MINIMUM, MAXIMUM) #de gekalibreerde positiewaarde
-    print("positie:", positie)
+    #print("positie:", positie)
     error = (positie-SETPOINTPOSITIE)/1000.
-    print("error", error)
+    #print("error", error)
 
     #print last_error
 
 
-    correctiespeedlinks = LINKSBASISSPEED + KP*error + KD*(error - last_error)
-    correctiespeedrechts = RECHTSBASISSPEED - KP*error + KD*(error - last_error)
+    correctiespeedlinks = LINKSBASISSPEED + KP*error  #+ KD*(error - last_error)
+    correctiespeedrechts = RECHTSBASISSPEED - KP*error  #+ KD*(error - last_error)
     if correctiespeedlinks > 100:
         correctiespeedlinks = 100
     if correctiespeedrechts < 0:
@@ -188,7 +189,7 @@ def volglijn(tijdsdatalijst):
     leftmotorspeed(correctiespeedlinks)
     rightmotorspeed(correctiespeedrechts)
 
-    last_error = error
+    #last_error = error
 
 
 
