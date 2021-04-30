@@ -1,7 +1,6 @@
 # digitale output code = (1024*V_sensor)/V_ADC
 # linearisering afstand = ~27 V*cm/V_sensor (we kunnen waarde nog aanpassen en evt. constante toevoegen.)
 
-
 import spidev
 import RPi.GPIO as GPIO
 import time
@@ -54,3 +53,5 @@ def getAfstand(adcnum):
 def printAfstand(adcnum):
     print(getAfstand(adcnum))
 
+for i in range(100):
+    printAfstand(0)
