@@ -2,14 +2,13 @@ import afstandssensor as adc
 from Lijnsensor_pycharm import volglijn, lijninterpretatie, calibrate
 #from opkuisen import opkuis
 from kruispunt import kruispunt
-from PWM_algoritme import forward, turnLeft, turnRight, motorinitialisatie, stopMotor, backwards # Een functie voor achterwaarts te gaan moet nog geïmp
+from PWM_algoritme import forward, turnLeft, turnRight, motorinitialisatie, stopMotor, backwards, motorcleanup # Een functie voor achterwaarts te gaan moet nog geïmp
 
 import socket
 import RPi.GPIO as GPIO
 import time
 import spidev
 import Adafruit_TCS34725
-
 
 class Server(object):
     """A server to send and receive UDP message. Sending of messages is only
@@ -87,13 +86,6 @@ class Server(object):
             if sent < len(mess_bytes[i:i+self._size]):
                 return False
         return True
-
-
-
-
-
-
-
 
 
 
@@ -200,24 +192,28 @@ def main():
 
 
             # Volg de lijn 10 keer
-            for i in range(10):
+            for i in range(20):
                 print("lijnvolg")
                 returnwaarde = lijninterpretatie()
                 print(returnwaarde)
                 if returnwaarde == "stopstreep":
                     print("kruispunt")
                     stopMotor()
+
+                    #while detectiekleuren(kleurensensor) == 'rood':
+                        #pass
+
                     kruispunt(kruispuntnr, kleurensensor)
                     kruispuntnr += 1
                     last_error = 0  #Herinitialisatie van lijnvolgalgoritme
                 else:
                     volglijn(returnwaarde)
 
-            # Na 10 maal lijn te volgen, check de sensoren
+            # Na 20 maal lijn te volgen, check de sensoren
             if adc.getAfstand(kanaal) < 15:
                 print("afstandssensor")
                 stopMotor()
-                while adc.getAfstand(kanaal) > 20: #<20
+                while adc.getAfstand(kanaal) < 20:
                     print('nog steeds')
                     pass
 
@@ -238,4 +234,6 @@ if __name__ == "__main__":
     else:
         print('Geen fout.')
     finally:
-        pass
+        stopMotor()
+        motorcleanup()
+
