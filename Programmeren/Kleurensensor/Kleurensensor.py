@@ -5,16 +5,17 @@ Created on Fri Mar 19 11:34:49
 
 @author: otto.meerschman
 """
+print('halllo')
 
 import time
 import Adafruit_TCS34725
 
 import RPi.GPIO as GPIO
-import busio
+
 
 GPIO.setmode(GPIO.BOARD)
-i2c = busio.I2C(5, 3)
-sensor = Adafruit_TCS34725.TCS34725(i2c)
+
+sensor = Adafruit_TCS34725.TCS34725()
 
 
 def detectiekleuren(sensor):
@@ -33,23 +34,27 @@ def detectiekleuren(sensor):
     """
     r, g, b, c = sensor.get_raw_data()  # of rgb_golor_bytes
 
-    if g > r and g > b and g > c:
+    if g > r and g > b:
         time.sleep(1)
+        r, g, b, c = sensor.get_raw_data()
         if g < 50: #kan aangepast worden
             time.sleep(1)
-            if g > r and g > b and g > c:
+            r, g, b, c = sensor.get_raw_data()
+            if g > r and g > b:
                 return 'groen'
     if g < 50:
         time.sleep(1)
-        if g > r and g > b and g > c:
+        r, g, b, c = sensor.get_raw_data()
+        if g > r and g > b:
+            r, g, b, c = sensor.get_raw_data()
             time.sleep(1)
             if g < 50:
-                return 'rood'
+                return 'groen'
 
     else:
         return 'rood'
 
-
 if __name__ == '__main__':
     while True:
+        print(sensor.get_raw_data())
         print(detectiekleuren(sensor))
