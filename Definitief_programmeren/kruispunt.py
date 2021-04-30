@@ -1,11 +1,11 @@
-from Kleurensensor.Kleurensensor import detectiekleuren
-import MotorControl.PWM_algoritme as motor
-from Lijnsensor.Lijnsensor_pycharm import zoeklijn
-import Afstandssensor_en_ADC.afstandssensor as adc
+from Kleurensensor import detectiekleuren
+import PWM_algoritme as motor
+from Lijnsensor_pycharm import zoeklijn
+import afstandssensor as adc
 import time
 
 
-def kruispunt(nummer, kleurensensor, kanaal):
+def kruispunt(nummer, kleurensensor):
     # Wanneer rood
     while detectiekleuren(kleurensensor) == 'rood':
         pass
