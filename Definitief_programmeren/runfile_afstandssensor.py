@@ -53,5 +53,7 @@ def getAfstand(adcnum):
 def printAfstand(adcnum):
     print(getAfstand(adcnum))
 
-for i in range(100):
-    printAfstand(0)
+while True:
+    input('enter: ')
+    for i in range(100):
+        printAfstand(0)
