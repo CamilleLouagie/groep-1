@@ -10,10 +10,12 @@
 \usepackage{amsmath, amssymb, amsthm}
 \usepackage{siunitx}
 \usepackage[toc,page]{appendix}
-\renewcommand\appendixname{Bijlage}
-\renewcommand\appendixpagename{Bijlagen}
+\renewcommand\appendixname{Appendices}
+\renewcommand\appendixpagename{Appendices}
 \usepackage{pdfpages}
-
+\usepackage{subcaption}
+\usepackage{mwe}
+\renewcommand{\arraystretch}{2}
 
 \title{Eindverslag}
 \author{Groep 1: Safety First}
@@ -32,7 +34,7 @@
 \section{Inleiding}
 
 \textbf{\large De groei en het verval van steden} \\
-Meer en meer zien we een groei van het verstedelijkt gebied. Met deze groei nemen ook de problemen toe: zoals onder meer criminaliteit, lawaai en milieuvervuiling. Als we terugkijken in de tijd, zien we een meermaals voorkomende situatie. Steden zitten in een bloeiperiode, bereiken een verzadingspunt en kunnen daarna de vraag niet meer aan. Dit heeft een negatief effect op de economie en de efficiëntie in een stad. Zo was er ook de val van Rome, nadat deze een hoogtepunt had bereikt. Oude steden hadden dan wel een kleiner bereik, maar de relatie tussen technologie en stedelijke groei blijft dezelfde \cite{smartcities} . We staan opnieuw voor een keerpunt, waarbij we moeten kiezen tussen groeien of blijven steken.
+Meer en meer zien we een groei van het verstedelijkt gebied. Met deze groei nemen ook de problemen toe: zoals onder meer criminaliteit \cite{crimi}, lawaai \cite{lawaai} en milieuvervuiling\cite{milieu}. Als we terugkijken in de tijd, zien we een meermaals voorkomende situatie. Steden zitten in een bloeiperiode, bereiken een verzadingspunt en kunnen daarna de vraag niet meer aan. Dit heeft een negatief effect op de economie en de efficiëntie in een stad. Zo was er ook de val van Rome, nadat deze een hoogtepunt had bereikt. Oude steden hadden dan wel een kleiner bereik, maar de relatie tussen technologie en stedelijke groei blijft dezelfde \cite{smartcities} . We staan opnieuw voor een keerpunt, waarbij we moeten kiezen tussen groeien of blijven steken.
 
 We moeten de technologie die we voor handen hebben kunnen gebruiken om dit vastlopen te voorkomen. Met andere woorden moeten we van onze steden zogezegde  \lq slimme steden\rq\  maken \cite{taaladvies}. In ons dagdagelijkse leven worden we geconfronteerd met inefficiënte situaties die worden opgelost door een \lq slimme\rq\ aanpak. Daarom is het nodig mensen bewust te maken van het nut van deze slimme steden.\\ \\
 \textbf{\large Slimme steden} \\
@@ -43,11 +45,11 @@ Een van de middelen om de efficiëntie te verhogen in een stad is door het invoe
 Ondanks de Vlaamse overheid autonoom rijden stimuleert met projecten zoals Smart Highway en project CONCORDA, staat men in Vlaanderen sceptisch tegenover het idee \cite{vbn}. Zo zou er een te grote psychologische drempel zijn \cite{scept}. Toch is er sprake van een grote marktpotentie. Bij de nieuwste auto's is er al sprake van een zeker mate van zelfstandigheid, zo kan men gealarmeerd worden bij het naderen van een andere bestuurder of een volle witte lijn. Bekende bedrijven zoals Google, Apple en Uber zijn volop bezig met de ontwikkeling van deze autonome wagens. Google werkt samen met verschillende autobouwers, waaronder Audi en Toyota en Apple heeft met hun project \lq Titan\rq\ al meer dan 50 autonome wagens op de openbare weg rijden \cite{bedrijven}. Er is geen ontkennen aan, zelfrijdende auto's hebben een toekomst. Om deze reden hebben wij besloten een miniatuurwagen te maken die in staat is om autonoom een voorgeprogrammeerde weg te volgen. Deze wagen laten we rijden in een miniatuur \lq smart city\rq\ samen met andere wagentjes met hetzelfde doel: het parcours met succes beëindigen. De taak is volbracht als het wagentje de verkeersregels volgt, het parcours juist interpreteert en geen botsingen veroorzaakt. We maken van de gekregen vrijheid gebruik om het wagentje volledig (in de mate van de gekregen vrijheid) naar onze hand te zetten.
 
 \section{Klantenvereisten en ontwerpspecificaties}
-Een zelfrijdende miniatuur robotwagen die zich rondbeweegt in een Slimme Stad zal aan bepaalde vereisten moeten voldoen en bepaalde dingen kunnen om zich zonder problemen te kunnen voortbewegen. Deze vereisten hangen vast aan hoe de Slimme Stad er uitziet en wat er van de gebruikers verwacht wordt
+Een zelfrijdende miniatuurwagen die zich rondbeweegt in een Slimme Stad zal aan bepaalde vereisten moeten voldoen en bepaalde dingen kunnen om zich zonder problemen te kunnen voortbewegen. Deze vereisten hangen vast aan hoe de Slimme Stad er uitziet en wat er van de gebruikers verwacht wordt
 
 
 \subsection{Klantenvereisten}
-De miniatuur miniatuurwagen moet zich volgens een voorgeprogrammeerde route door een modelstad kunnen voortbewegen waarbij de modelstad bestaat uit negen identieke kruispunten verbonden door straten van 1 meter lang ihij al dan niet mag door rijden of afslaan. Ook moet de miniatuurwagen een voorligger of obstakel kunnen detectern een grid. Hierbij volgt de miniatuurwagen een zwarte, volle volglijn. Bij de kruispunten is er een stopstreep en hangen er stoplichten op 75mm hoogte, die gemonteerd zijn op een tafelonderstel van 300 mm hoog. De miniatuurwagen moet stoppen bij de stopstreep en kunnen interpreteren wanneer en en op tijd kunnen stoppen om een botsing te vermijden indien nodig. Ook moet er een grafische gebruikersomgeving zijn waarmee relevante gegevens van de miniatuurwagen kunnen afgelezen worden en een manuele overname kunnen uitgevoerd worden via deze grafische gebruikersomgeving. De manuele overname moet in staat zijn een noodstop uit te voeren of de besturing van de miniatuurwagen over te nemen. De maximale kostprijs van de zelfrijdende miniatuur miniatuurwagen mag niet meer dan 3500 virtuele eenheden zijn.
+De miniatuur miniatuurwagen moet zich volgens een voorgeprogrammeerde route door een modelstad kunnen voortbewegen waarbij de modelstad bestaat uit negen identieke kruispunten verbonden door straten van één meter lang ihij al dan niet mag door rijden of afslaan. Ook moet de miniatuurwagen een voorligger of obstakel kunnen detectern een grid. Hierbij volgt de miniatuurwagen een zwarte, volle volglijn. Bij de kruispunten is er een stopstreep en hangen er stoplichten op 75 mm hoogte, die gemonteerd zijn op een tafelonderstel van 300 mm hoog. De miniatuurwagen moet stoppen bij de stopstreep en kunnen interpreteren wanneer en en op tijd kunnen stoppen om een botsing te vermijden indien nodig. Ook moet er een grafische gebruikersomgeving zijn waarmee relevante gegevens van de miniatuurwagen kunnen afgelezen worden en een manuele overname kunnen uitgevoerd worden via deze grafische gebruikersomgeving. De manuele overname moet in staat zijn een noodstop uit te voeren of de besturing van de miniatuurwagen over te nemen. De maximale kostprijs van de zelfrijdende miniatuur miniatuurwagen mag niet meer dan 3500 virtuele eenheden zijn.
 
 \subsection{Ontwerpspecificaties}
 De afmetingen van de miniatuurwagen worden beperkt tot 300 mm in de hoogte door de tafelonderstellen bij de kruispunten en 250 mm breedte door de breedte van de baan. De lengte van de miniatuurwagen valt vrij te kiezen, maar het moet wel haalbaar zijn om bijvoorbeeld bochten te nemen. De miniatuurwagen volgt een donkere volglijn op een lichte ondergrond van 25 mm breed. Aan een kruispunt interpreteert het wagentje een verkeerslicht dat zich bevindt op 75 mm boven de grond en knippert aan een frequentie van één Hertz. Het verkeerslicht is gemonteerd aan de voorkant van een tafelpoot waardoor het wagentje hem langs de rechterkant zal moeten detecteren.  Indien het verkeerslicht rood is, stopt de miniatuurwagen bij de stopstreep. Deze stopstreep is 50 mm dik en 25 cm lang. Het miniatuurwagentje kan ook voorliggers detecteren via een afstandssensor. Indien het een voorligger detecteert, vertraagt het wagentje of stopt het om zo een botsing te
@@ -67,19 +69,19 @@ Voor de wielen van de miniatuurwagen hebben we gekozen voor de kleinste wielen m
 
 \begin{table}
 	\centering
-	\label{MotorenTab}
+	
 	\begin{tabular}{|l|r|r|r|}\hline
-		Motor&	toeren/min &	km/h 	\\\hline
+		  \textbf{Motor}&	\textbf{toeren/min} &	\textbf{km/h}	\\\hline
 		100:1 HP&	310&	0.78\\\hline
 		100:1&	130&	1.87 	\\\hline
 		50:1 HP&	590&	2.71 \\\hline
 		30:1&	1000&	3.56	\\\hline
 		30:1 HP&	450&	6.03 	\\\hline
 	\end{tabular}
-	\caption{Berekening snelheid voor elke motor voor wielen met diameter 32 mm}
+	\caption{Berekening snelheid voor elke motor voor wielen met diameter 32 mm}\label{MotorenTab}
 
 \end{table}
-Wij kozen voor de 30:1 HP motor aangezien deze met een snelheid van ca. 6 km per uur het meest compatibel zijn met de gekozen wielen . Deze motor zorgt voor de hoogste topsnelheid met de wielen die we gekozen hadden. Om dit te bepalen hebben we enkele berekeningen uitgevoerd met het aantal toeren per minuut dat de motor maximaal kan draaien en de omtrek van de wielen \cite{converter}. Deze resultaten zijn te vinden in tabel \ref{MotorenTab}. Deze wielen en motoren zullen we plaatsen aan de voorkant van onze wagen. De motoren worden aan de onderkant van het chassis bevestigd om zo ons chassis hoger van de grond te krijgen en zo kan op die manier ook de lijnsensor aan de onderkant van het chassis geplaatst worden. Dit alles is te zien op figuur \ref{fig:Onderkant}.  
+Wij kozen voor de 30:1 HP motor aangezien deze met een snelheid van ca. zes km per uur het meest compatibel zijn met de gekozen wielen . Deze motor zorgt voor de hoogste topsnelheid met de wielen die we gekozen hadden. Om dit te bepalen hebben we enkele berekeningen uitgevoerd met het aantal toeren per minuut dat de motor maximaal kan draaien en de omtrek van de wielen \cite{converter}. Deze resultaten zijn te vinden in tabel \ref{MotorenTab}. Na een testrit bleken de motoren te traag te snel voor onze wagen, het koppel was te laag. Dit heeft ons doen kiezen voor motoren met meer koppel, namelijk de 100:1 motor. Deze wielen en motoren zullen we plaatsen aan de voorkant van onze wagen. De motoren worden aan de onderkant van het chassis bevestigd om zo ons chassis hoger van de grond te krijgen en zo kan op die manier ook de lijnsensor aan de onderkant van het chassis geplaatst worden. Dit alles is te zien op figuur \ref{fig:Onderkant}.  
 
 \begin{figure} [h]
 	\begin{tikzpicture}
@@ -100,13 +102,67 @@ Wij kozen voor de 30:1 HP motor aangezien deze met een snelheid van ca. 6 km per
 			
 		\end{scope}
 	\end{tikzpicture}
-	\label{fig:Onderkant}
-	\caption{De lijnsensor is bevestigd tussen de wielen, aan de onderkant van de wagen. Dit zorgt ervoor dat het wagentje nauwkeurig rijdt en sneller correcties kan uitvoeren. De figuur toont de onderkant van de wagen}
+	
+	\caption{De lijnsensor is bevestigd tussen de wielen, aan de onderkant van de wagen. Dit zorgt ervoor dat het wagentje nauwkeurig rijdt en sneller correcties kan uitvoeren. De figuur toont de onderkant van de wagen}\label{fig:Onderkant}
 \end{figure}
 
+
+\begin{figure*}
+	\centering
+	\begin{subfigure}[b]{0.475\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{1.PNG}
+		\caption[Network2]%
+		{{\small Het zelfontworpen chassis}}    
+		\label{fig:a}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.475\textwidth}  
+		\centering 
+		\includegraphics[width=\textwidth]{2.png}
+		\caption[]%
+		{{\small Figuur \ref{fig:a} met wielen en motoren}}    
+		\label{fig:b}
+	\end{subfigure}
+	\vskip\baselineskip
+	\begin{subfigure}[b]{0.475\textwidth}   
+		\centering 
+		\includegraphics[width=\textwidth]{3.PNG}
+		\caption[]%
+		{{\small Figuur \ref{fig:b} met de microcontroller, Raspberry Pi}}    
+		\label{fig:c}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.475\textwidth}   
+		\centering 
+		\includegraphics[width=\textwidth]{4.PNG}
+		\caption[]%
+		{{\small Figuur \ref{fig:c} met de powerbank en het experimenteerbord }}    
+		\label{fig:d}
+	\end{subfigure}
+	\vskip\baselineskip
+	\begin{subfigure}[b]{0.475\textwidth}   
+		\centering 
+		\includegraphics[width=\textwidth]{5.PNG}
+		\caption[]%
+		{{\small Figuur \ref{fig:d} met de MakerBeam-constructie}}    
+		\label{fig:e}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.475\textwidth}   
+		\centering 
+		\includegraphics[width=\textwidth]{6.PNG}
+		\caption[]%
+		{{\small Figuur \ref{fig:e} met de sensoren: kleurensensor, afstandssensor en lijnsensor}}    
+		\label{fig:f}
+	\end{subfigure}
+	\caption
+	{\small De deelfiguren tonen het bouwproces van de miniatuurwagen stap voor stap } 
+	\label{fig:deelfiguren}
+\end{figure*}
 \textbf{\large De microcontroller} \\
 Een Raspberry Pi verbruikt zeer weinig stroom, wat een groot voordeel is wanneer je miniatuurwagentje op een batterij werkt. Daarnaast is het zeer makkelijk om informatie over de werking te vinden, aangezien deze microcontroller zoveel gebruikt wordt \cite{rasp}.
-De Raspberry Pi wordt geplaatst op vier afstandsbussen van 15mm hoog waardoor hij op een platform komt te staan. Dit is te zien op figuur \ref{fig:afbchassis}. Op deze manier voorzien we voldoende ruimte voor de (plaatsing van de) sensoren, motoren, wielen en Maker Beams die nog op het chassis moeten komen. Op de Raspberry Pi komen twee kleine experimenteerborden die aan elkaar gelinkt zijn. Achter de Raspberry Pi ter hoogte van onze Bal Caster zullen we de powerbank op het chassis plaatsen. Deze past jammer genoeg juist niet onder de Raspberry waardoor hij niet onder het platform kan. De powerbank zorgt met zijn gewicht ervoor dat het massamiddelpunt van de wagen meer naar achteren en lager komt te liggen wat zorgt voor extra stabiliteit. De powerbank is ook makkelijk aan te sluiten op de Raspberry Pi en levert het juiste voltage voor de Raspberry Pi om te functioneren. 
+De Raspberry Pi wordt geplaatst op vier afstandsbussen van 15 mm hoog waardoor hij op een platform komt te staan. Dit is te zien op figuur \ref{fig:afbchassis}. Op deze manier voorzien we voldoende ruimte voor de (plaatsing van de) sensoren, motoren, wielen en Maker Beams die nog op het chassis moeten komen. \\ Op de Raspberry Pi komen twee kleine experimenteerborden die aan elkaar gelinkt zijn. Achter de Raspberry Pi ter hoogte van onze Bal Caster zullen we de powerbank op het chassis plaatsen. Deze past jammer genoeg juist niet onder de Raspberry waardoor hij niet onder het platform kan. De powerbank zorgt met zijn gewicht ervoor dat het massamiddelpunt van de wagen meer naar achteren en lager komt te liggen wat zorgt voor extra stabiliteit. De powerbank is ook makkelijk aan te sluiten op de Raspberry Pi en levert het juiste voltage voor de Raspberry Pi om te functioneren. 
 
 \begin{figure} [h]
 	\begin{tikzpicture}
@@ -127,20 +183,23 @@ De Raspberry Pi wordt geplaatst op vier afstandsbussen van 15mm hoog waardoor hi
 			
 		\end{scope}
 	\end{tikzpicture}
-	\label{fig:afbchassis}
-	\caption{De volledige miniatuurwagen}
+	
+	\caption{De volledige miniatuurwagen}\label{fig:afbchassis}
 \end{figure}
 
-Het chassis is handmatig ontworpen naar de behoeften van het miniatuurwagentje en zal ge-3D-print worden. Dit chassis zal 140 mm lang, 110 mm breed en 3 mm dik zijn met afgeronde hoeken, zoals te zien op figuur \ref{fig:chassis}. Hiermee bekomen we een chassis waarmee we genoeg ruimte hebben in de lengte om onze microcontroller en onze powerbank op te plaatsen. De afgeronde hoeken zorgen ervoor dat bochten makkelijker genomen kunnen worden. Vooraan het chassis zal er een gleuf voorzien worden van 6,5 mm breed en 45,8 mm lang voor de verbindingsdraden naar de lijnsensor die onder het chassis hangt, zie figuur \ref{fig:Onderkant}. Er zullen ook gaten in het chassis bevinden die kunnen gebruikt worden voor het bevestigen van componenten met schroeven en moeren. Het chassis zal aan een dichtheid van 70\% ge-3D-print worden zodat hij genoeg steun kan bieden.
+\textbf{\large Het chassis} \\
+Het chassis is handmatig ontworpen naar de behoeften van het miniatuurwagentje en zal ge-3D-print worden. Door het chassis zelf te ontwerpen, kunnen we van het standaard model afstappen en ons wagentje er laten uitspringen. Dit chassis zal 140 mm lang, 110 mm breed en 3 mm dik zijn met afgeronde hoeken, zoals te zien op figuur \ref{fig:chassis}. Hiermee bekomen we een chassis waarmee we genoeg ruimte hebben in de lengte om onze microcontroller en onze powerbank op te plaatsen. Vooraan het chassis zal er een gleuf voorzien worden van 6,5 mm breed en 45,8 mm lang voor de verbindingsdraden naar de lijnsensor die onder het chassis hangt, zie figuur \ref{fig:Onderkant}. Er zullen ook gaten in het chassis bevinden die kunnen gebruikt worden voor het bevestigen van componenten met schroeven en moeren. Het chassis zal aan een dichtheid van 70\% ge-3D-print worden zodat het genoeg steun kan bieden.
+
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=.5\textwidth] {chassis3d}
+	\includegraphics[width=.4\textwidth] {chassis3d}
 	\caption{CAD-model van het zelf ontworpen chassis.}
 	\label{fig:chassis}
 \end{figure}
 
 \subsection{Sensoren}
-De kleurensensor zal bevestigt worden aan een MakerBeam-staaf op een hoogte van 75 mm van de grond zodat deze het verkeerslicht, die op dezelfde hoogte hangt, kan detecteren. Deze constructie laat toe om de positie van de kleurensensor eenvoudig (en handmatig) bij te stellen. \ref{fig:Linksaanzicht} Deze constructie bestaat uit een MakerBeam die horizontaal in het midden van ons chassis ligt onder de Raspberry Pi met daarop een MakerBeam verticaal omhoog aan het rechter uiteinde. De kleurensensor wordt bevestigd aan de horizontale MakerBeam
+\textbf{\large De kleurensensor} \\
+De kleurensensor zal bevestigt worden aan een MakerBeam-staaf op een hoogte van 75 mm van de grond zodat deze het verkeerslicht, die op dezelfde hoogte hangt, kan detecteren. Deze constructie laat toe om de positie van de kleurensensor eenvoudig (en handmatig) bij te stellen, dit is te zien op figuur \ref{fig:Linksaanzicht}. Deze constructie bestaat uit een MakerBeam die horizontaal in het midden van ons chassis ligt onder de Raspberry Pi met daarop een MakerBeam verticaal omhoog aan het rechter uiteinde. De kleurensensor wordt bevestigd aan de horizontale MakerBeam
 
 \begin{figure}[h]
 	\begin{tikzpicture}
@@ -162,68 +221,167 @@ De kleurensensor zal bevestigt worden aan een MakerBeam-staaf op een hoogte van 
 			\draw[thick,->] (8.5,4.5) -- (8.5,0.5);
 		\end{scope}
 	\end{tikzpicture}
-	\label{fig:Linksaanzicht}
-	\caption{De kleurensensor wordt bevestigd aan een MakerBeam-constructie die toelaat om de sensor optimaal te positioneren. De figuur toont het linkeraanzicht van het wagentje.}
+	
+	\caption{De kleurensensor wordt bevestigd aan een MakerBeam-constructie die toelaat om de sensor optimaal te positioneren. De figuur toont het linkeraanzicht van het wagentje.}\label{fig:Linksaanzicht}
 \end{figure}
 
-Voor de afstandssensor hebben we gekozen voor een analoge sensor, opdat we nauwkeurig kunnen meten hoever het wagentje verwijderd is van een obstakel of een andere weggebruiker. Doordat we dit onderscheid kunnen maken moet onze miniatuur miniatuurwagen niet direct stoppen wanneer hij een voorligger detecteert, maar kan hij er voor  zorgen dat hij eerst wat trager rijdt vooraleer volledig te stoppen. De afstandssensor wordt aan de voorzijde van het chassis bevestigd met behulp van een MakerBeam.
+ \textbf{\large De afstandssensor} \\
+Voor de afstandssensor hebben we gekozen voor een analoge sensor, opdat we nauwkeurig kunnen meten hoever het wagentje verwijderd is van een obstakel of een andere weggebruiker. Doordat we dit onderscheid kunnen maken moet onze miniatuur miniatuurwagen niet direct stoppen wanneer hij een voorligger detecteert, maar kan hij er voor  zorgen dat hij eerst wat trager rijdt vooraleer volledig te stoppen. De afstandssensor wordt aan de voorzijde van het chassis bevestigd met behulp van een MakerBeam.\\
 
+\textbf{\large De lijnsensor} \\
 De lijnsensor wordt gebruikt om de volglijn te detecteren. Hierbij hebben we een digitale sensor gekozen omdat deze compatibel is met de Raspberry Pi microcontroller en de sensor geen onderscheid moet kunnen maken tussen de lijnsoort. Deze wordt aan de voorkant onder het chassis bevestigd met behulp van afstandsbuizen zodat deze de volglijn als eerst detecteert en we zo sneller correcties kunnen uitvoeren. Aangezien de sensor dicht bij de wielen ligt, zal het wagentje ook nauwkeuriger bewegen.
 
-Het volledige ontwerp is te zien in figuur \ref{fig:chassis}.
+Het volledige ontwerp met de lijnsensor is te zien in figuur \ref{fig:afbchassis}.
 
 
 	
 \section{Evaluatie}
 
 \subsection{Planning}
-Tot en met week 5 is alles verlopen zoals gepland en vastgelegd in de Gantt-grafiek. De documenten met betrekking tot de planning zijn afgewerkt net zoals het ontwerp van de chassis en het CAD-model. Het bestellen van de onderdelen vond later plaats dan verwacht, vanwege de plaatsing bij de bieding. Dit heeft ons met een achterstand doen starten aan het programmeren en assembleren. Het team was van plan om te beginnen met de assemblage in week 6, echter wordt dit een week uitgesteld vanwege een probleem met de microcontroller. Het programmeren van de sensoren verliep vlot, enkel het programmeren in verband met de aansturing van het wagentje zal iets meer tijd innemen dan ingerekend. Dit wordt dan wel gecompenseerd met het maken van het CAD-model dat minder tijd innam dan voorspeld, waardoor we nog altijd op schema zitten. Ook het schrijven van het verslag verloopt volgens schema. De tijd voorzien tijdens de lessen wordt efficiënt gebruikt, waardoor het werk buiten de lessen wordt beperkt tot een minimum.
+Tot en met week 5 is alles verlopen zoals gepland en vastgelegd in de Gantt-grafiek. De documenten met betrekking tot de planning zijn afgewerkt net zoals het ontwerp van de chassis en het CAD-model. Het bestellen van de onderdelen vond later plaats dan verwacht, vanwege de plaatsing bij de bieding. Dit heeft ons met een achterstand doen starten aan het programmeren en assembleren. Het team was van plan om te beginnen met de assemblage in week 6, echter wordt dit een week uitgesteld vanwege een probleem met de microcontroller. Het programmeren van de sensoren verliep vlot, enkel het programmeren in verband met de aansturing van het wagentje neemt meer tijd in dan ingerekend, namelijk twee weken. Dit wordt dan wel gecompenseerd met het maken van het CAD-model dat een week op voorhand klaar was, waardoor we nog altijd op schema zitten. Ook het schrijven van het verslag verloopt volgens schema. De tijd voorzien tijdens de lessen wordt efficiënt gebruikt, waardoor het werk buiten de lessen wordt beperkt tot een minimum.
 
-
+\begin{table}[h]
+	\begin{tikzpicture}
+		\begin{axis}[
+			enlargelimits=0.10,
+			ylabel={\# Kredietpunten}, % the ylabel must precede a # symbol. 
+			symbolic x coords={Motor, Chassis, Sensoren, Makerbeams, Microcontroller, Powerbank},
+			xtick=data,  
+			nodes near coords, % this command is used to mention the y-axis points on the top of the particular bar.  
+			nodes near coords align={vertical},  
+			]  
+			\addplot[ybar,fill=blue, bar width=30pt] coordinates {
+				(Motor,   640)
+				(Sensoren,  460)
+				(Makerbeams,   115)
+				(Chassis, 120)
+				(Microcontroller, 240)
+				(Powerbank, 180)
+			};	
+		\end{axis}
+		
+	\end{tikzpicture}
+	
+	\caption{De kost van de motor is bijna 20\% van het volledige budget doordat een tweede motor aangekocht moest worden. De tabel toont de absolute kosten van de grootste categorieën.}\label{fig:staafdiagram.credits}
+\end{table}
 \subsection{Financiën}
 
-Doordat we de laatste keuze hadden bij het bestellen, liepen we achter op onze planning, onze financiële situatie kende hier dan weer voordelen door. We zijn gestart met een budget van 3500 kredietpunten, dat werd gereduceerd tot een tegoed van 1768 na het plaatsen van een eerste bestelling. In deze  order werden alle grote onderdelen en zaken die we zeker nodig hadden besteld.  Aan onze eerste levering ontbraken nog Maker Beams en afstandsbussen. Onze tweede bestelling zal voorlopig 61 kredietpunten kosten, waardoor we een budget van 1646 kredietpunten overhouden. Door de vele keuzemogelijkheden, waaronder vorm en dikte, werd ervoor gekozen het chassis zelf te ontwerpen en te 3D-printen. Dit is vermoedelijk een grote kost die werd geschat op 500 kredietpunten. Onze financiële toestand zorgt ervoor dat we in een comfortabele situatie zitten en kunnen we het ons veroorloven om fouten te maken en risico's te nemen. 
-\\ \\
-\begin{tikzpicture}
-	\begin{axis}[
-		enlargelimits=0.10,
-		ylabel={\# Credits}, % the ylabel must precede a # symbol. 
-		symbolic x coords={Motor, Chassis, Sensoren, Makerbeams, Microcontroller, Powerbank},
-		xtick=data
-		]
-		\addplot[ybar,fill=blue, bar width=25pt] coordinates {
-			(Motor,   640)
-			(Sensoren,  460)
-			(Makerbeams,   115)
-			(Chassis, 0)
-			(Microcontroller, 240)
-			(Powerbank, 180)
-		};	
-	\end{axis}
+Doordat we de laatste keuze hadden bij het bestellen, liepen we achter op onze planning, onze financiële situatie kende hier dan weer voordelen door. We zijn gestart met een budget van 3500 kredietpunten, dat werd gereduceerd tot een tegoed van 1768 na het plaatsen van een eerste bestelling. In deze  order werden alle grote onderdelen en zaken die we zeker nodig hadden besteld.  Aan onze eerste levering ontbraken nog Maker Beams en afstandsbussen. Onze tweede bestelling komt neer op 91 kredietpunten, waardoor we een budget van 1677 kredietpunten overhouden. Door de vele keuzemogelijkheden, waaronder vorm en dikte, werd ervoor gekozen het chassis zelf te ontwerpen en te 3D-printen. Dit is vermoedelijk een grote kost die werd geschat op 500 kredietpunten. Na het printen bleek het chassis slechts 120 kredietpunten te kosten. Samen met de kost voor de derde bestelling van 340 kredietpunten, brengt dit ons op een totaal van 1217 kredietpunten. Bij deze derde bestelling werden nieuwe 100:1 motoren gekocht na het vaststellen dat de 30:1 HP motoren niet genoeg koppel hadden. Dit zorgt ervoor dat de motoren de grootste kost van de wagen zijn. Onze financiële toestand zorgt ervoor dat we in een comfortabele situatie zitten en kunnen we het ons veroorloven om fouten te maken en risico's te nemen. De kosten van de belangrijkste onderdelen zijn terug te vinden in tabel \ref{fig:staafdiagram.credits}
 
-\end{tikzpicture}
+
+\subsection{Software}
+
+\textbf{\large De manuele overname} \\
+De manuele overname is als volgt geïmplementeerd: De LabVIEW-code runt continu op een pc terwijl de Python-code dat ook doet op de Raspberry Pi. Wanneer de startknop wordt ingedrukt, wordt de overname ingeschakeld. Het programma komt in een lus terecht en controleert de berichten die binnenkomen. Afhankelijk van de binnenkomende berichten gaat het wagentje vooruit, achteruit, naar links of naar rechts. Indien er m.b.v. de overname kruispunten genomen worden, kan men handmatig bij het stopcommando het huidige kruispuntnummer meegeven. Dit is optioneel, dus als er geen nummer wordt meegegeven, wordt het kruispuntnummer niet gewijzigd. Indien men op geen enkele knop drukt blijft de overname actief, maar worden de motoren niet aangedreven. Indien men op de stopknop drukt, wordt de overname afgesloten tot het eventueel terug wordt opgestart. \\
+
+\textbf{\large De lijnsensor} \\
+Bij de lijnsensor wordt eerst de ruwe data van de acht sensoren ingelezen. Deze data wordt uitgedrukt in seconden. Bij weinig reflectie (een donker oppervlak) zijn deze waarden hoog, bij veel reflectie (een wit oppervlak) zijn deze waarden laag. 
+
+Omdat deze data niet praktisch is om mee te werken, wordt deze herschaald tot een waarde van 0 tot 1000, waarbij lagere waarden voor lichtere oppervlakken staan. Dit gebeurt aan de hand van een gekalibreerde minimum- en maximumwaarde van de seconden. Deze twee waarden worden op voorhand bepaald door de robotwagen over de lichte vloer te laten rijden en vervolgens over de zwarte volglijn, waarbij het minimum en maximum van de uitgelezen data genomen wordt. 
+Nadat de data herschaald is, definiëren we de positie van het voertuig met volgende formule:
+\begin{equation*}
+	\frac{0\cdot waarde_{0} + 1000\cdot waarde_{1}+ 7000\cdot waarde_{7}} {waarde_{0} + waarde_{1} + .. + waarde_{7}}
+\end{equation*}
+
+Hierbij staat $waarde_{0} $voor de herschaalde waarde van de eerste, meest linkse sensor en $waarde_{7}$ voor de herschaalde waarde van de meest rechtse sensor. De breedte van de lijn is 25 mm, wat ongeveer overeenkomt met twee sensoren die een zwart oppervlak zien, terwijl de overige zes sensoren zich boven het lichte oppervlak bevinden. Aangezien we zouden willen dat de lijn zich onder het midden van de robotwagen bevindt, zouden we graag $waarde_{3}$ en $waarde_{4}$ gelijk hebben aan 1000 en de andere waarden gelijk aan nul. Daardoor wordt onze te bekomen positie dus\begin{equation*} \frac{3000\cdot1000+4000\cdot1000}{1000+1000} = 3500.\end{equation*}
+
+We definiëren nu de fout als de huidige positie min de te bekomen positie, 3500. Stel dat in de huidige positie de lijn rechts onder het wagentje ligt, dan zal volgens bovenstaande formule de huidige positie een grotere waarde aannemen dan 3500. De fout is dus positief en de wagen moet iets meer naar rechts rijden om dit te corrigeren. Daarom corrigeren we de linkse motorsnelheid met een plus $c \ \cdot$ fout, en de rechtse motorsnelheid met min $c \ \cdot$ fout, waarbij c een constante is die door testen bepaald wordt. 
+
+Stel nu dat de lijn te links ligt, dan zal de huidige positie lager zijn dan 3500 en is de fout negatief. De linkse motor wordt gecorrigeerd met plus $c \  \cdot$ fout, maar de fout is negatief en resulteert dus in een netto negatieve correctie van de linkse motorsnelheid. De rechtse motorsnelheid zal dus een netto positieve correctie hebben. De wagen zal dus naar links rijden, wat precies is wat we wilden bereiken.
+
 
 \section{Besluit}
 
 
-Met het gegeven budget hebben we de mogelijkheid een correct functionerend wagentje te bouwen die in staat is autonoom een voorgeprogrammeerd pad te volgen zonder hinder te veroorzaken of de verkeersregels te overtreden. Dit project toont op kleine schaal aan dat een smart city en meer specifiek, zelfrijdende wagens minder utopie en meer werkelijkheid worden.
-Zelfrijdende wagens kennen zeker een toekomst en hebben hun nut al meermaals bewezen. De weg naar een wereld met autonome wagens is lang, maar wordt stilaan meer en meer bereden.
+Met een budget van 3500 kredietpunten hebben we alle onderdelen kunnen aankopen om een functionerende miniatuurwagen te kunnen bouwen. Van dit budget bleven 1217 kredietpunten over op het einde. Dit bedrag werd besteed aan voornamelijk wielen, motoren, een microcontroller, een powerbank, sensoren, een chassis en MakerBeam-onderdelen. Uit het financieel rapport bleek dat de motoren de grootste kost zijn en daarna de sensoren. 
+
+Uit dit project concluderen we dat er veel mogelijkheden zijn om een miniatuurwagen te maken en dat er veel keuzes gemaakt moeten worden. Dit project toont op kleine schaal aan dat een smart city en meer specifiek, zelfrijdende wagens minder utopie en meer werkelijkheid worden. Zelfrijdende wagens kennen zeker een toekomst en hebben hun nut al meermaals bewezen. De weg naar een wereld met autonome wagens is
+lang, maar wordt stilaan meer en meer bereden.
 
 
 
 	\bibliographystyle{plain} %De stijl van de bibliografie
 	\bibliography{bibliografietv} %De bibliografie zelf
+
 \begin{appendices}
-	\section*{Planningsdocumenten} %De goede titel
-	\renewcommand\refname{} %De oude titel verwijderen
-	\vspace{-2\bigskipamount} %De cursor terugzetten
-	
+
+\section{Gantt-grafiek en taakstructuur}
 \includepdf[pages=-]{ganttchart.pdf}
 
 \includepdf[pages=-]{taakstructuur.pdf}
 
-\includepdf[pages=-]{klantenvereisten.pdf}
-\includepdf[pages=-]{ontwerpspecificaties.pdf}
+\section{Budgetmanagement}
+\begin{table}[h]
+	\centering
+	
+	\begin{tabular}{|l|r|r|r|}\hline
+		
+		\textbf{Onderdeel}&	\textbf{Aantal} &	\textbf{Prijs}	\\\hline
+		Micro Metal Gear Motor 100:1 &	2 &320\\\hline
+		Micro Metal Gear Motor 30:1 HP&		2	&320\\\hline
+		Raspberry Pi&		1		&240\\\hline
+		Powerbank&		1&180\\\hline
+		Dual Drive DRV8833&		1 &70\\\hline
+		Wiel 32x7 mm zwart&		2&70\\\hline
+		Ball Caster&		1 &60\\\hline
+		Optische afstandsensor (analoog)&		1	&160\\\hline
+		TCS34725 Kleur sensor BOB &		1 &15 \\\hline
+		QTR-8RC digitale reflectie sensor array &		1	&150\\\hline
+		MakerBeam Hoekverbinding 90°&		2	&15\\\hline
+		MakerBeam profiel 40 mm&		1 &20\\\hline
+		MakerBeam profiel 60 mm&		3 	&60\\\hline
+		MakerBeam profiel 100 mm&		1	&20\\\hline
+		Micro metal gear motor beugel&		2 &50\\\hline
+		Breadboard Tiny&		2	&80\\\hline
+		ADC MCP3002-I/P&		1 &40\\\hline
+		Motorschield IC&		1&	70\\\hline
+		Wire to board socket&		4	&20\\\hline
+		Printplaat&		1	&50\\\hline
+		Male headers 10&		3&15 \\\hline
+		Afstandsbus 15x5 mm nylon&		2 &1\\\hline
+		Afstandsbus 20x5 mm nylon&		4 &2\\\hline
+		
+	\end{tabular}
+\end{table}
+\section{Klantenvereisten}
+	\renewcommand\refname{} %De oude titel verwijderen
+
+De klant wenst een miniatuurwagen die autonoom kan rondrijden volgens een voorgeprogrammeerde route in een modelstad. Hierbij volgt de wagen straten via een volglijn. Daarnaast kan het wagentje voorliggers of obstakels detecteren en stoppen indien nodig, om botsing te vermijden. De klant wenst ook dat het wagentje verkeerslichten kan interpreteren bij kruispunten. Indien het verkeerslicht rood is, dient de wagen bij de stopstreep te stoppen. Indien het verkeerslicht groen is, rijdt de wagen door.  Het te volgen traject wordt vooraf geïmplementeerd. De wagen kan afslaan op een kruispunt indien dit in de vooraf beschreven route stond. De maximale kostprijs van dit miniatuurwagentje is 3500 virtuele eenheden. De klant wenst een grafische interface waarmee de relevante gegevens van dit wagentje kunnen uitgelezen worden vanop afstand. Een manuele overname van de wagen moet ook mogelijk zijn, zij het uitvoeren van een noodstop, zij de besturing overnemen.
+
+\section{Ontwerpspecificaties}
+\renewcommand\refname{} %De oude titel verwijderen
+
+De klant wenst een zelfrijdend wagentje dat zich volgens een voorgeprogrammeerde route door een modelstad beweegt. De modelstad bestaat uit negen identieke kruispunten opgesteld in een vierkant die zich op een afstand van een meter van elkaar bevinden. Figuren \ref{kruispunt} en \ref{techtekkruispunt} tonen een voorbeeld van een van die kruispunten.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.45\textwidth]{kruispunt.png}
+	\caption{Bovenaanzicht van een kruispunt (figuur ontleend aan \cite{teamopdracht})}
+	\label{kruispunt}
+\end{figure}
+
+
+Het wagentje volgt hierbij een lijn van 25 mm dik aan de hand van een reflectiesensor, dit zijn de dunne rode lijnen op figuur \ref{kruispunt}. Deze volglijn is een donkere lijn op een heldere ondergrond of een heldere lijn op een donkere ondergrond. De lengte van een te volgen straat is 1 meter en de breedte ervan bedraagt 0.5 meter. Op deze baan bewegen de miniatuurwagens zich rechts in de heenrichting en links in de terugrichting. De maximale, totale breedte van het wagentje bedraagt dus 25 cm. Aan een kruispunt interpreteert het wagentje een rood-groen verkeerslicht. De verkeerslichten zijn gemonteerd op een tafelonderstel (zie figuur \ref{techtekkruispunt}). Aangezien de hoogte hiervan 300 mm is, is dit ook de maximale hoogte van het te bouwen wagentje. Het midden van het verkeerslicht bevindt zich op 7.5 cm boven de grond. Zoals te zien op de technische tekening \ref{verkeerslicht} is dit ook de plaats waar de kleurled zich in het verkeerslicht bevindt. Het verkeerslicht is gemonteerd aan de voorkant van de tafelpoot, zodat de wagen het verkeerslicht langs de rechterkant moet detecteren, zoals ook figuur \ref{kruispunt} suggereert.  Indien het verkeerslicht rood is, stopt het miniatuurwagentje bij de stopstreep. Deze stopstreep is 50 mm dik en 25 cm lang, zoals we kunnen afleiden uit de rode dikke lijnen in figuur \ref{kruispunt}. Indien het verkeerslicht groen is, rijdt het wagentje door of slaat het af, naargelang de gevraagde voorgeprogrammeerde route.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.65\textwidth]{tafelstel.png}
+	\caption{Technische tekening van een kruispunt (figuur ontleend aan \cite{teamopdracht})}
+	\label{techtekkruispunt}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\textwidth]{verkeerslicht.png}
+	\caption{Technische tekening van een verkeerslicht (figuur ontleend aan \cite{teamopdracht} )}
+	\label{verkeerslicht}
+\end{figure}
+
+Het wagentje kan ook voorliggers detecteren via een afstandssensor. Indien het een voorligger detecteert, vertraagt het wagentje of stopt het om zo een botsing te vermijden.
+Het te volgen traject wordt een week op voorhand bekend gemaakt en kan dan al geprogrammeerd worden.
+De componenten van het prototype mogen verbonden worden via een breadboard. De definitieve versie van het wagentje moet wel via een printplaat kunnen functioneren. Voor de microcontroller dient gebruik te worden gemaakt van een NI myRIO of Raspberry Pi. Tussen de microcontroller en de motoren dient een motorshield te worden aangebracht, gezien dit een terugloopbeveiliging bevat die beschadiging van de microcontroller voorkomt. Het wagentje haalt zijn energie uit een batterij. De maximale kostprijs van het prototype bedraagt 3500 virtuele eenheden.
+
+De klant wenst ook dat er een draadloze informatieoverdracht is tussen het wagentje en een computer op afstand. Deze draadloze informatieoverdracht verloopt via LabVIEW en er is ook een grafische interface beschikbaar. Via deze interface kan een noodstop worden uitgevoerd of de volledige besturing van het miniatuurwagentje overgenomen worden.
 
 \end{appendices}
 
