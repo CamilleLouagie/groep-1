@@ -1,0 +1,73 @@
+\documentclass[a4paper,kulak]{kulakarticle} %options: kul or kulak (default)
+
+\usepackage[utf8]{inputenc}
+\usepackage[dutch]{babel}
+
+\date{April 30, 2021}
+\address{
+  Ingenieurswetenschappen \\
+  P\&O2 \\
+  Benjamin Maveau, Kevin Truyaert}
+\title{Vergaderingsverslag: Week 10}
+\author{Team 1}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Verslag begin sessie}
+
+\subsection{Bespreking verslag vorige vergadering}
+We hebben eens nagevraagd aan Kevin wat er precies gesoldeerd moest worden, dit zijn zowel het motorshield als de ADC. Vandaag moeten we zeker de proberen het gesoldeerde motorshield aan de praat krijgen zodat we zeker genoeg tijd hebben om het uit te testen.
+
+\subsection{Evaluatie activiteiten}
+Opeens werkt de afstandssensor niet meer naar behoren. Terwijl Otto soldeert, zal Staf proberen deze te herstellen. De kleursensor leest data uit maar deze data is verre van bruikbaar, dit probleem moet dan ook zo snel als mogelijk opgelost worden. Onze hoofdstructuren en manuele overnamemogelijkheid moeten ook nog geoptimaliseerd worden zoals blijkt uit de testen met de dual drive motorshield, wat op afstand kan worden geïmplementeerd worden. 
+
+\subsection{Planning}
+\subsubsection*{On campus}
+\begin{itemize}
+	\item Otto werkt het solderen van de printplaat verder af en sluit deze eens aan op de Raspberry om te kijken of deze functioneert. Indien tijd over en afstandssensor functioneel, kan hij ook de ADC nog solderen op de printplaat.
+	\item Staf bevestigt eerst de kleurensensor aan de robotwagen, dan herstelt hij de afstandssensor. Tenslotte probeert hij ook relevante data uit te lezen uit de kleurensensor. Indien tijd over kan hij routines testen die geschreven werden op afstand.
+\end{itemize}
+
+\subsubsection*{Op afstand}
+\begin{itemize}
+	\item Camille zal verder werken aan het eindverslag en de eindpresentatie.
+	\item Ruben en Emiel zullen de map `definitief\_programmeren' proberen aan te vullen met `runfiles'. Ze herschrijven het pwm-algoritme op basis van het nieuwe motorshield. Ze proberen ook de implementatie van de kleurensensor te herschrijven op basis van de inputdata verkregen op campus. 
+\end{itemize}
+
+\subsection{Groepsfunctioneren}
+
+\subsection{Rondvraag}
+
+\subsection{Varia}
+
+
+
+
+\section{Verslag einde sessie}
+
+\subsection{Bespreking verslag vorige vergadering}
+Na 3 sessies die toch wat geëindigd zijn in mineur zakt de moed ons toch wel wat in de schoenen.
+
+\subsection{Evaluatie activiteiten}
+De kleurensensor herkent geen verschillen in groen en blauwwaarden, er zijn twee mogelijkheden om hierop te anticiperen, ofwel verhogen we de sensitiviteit van de sensor drastisch ofwel is de sensor kapot en vragen we een nieuwe. Het gesoldeerde motorshield werkt niet, ook hier zijn er twee mogelijkheden mogelijk, ofwel is in het beste geval het motorshield stuk en vragen we een nieuw, ofwel is onze printplaat niet goed gesoldeerd. We moeten dit nog testen adhv het eens in te pluggen in een breadboard. 
+
+Er is veel progressie gemaakt in het verbeteren van onze implementaties en het aanvullen van onze definitieve map van programmeren. Dat we deze totaal niet hebben kunnen testen op campus maakt het extra jammer. 
+
+\subsection{Planning}
+\begin{itemize}
+	\item Motorshield testen op een breadboard.
+	\item Kleurensensor gevoeligheid eens drastisch verhogen en zien of we er iets van patroon in kunnen herkennen.
+	\item Indien motorshield wil werken zullen we ook dringend eens `kruispunt' moeten testen.
+	\item Verslag verder afwerken.
+\end{itemize}
+
+\subsection{Groepsfunctioneren}
+
+\subsection{Rondvraag}
+
+\subsection{Varia}
+
+\end{document}
