@@ -183,8 +183,7 @@ def main():
                 print("kruispunt")
                 stopMotor()
 
-                # while detectiekleuren(kleurensensor) == 'rood':
-                # pass
+                detectiekleuren(kleurensensor)
 
                 kruispunt(kruispuntnr)
                 kruispuntnr += 1

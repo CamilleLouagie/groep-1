@@ -9,82 +9,85 @@ def kruispunt(nummer):
     # Wanneer groen
     #bij elk kruispuntnummer moet oversteken(), rechtsInslaan() of linksInslaan() gebruikt worden
     if nummer == 1:
-        pass
+        oversteken()
 
     elif nummer == 2:
-        pass
+        linksInslaan()
 
     elif nummer == 3:
-        pass
+        linksInslaan()
 
     elif nummer == 4:
-        pass
+        rechtsInslaan()
 
     elif nummer == 5:
-        pass
+        rechtsInslaan()
 
     elif nummer == 6:
-        pass
+        rechtsInslaan()
 
     elif nummer == 7:
-        pass
+        oversteken()
 
     elif nummer == 8:
-        pass
+        linksInslaan()
 
     elif nummer == 9:
-        pass
+        linksInslaan()
 
     elif nummer == 10:
-        pass
+        oversteken()
 
     elif nummer == 11:
-        pass
+        linksInslaan()
 
     elif nummer == 12:
-        pass
+        linksInslaan()
 
     elif nummer == 13:
-        pass
+        linksInslaan()
 
     elif nummer == 14:
-        pass
+        rechtsInslaan()
 
     elif nummer == 15:
-        pass
+        rechtsInslaan()
 
     elif nummer == 16:
-        pass
+        oversteken()
 
     elif nummer == 17:
-        pass
+        rechtsInslaan()
 
     elif nummer == 18:
-        pass
+        oversteken()
 
     elif nummer == 19:
-        pass
+        rechtsInslaan()
 
     elif nummer == 20:
-        pass
+        oversteken()
 
     elif nummer == 21:
-        pass
+        rechtsInslaan()
 
     elif nummer == 22:
-        pass
+        linksInslaan()
 
     elif nummer == 23:
-        pass
+        oversteken()
 
     elif nummer == 24:
-        pass
+        oversteken()
 
     elif nummer == 25:
-        pass
+        linksInslaan()
+
+    elif nummer == 26:
+        rechtsInslaan()
 
 
-def oversteken(kanaal):
+def oversteken(kanaal=0):
     while zoeklijn():
         motor.forward(30)
 
@@ -95,7 +98,7 @@ def oversteken(kanaal):
         motor.forward(30)
 
 
-def rechtsInslaan(kanaal, tijd=2):
+def rechtsInslaan(kanaal=0, tijd=2):
     while zoeklijn():
         motor.forward(30)
 
@@ -118,7 +121,7 @@ def rechtsInslaan(kanaal, tijd=2):
         motor.forward(30)
 
 
-def linksInslaan(kanaal, tijd=3):
+def linksInslaan(kanaal=0, tijd=3):
     while zoeklijn():
         motor.forward(30)
 
