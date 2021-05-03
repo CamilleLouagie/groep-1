@@ -64,7 +64,7 @@ bevat die beschadiging van de microcontroller voorkomt. Er moet ook een draadloz
 \subsection{Chassis}
 De ontwerpruimte werd sterk beperkt door de gelimiteerde materiaaldatabank. De belangrijkste keuzes betroffen de wielen, de motor, de microcontroller, het chassis, het type sensoren, de batterij en het experimenteerbord.
 \\\\ \textbf{\large De wielen} \\
-Voor de wielen van de miniatuurwagen hebben we gekozen voor de kleinste wielen met een diameter van 32 mm. Het voordeel aan deze wielen is dat ze meer nauwkeurigheid bieden bij het roteren van de miniatuurwagen en minder kracht nodig hebben om rond gedraaid te worden. Daarnaast kunnen kleinere wielen ook sneller ronddraaien, waardoor de elektrische motoren die de wielen aandrijven ook sneller ronddraaien. Dit leidt tot een verhoogde efficiëntie. Het nadeel aan deze wielen is echter wel dat de topsnelheid lager ligt. De wielen komen aan de voorkant, zoals te zien op figuur \ref{fig:Onderkant}, zodat dit het besturen van de miniatuurwagen vergemakkelijkt. De Bal Caster zullen we in het midden van achteren plaatsen. Deze zullen we op eenzelfde hoogte plaatsen als de wielen door er plastic plaatjes onder te bevestigen. We positioneren de Bal Caster zodanig dat het chassis een minimale hoek maakt met de grond. Op deze manier verzekeren we dat de lijnsensor en de afstandssensor, respectievelijk, parallel en loodrecht staat met het grondoppervlak". De keuze voor deze wielen legt ook beperkingen op aan het type motoren.
+Voor de wielen van de miniatuurwagen hebben we gekozen voor de kleinste wielen met een diameter van 32 mm. Het voordeel aan deze wielen is dat ze meer nauwkeurigheid bieden bij het roteren van de miniatuurwagen en minder kracht nodig hebben om rond gedraaid te worden. Daarnaast kunnen kleinere wielen ook sneller ronddraaien, waardoor de elektrische motoren die de wielen aandrijven ook sneller ronddraaien. Dit leidt tot een verhoogde efficiëntie. Het nadeel aan deze wielen is echter wel dat de topsnelheid lager ligt. De wielen komen aan de voorkant, zoals te zien op figuur \ref{fig:Onderkant}, zodat dit het besturen van de miniatuurwagen vergemakkelijkt. De kogelrol zullen we in het midden van achteren plaatsen. Deze zullen we op eenzelfde hoogte plaatsen als de wielen door er plastic plaatjes onder te bevestigen. We positioneren de kogelrol zodanig dat het chassis een minimale hoek maakt met de grond. Op deze manier verzekeren we dat de lijnsensor en de afstandssensor, respectievelijk, parallel en loodrecht staat met het grondoppervlak". De keuze voor deze wielen legt ook beperkingen op aan het type motoren.
 \\\\ \textbf{\large De motor}
 
 \begin{table}
@@ -87,7 +87,7 @@ Wij kozen voor de 30:1 HP motor aangezien deze met een snelheid van ca. zes km p
 	\begin{tikzpicture}
 		\node [anchor=west] (Lijnsensor) at (-2,6) {\Large Lijnsensor};
 		\node [anchor=west] (Wielen) at (-2,4) {\Large Wielen};
-		\node [anchor=west] (Bal Caster) at (-2,1.5) {\Large Bal Caster};
+		\node [anchor=west] (Kogelrol) at (-2,1.5) {\Large Kogelrol};
 		\begin{scope}[xshift=1.5cm]
 			\node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=.5\textwidth] {onderkant}
 				
@@ -97,7 +97,7 @@ Wij kozen voor de 30:1 HP motor aangezien deze met een snelheid van ca. zes km p
 				\draw [-stealth, line width=3pt, cyan] (Lijnsensor) -- ++(0.6,0.0);
 				%\draw[cyan,ultra thick,rounded corners] (0.4,0.55) rectangle (0.2,0.3);
 				\draw [-stealth, line width=3pt, cyan] (Wielen) -- ++(0.45,0.0);
-				\draw [-stealth, line width=3pt, cyan] (Bal Caster) -- ++(0.75,0.0);
+				\draw [-stealth, line width=3pt, cyan] (Kogelrol) -- ++(0.75,0.0);
 			\end{scope}
 			
 		\end{scope}
@@ -162,7 +162,7 @@ Wij kozen voor de 30:1 HP motor aangezien deze met een snelheid van ca. zes km p
 \end{figure*}
 \textbf{\large De microcontroller} \\
 Een Raspberry Pi verbruikt zeer weinig stroom, wat een groot voordeel is wanneer je miniatuurwagentje op een batterij werkt. Daarnaast is het zeer makkelijk om informatie over de werking te vinden, aangezien deze microcontroller zoveel gebruikt wordt \cite{rasp}.
-De Raspberry Pi wordt geplaatst op vier afstandsbussen van 15 mm hoog waardoor hij op een platform komt te staan. Dit is te zien op figuur \ref{fig:afbchassis}. Op deze manier voorzien we voldoende ruimte voor de (plaatsing van de) sensoren, motoren, wielen en Maker Beams die nog op het chassis moeten komen. \\ Op de Raspberry Pi komen twee kleine experimenteerborden die aan elkaar gelinkt zijn. Achter de Raspberry Pi ter hoogte van onze Bal Caster zullen we de powerbank op het chassis plaatsen. Deze past jammer genoeg juist niet onder de Raspberry waardoor hij niet onder het platform kan. De powerbank zorgt met zijn gewicht ervoor dat het massamiddelpunt van de wagen meer naar achteren en lager komt te liggen wat zorgt voor extra stabiliteit. De powerbank is ook makkelijk aan te sluiten op de Raspberry Pi en levert het juiste voltage voor de Raspberry Pi om te functioneren. 
+De Raspberry Pi wordt geplaatst op vier afstandsbussen van 15 mm hoog waardoor hij op een platform komt te staan. Dit is te zien op figuur \ref{fig:afbchassis}. Op deze manier voorzien we voldoende ruimte voor de (plaatsing van de) sensoren, motoren, wielen en Maker Beams die nog op het chassis moeten komen. \\ Op de Raspberry Pi komen twee kleine experimenteerborden die aan elkaar gelinkt zijn. Achter de Raspberry Pi ter hoogte van onze kogelrol zullen we de powerbank op het chassis plaatsen. Deze past jammer genoeg juist niet onder de Raspberry waardoor hij niet onder het platform kan. De powerbank zorgt met zijn gewicht ervoor dat het massamiddelpunt van de wagen meer naar achteren en lager komt te liggen wat zorgt voor extra stabiliteit. De powerbank is ook makkelijk aan te sluiten op de Raspberry Pi en levert het juiste voltage voor de Raspberry Pi om te functioneren. 
 
 \begin{figure} [h]
 	\begin{tikzpicture}
@@ -217,8 +217,8 @@ De kleurensensor zal bevestigt worden aan een MakerBeam-staaf op een hoogte van 
 				\draw [-stealth, line width=3pt, cyan] (Afstandsbussen) -- ++(0.55,0.0);
 				\draw [-stealth, line width=3pt, cyan] (Kleurensensor) -- ++(0.75,0.0);
 			\end{scope}
-			\draw[thick,->] (8.5,0.5) -- (8.5,4.5);
-			\draw[thick,->] (8.5,4.5) -- (8.5,0.5);
+			\draw[thick,->] (8.5,1.5) -- (8.5,0.5);
+			\draw[thick,->] (8.5,0.5) -- (8.5,1.5);
 		\end{scope}
 	\end{tikzpicture}
 	
