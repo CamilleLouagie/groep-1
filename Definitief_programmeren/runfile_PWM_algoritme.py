@@ -59,9 +59,13 @@ def forward(speed = 60):
     GPIO.output(ABackwardsPin, GPIO.LOW)
     GPIO.output(BForwardPin, GPIO.HIGH)
     GPIO.output(BBackwardsPin, GPIO.LOW)
+
+    GPIO.output(EnablePinB, GPIO.HIGH)
+    GPIO.output(EnablePinA, GPIO.HIGH)
     
     pwma.ChangeDutyCycle(speed)
     pwmb.ChangeDutyCycle(speed)
+
 
 
 
