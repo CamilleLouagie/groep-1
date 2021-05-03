@@ -162,8 +162,8 @@ def volglijn(tijdsdatalijst):
     KP = 80 #nog in te vullen
     KD = 10 #nog in te vullen
     SETPOINTPOSITIE = 3500 # 3*1000*sensor3 + 4*1000*sensor4 /(sensor3 + sensor 4)
-    LINKSBASISSPEED = 70
-    RECHTSBASISSPEED = 70
+    LINKSBASISSPEED = 100
+    RECHTSBASISSPEED = 100
 
 
 

@@ -59,9 +59,6 @@ def forward(speed = 60):
     GPIO.output(ABackwardsPin, GPIO.LOW)
     GPIO.output(BForwardPin, GPIO.HIGH)
     GPIO.output(BBackwardsPin, GPIO.LOW)
-
-    GPIO.output(EnablePinB, GPIO.HIGH)
-    GPIO.output(EnablePinA, GPIO.HIGH)
     
     pwma.ChangeDutyCycle(speed)
     pwmb.ChangeDutyCycle(speed)
@@ -74,6 +71,7 @@ def backwards(speed = 20):
     GPIO.output(ABackwardsPin, GPIO.HIGH)
     GPIO.output(BForwardPin, GPIO.LOW)
     GPIO.output(BBackwardsPin, GPIO.HIGH)
+
     pwma.ChangeDutyCycle(speed)
     pwmb.ChangeDutyCycle(speed)
 
@@ -92,8 +90,8 @@ def turnRight(): #voor de server
     GPIO.output(ABackwardsPin, GPIO.LOW)
     GPIO.output(BForwardPin, GPIO.LOW)
     GPIO.output(BBackwardsPin, GPIO.HIGH)
-    pwma.ChangeDutyCycle(20)
-    pwmb.ChangeDutyCycle(20)
+    pwma.ChangeDutyCycle(30)
+    pwmb.ChangeDutyCycle(30)
 
 
 
@@ -104,9 +102,9 @@ def turnRightNinety():
     GPIO.output(ABackwardsPin, GPIO.LOW)
     GPIO.output(BForwardPin, GPIO.LOW)
     GPIO.output(BBackwardsPin, GPIO.HIGH)
-    pwma.ChangeDutyCycle(20)
-    pwmb.ChangeDutyCycle(20)
-    time.sleep(0.5)
+    pwma.ChangeDutyCycle(100)
+    pwmb.ChangeDutyCycle(100)
+    time.sleep(4.8)
     pwma.ChangeDutyCycle(0)
     pwmb.ChangeDutyCycle(0)
         
@@ -117,8 +115,8 @@ def turnLeft():
     GPIO.output(ABackwardsPin, GPIO.HIGH)
     GPIO.output(BForwardPin, GPIO.HIGH)
     GPIO.output(BBackwardsPin, GPIO.LOW)
-    pwma.ChangeDutyCycle(20)
-    pwmb.ChangeDutyCycle(20)
+    pwma.ChangeDutyCycle(30)
+    pwmb.ChangeDutyCycle(30)
 
     
 def turnLeftNinety():
@@ -127,9 +125,9 @@ def turnLeftNinety():
     GPIO.output(ABackwardsPin, GPIO.HIGH)
     GPIO.output(BForwardPin, GPIO.HIGH)
     GPIO.output(BBackwardsPin, GPIO.LOW)
-    pwma.ChangeDutyCycle(20)
-    pwmb.ChangeDutyCycle(20)
-    time.sleep(0.5)
+    pwma.ChangeDutyCycle(30)
+    pwmb.ChangeDutyCycle(30)
+    time.sleep(2.4)
     pwma.ChangeDutyCycle(0)
     pwmb.ChangeDutyCycle(0)
         
@@ -152,30 +150,31 @@ def motorcleanup():
     pwmb.stop()
 
 
+if __name__ == '__main__':
+    motorinitialisatie()
 
-motorinitialisatie()
-
-print("vooruit")
-forward(50)
-time.sleep(5)
-print("achteruit")
-backwards(50)
-time.sleep(5)
+    print("vooruit")
+    forward(100)
+    time.sleep(5)
+    print("achteruit")
+    backwards(100)
+    time.sleep(5)
 
 
-print("linkshoek_negentig")
-turnLeftNinety()
-time.sleep(1)
+    print("linkshoek_negentig")
+    turnLeftNinety()
+    time.sleep(0.1)
 
-print("rechtshoek_negentig")
-turnRightNinety()
-time.sleep(2)
+    print("rechtshoek_negentig")
+    turnRightNinety()
+    time.sleep(2)
 
-print("links")
-turnLeft()
-time.sleep(3)
+    print("links")
+    turnLeft()
+    time.sleep(2)
 
-print("rechts")
-time.sleep(2)
+    print("rechts")
+    turnRight()
+    time.sleep(2)
 
-motorcleanup()
+    motorcleanup()

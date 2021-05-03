@@ -53,3 +53,4 @@ def detectiekleuren(sensor):
 
 while True:
     print(sensor.get_raw_data())
+    time.sleep(0.5)

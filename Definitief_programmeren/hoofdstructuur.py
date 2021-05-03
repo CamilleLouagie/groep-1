@@ -3,6 +3,7 @@ from Lijnsensor_pycharm import volglijn, lijninterpretatie, calibrate
 #from opkuisen import opkuis
 from kruispunt import kruispunt
 from PWM_algoritme import forward, turnLeft, turnRight, motorinitialisatie, stopMotor, backwards, motorcleanup # Een functie voor achterwaarts te gaan moet nog geïmp
+from Kleurensensor import detectiekleuren
 
 import socket
 import RPi.GPIO as GPIO
@@ -182,8 +183,6 @@ def main():
             if returnwaarde == "stopstreep":
                 print("kruispunt")
                 stopMotor()
-
-                detectiekleuren(kleurensensor)
 
                 kruispunt(kruispuntnr)
                 kruispuntnr += 1

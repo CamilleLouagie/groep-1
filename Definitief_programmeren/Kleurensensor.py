@@ -15,7 +15,8 @@ import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BOARD)
 
 sensor = Adafruit_TCS34725.TCS34725()
-sensor.set_gain(0x02)
+#sensor.set_gain(0x02)
+sensor.set_integration_time(0xF6)
 
 def detectiekleuren(sensor):
     """Leest de kleursensor uit en geeft een string terug naarmate de kleur groen of rood is.
@@ -42,8 +43,9 @@ def detectiekleuren(sensor):
         vorige_data.append(c)
         r, g, b, c = sensor.get_raw_data()
 
-        if g - vorige_data[1] >= 20 and r - vorige_data[0] < 20:
+        if g - vorige_data[1] >= 5 and r - vorige_data[0] < 5:
             break
 
-while True:
-    print(sensor.get_raw_data())
+
+if __name__ == '__main__':
+    detectiekleuren(sensor)
