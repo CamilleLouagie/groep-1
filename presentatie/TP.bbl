@@ -1,0 +1,81 @@
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{Amp20}
+
+\bibitem[3bp16]{sc}
+3bplus, \emph{Wat is een smart city (slimme stad): een introductie},
+  https://3bplus.nl/wat-een-smart-city-slimme-stad-een-introductie/, laatste
+  wijziging 17 juni 2016.
+
+\bibitem[Amp20]{lawaai}
+Amplifon, \emph{Geregistreerde criminaliteit},
+  amplifon.com/nl-be/nieuws-en-blog/te-veel-lawaai-op-straat, laatste wijziging
+  4 maart 2020.
+
+\bibitem[Bal16]{smartcities}
+Pieter Ballon, \emph{Smart cities}, Lannoo, 2016.
+
+\bibitem[blo]{converter}
+Lulu's blog,
+  https://lucidar.me/en/unit-converter/revolutions-per-minute-to-kilometers-per-hour/.
+
+\bibitem[Del]{scept}
+TU~Delft, \emph{Autonome auto’s: de volgende grote technologische revolutie},
+  https://www.tudelft.nl/ewi/actueel/nodes/autonome-autos-de-volgende-grote-technologische-revolutie.
+
+\bibitem[dH20]{rasp}
+Micha den Heijer, \emph{Wat is een raspberry pi? hoe werkt het?},
+  https://prgrmmr.nl/wat-is-een-raspberry-pi-hoe-werkt-het.html:~:text=Ten%20eerste%20heeft%20de%20Raspberry,het%20ook%20vrijwel%20geen%20stroom.,
+  laatste wijziging 29 februari 2020.
+
+\bibitem[eKT21]{opgave}
+Benjamin~Maveau en~Kevin~Truyaert, \emph{Opgave teamopdracht probleemoplossen
+  en ontwerpen 2}.
+
+\bibitem[Gur16]{bedrijven}
+Tom~Van Gurp, \emph{Deze 30 bedrijven bestormen de markt voor zelfrijdende
+  auto’s},
+  https://www.zelfrijdendvervoer.nl/mobiliteit/2016/04/26/dertig-fabrikanten-in-race-voor-marktaandeel-zelfrijdende-autos/?gdpr=accept,
+  laatste wijziging 26 april 2016.
+
+\bibitem[ken19]{procontracars}
+kentekencheck.nu, \emph{Wat zijn de voor- en nadelen van zelfrijdende
+  auto’s?},
+  https://www.kentekencheck.nu/wat-zijn-de-voor-en-nadelen-van-zelfrijdende-autos/:~:text=Zelfrijdende%20auto's%20kunnen%20files%20verminderen,automatisch%20houden%20aan%20de%20verkeersregels.,
+  laatste wijziging 11 december 2019.
+
+\bibitem[mil]{milieu}
+milieudefensie, \emph{Dit zijn de oplossingen voor luchtvervuiling},
+  https://milieudefensie.nl/recht-op-gezonde-lucht/dit-zijn-de-oplossingen-voor-luchtvervuiling.
+
+\bibitem[Pri20]{proconsc}
+Primestone, \emph{Advantages and disadvantages of smart cities},
+  https://primestone.com/en/advantages-and-disadvantages-of-smart-cities/,
+  laatste wijziging 2 april 2020.
+
+\bibitem[Reg]{vbn}
+Vlaamse Regering, \emph{Geconnecteerde en geautomatiseerde mobiliteit in
+  vlaanderen},
+  https://www.ewi-vlaanderen.be/sites/default/files/conceptnota\_-\_geconnecteerde\_en\_geautomatiseerde\_mobiliteit\_in\_vlaanderen.pdf.
+
+\bibitem[Sch15]{sc1}
+M.F. Schenk, \emph{Smart cities in nederlandse context}, Schenk, M.F., 2015.
+
+\bibitem[Sta20]{crimi}
+StatistiekVlaanderen, \emph{Geregistreerde criminaliteit},
+  https://www.statistiekvlaanderen.be/nl/geregistreerde-criminaliteit-0,
+  laatste wijziging 27 augustus 2020.
+
+\bibitem[syn]{synoniemen}
+synoniemen.net, https://synoniemen.net/index.php?zoekterm=computerkraker.
+
+\bibitem[taa]{taaladvies}
+\emph{taalunie},
+  https://taaladvies.net/taal/advies/vraag/1030/zogezegd\_zogenaamd/.
+
+\end{thebibliography}
