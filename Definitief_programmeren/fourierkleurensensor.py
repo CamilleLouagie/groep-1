@@ -12,13 +12,13 @@ import time
 import Adafruit_TCS34725
 import matplotlib.pyplot as plt
 
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 
 
-GPIO.setmode(GPIO.BOARD)
+#GPIO.setmode(GPIO.BOARD)
 
-sensor = Adafruit_TCS34725.TCS34725()
-sensor.set_gain(0x01)
+#sensor = Adafruit_TCS34725.TCS34725()
+#sensor.set_gain(0x01)
 
 
 def getOverallMagnitude(datalist):
@@ -122,7 +122,7 @@ def leesKleurenUit(sensor):
     """
     return berekenWachttijd(interpretatie(berekenMagnitudes(meetCyclus(sensor))))
 
-"""
+
 
 if __name__ == '__main__':
     roodlist = []
@@ -300,10 +300,16 @@ if __name__ == '__main__':
     (46, 35, 31, 75)]
     for element in inputlist:
         roodlist.append(element[0])
-    roodlist = roodlist[:60]
+    roodlist = roodlist[:15]
     xlist = np.arange(len(roodlist))
     plt.plot(xlist, roodlist)
     plt.show()
-    plt.plot(rfftfreq(60,1),np.abs(rfft(roodlist)))
+    plt.plot(rfftfreq(15,1),np.abs(rfft(roodlist)))
     plt.show()
-"""
+
+    x = np.linspace(0, 5, 10*5, endpoint=False)
+    y = np.sin(2* np.pi * x)
+    plt.plot(x, y)
+    plt.show()
+    plt.plot(rfftfreq(10*5,1/10),np.abs(rfft(y)))
+    plt.show()

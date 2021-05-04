@@ -21,16 +21,35 @@ def verkeerslicht(sensor):
         while time.time() < intervalduur:
             r,g,b,c = sensor.get_raw_data()
             roodwaarden.append(r)
-        mag_rood = (np.abs(nummer) for nummer in rfft(roodwaarden))
+        mag_rood = [np.abs(nummer) for nummer in rfft(roodwaarden)]
         intervaldict[i+1] = mag_rood
 
-        mag_123 = []
-        for j in range(1,4):
-            mag_123 += intervaldict[j]
+    returnvalue = controle(intervaldict)
+    while returnvalue != 'groen':
+        # Opschuiven van waarden
+        intervalduur = 5
+        for key in range(1,4):
+            intervaldict[key] = intervaldict[key + 1]
+        # Nieuwste roodwaarden bekomen
+        roodwaarden = []
+        while time.time() < intervalduur:
+            r, g, b, c = sensor.get_raw_data()
+            roodwaarden.append(r)
+        intervaldict[4] = [np.abs(nummer) for nummer in rfft(roodwaarden)]
+        returnvalue = controle(intervaldict)
 
-        if numpy.abs(mean(mag_123) - mean(intervaldict[4])) > 4:   # 4 kan nog aangepast worden naarmate de gevoeligheid
-            return 'groen'                              # van de sensor hoger wordt gezet of niet
 
-        else:
-            pass
-            # Moet wss nog aangepast worden
+def controle(intervaldict):
+    """
+    Hulpfunctie voor om intervaldict uit te lezen
+    """
+    mag_123 = []
+    for j in range(1,4):
+        for element in intervaldict[j]:
+            mag_123 += element
+
+    if numpy.abs(mean(mag_123) - mean(intervaldict[4])) > 4:   # 4 kan nog aangepast worden naarmate de gevoeligheid
+        return 'groen'                              # van de sensor hoger wordt gezet of niet
+
+    else:
+        return 'rood'
