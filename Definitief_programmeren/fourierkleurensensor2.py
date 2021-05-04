@@ -33,4 +33,4 @@ def verkeerslicht(sensor):
 
         else:
             pass
-            # Ka
+            # Moet wss nog aangepast worden
