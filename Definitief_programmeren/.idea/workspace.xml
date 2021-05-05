@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="85b6846d-92b8-4bab-bc29-459f0c68e096" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runfile_PWM_algoritme.py" beforeDir="false" afterPath="$PROJECT_DIR$/runfile_PWM_algoritme.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,17 +62,17 @@
       <method v="2" />
     </configuration>
     <configuration name="runfile_PWM_algoritme" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
-      <module name="Definitief_programmeren" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="sshConfig://pi@192.168.0.1:22 password/usr/bin/python3" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/runfile_PWM_algoritme.py" />
       <option name="PARAMETERS" value="" />
@@ -101,10 +101,14 @@
       <workItem from="1620214510864" duration="1248000" />
       <workItem from="1620215798711" duration="83000" />
       <workItem from="1620215892966" duration="32000" />
+<<<<<<< Updated upstream
 =======
       <workItem from="1620214510864" duration="1163000" />
       <workItem from="1620215795393" duration="10000" />
       <workItem from="1620215942071" duration="16000" />
+>>>>>>> Stashed changes
+=======
+      <workItem from="1620216019506" duration="127000" />
 >>>>>>> Stashed changes
     </task>
     <servers />
@@ -125,6 +129,11 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+<<<<<<< Updated upstream
+=======
+    <SUITE FILE_PATH="coverage/Definitief_programmeren$runfile_PWM_algoritme.coverage" NAME="runfile_PWM_algoritme Coverage Results" MODIFIED="1620215259490" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/runfile_PWM_algoritme_py$runfile_PWM_algoritme.coverage" NAME="runfile_PWM_algoritme Coverage Results" MODIFIED="1620216133946" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+>>>>>>> Stashed changes
     <SUITE FILE_PATH="coverage/Definitief_programmeren$runfile_Lijnsensor_pycharm.coverage" NAME="runfile_Lijnsensor_pycharm Coverage Results" MODIFIED="1620215468114" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Definitief_programmeren$runfile_PWM_algoritme.coverage" NAME="runfile_PWM_algoritme Coverage Results" MODIFIED="1620215259490" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Definitief_programmeren$runfile_Lijndataverzamelen.coverage" NAME="runfile_Lijndataverzamelen Coverage Results" MODIFIED="1620215456058" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
