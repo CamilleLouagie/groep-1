@@ -1,5 +1,5 @@
 import time
-from scipy import rfft
+from numpy.fft import rfft,rfftfreq
 from numpy import abs
 import Adafruit_TCS34725
 
@@ -14,42 +14,24 @@ sensor.set_gain(0x01)   # x2 gain
 
 
 def verkeerslicht(sensor):
-    intervaldict = {}
-    for i in range(4):
-        intervalduur = 5
-        roodwaarden = []
-        while time.time() < intervalduur:
-            r,g,b,c = sensor.get_raw_data()
-            roodwaarden.append(r)
-        mag_rood = [np.abs(nummer) for nummer in rfft(roodwaarden)]
-        intervaldict[i+1] = mag_rood
+    intervalduur = 5
+    roodwaarden = []
+    while time.time() < intervalduur:
+        r,g,b,c = sensor.get_raw_data()
+        roodwaarden.append(r)
+    mag_rood = [np.abs(nummer) for nummer in rfft(roodwaarden)]
+    gemeten_gemiddelde = mean(mag_rood)
 
-    returnvalue = controle(intervaldict)
-    while returnvalue != 'groen':
-        # Opschuiven van waarden
-        intervalduur = 5
-        for key in range(1,4):
-            intervaldict[key] = intervaldict[key + 1]
-        # Nieuwste roodwaarden bekomen
-        roodwaarden = []
-        while time.time() < intervalduur:
-            r, g, b, c = sensor.get_raw_data()
-            roodwaarden.append(r)
-        intervaldict[4] = [np.abs(nummer) for nummer in rfft(roodwaarden)]
-        returnvalue = controle(intervaldict)
+    freq_mag_rood = rfftfreq(intervalduur*41,1/41)
+    while True:
+        i = 0
+        if freq_mag_rood[i] == 1:
+            mag_1Hz = mag_rood[i]
+            break
 
-
-def controle(intervaldict):
-    """
-    Hulpfunctie voor om intervaldict uit te lezen
-    """
-    mag_123 = []
-    for j in range(1,4):
-        for element in intervaldict[j]:
-            mag_123 += element
-
-    if numpy.abs(mean(mag_123) - mean(intervaldict[4])) > 4:   # 4 kan nog aangepast worden naarmate de gevoeligheid
-        return 'groen'                              # van de sensor hoger wordt gezet of niet
+    # Vergelijken
+    if numpy.abs(gemeten_gemiddelde - mag_1Hz) < 5:
+        return "groen"
 
     else:
-        return 'rood'
+        return "rood"
