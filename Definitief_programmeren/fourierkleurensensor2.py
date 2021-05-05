@@ -21,6 +21,7 @@ def verkeerslicht(sensor):
         roodwaarden.append(r)
     mag_rood = [np.abs(nummer) for nummer in rfft(roodwaarden)]
     gemeten_gemiddelde = mean(mag_rood)
+    print(f'Gemiddelde: {gemeten_gemiddelde}')
 
     freq_mag_rood = rfftfreq(intervalduur*41,1/41)
     while True:
@@ -28,10 +29,14 @@ def verkeerslicht(sensor):
         if freq_mag_rood[i] == 1:
             mag_1Hz = mag_rood[i]
             break
+    print(f'Magnitude 1Hz : {mag_1Hz}')
 
     # Vergelijken
+    print(f'Verschil: {numpy.abs(gemeten_gemiddelde - mag_1Hz)}')
+    """
     if numpy.abs(gemeten_gemiddelde - mag_1Hz) < 5:
         return "groen"
 
     else:
         return "rood"
+"""
