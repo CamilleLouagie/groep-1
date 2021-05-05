@@ -1,5 +1,5 @@
 import time
-from scipy import rfft
+import numpy as np
 from numpy import abs
 import Adafruit_TCS34725
 
@@ -21,7 +21,7 @@ def verkeerslicht(sensor):
         while time.time() < intervalduur:
             r,g,b,c = sensor.get_raw_data()
             roodwaarden.append(r)
-        mag_rood = [np.abs(nummer) for nummer in rfft(roodwaarden)]
+        mag_rood = [np.abs(nummer) for nummer in np.fft(roodwaarden)]
         intervaldict[i+1] = mag_rood
 
     returnvalue = controle(intervaldict)
@@ -35,7 +35,7 @@ def verkeerslicht(sensor):
         while time.time() < intervalduur:
             r, g, b, c = sensor.get_raw_data()
             roodwaarden.append(r)
-        intervaldict[4] = [np.abs(nummer) for nummer in rfft(roodwaarden)]
+        intervaldict[4] = [np.abs(nummer) for nummer in roodwaarden]
         returnvalue = controle(intervaldict)
 
 
@@ -48,8 +48,11 @@ def controle(intervaldict):
         for element in intervaldict[j]:
             mag_123 += element
 
-    if numpy.abs(mean(mag_123) - mean(intervaldict[4])) > 4:   # 4 kan nog aangepast worden naarmate de gevoeligheid
+    if np.abs(np.mean(mag_123) - np.mean(intervaldict[4])) > 4:   # 4 kan nog aangepast worden naarmate de gevoeligheid
         return 'groen'                              # van de sensor hoger wordt gezet of niet
 
     else:
         return 'rood'
+
+while True:
+    verkeerslicht(sensor)
