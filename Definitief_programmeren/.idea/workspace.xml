@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="85b6846d-92b8-4bab-bc29-459f0c68e096" name="Default Changelist" comment="" />
+    <list default="true" id="85b6846d-92b8-4bab-bc29-459f0c68e096" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runfile_PWM_algoritme.py" beforeDir="false" afterPath="$PROJECT_DIR$/runfile_PWM_algoritme.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,7 +38,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.runfile_Lijnsensor_pycharm">
+  <component name="RunManager" selected="Python.runfile_PWM_algoritme">
     <configuration name="runfile_Lijnsensor_pycharm" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Definitief_programmeren" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -58,7 +61,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="runfile_PWM_algoritme" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="runfile_PWM_algoritme" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Definitief_programmeren" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -83,7 +86,6 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.runfile_Lijnsensor_pycharm" />
-        <item itemvalue="Python.runfile_PWM_algoritme" />
       </list>
     </recent_temporary>
   </component>
@@ -95,12 +97,26 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1620214501987</updated>
-      <workItem from="1620214510864" duration="1163000" />
+      <workItem from="1620214510864" duration="1248000" />
+      <workItem from="1620215798711" duration="83000" />
+      <workItem from="1620215892966" duration="32000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Definitief_programmeren$runfile_PWM_algoritme.coverage" NAME="runfile_PWM_algoritme Coverage Results" MODIFIED="1620215259490" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

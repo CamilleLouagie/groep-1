@@ -54,7 +54,7 @@ def motorinitialisatie():
 
 
 #vooruit
-def forward(speed = 60):
+def forward(speed = 70):
     GPIO.output(AForwardPin, GPIO.HIGH)
     GPIO.output(ABackwardsPin, GPIO.LOW)
     GPIO.output(BForwardPin, GPIO.HIGH)
@@ -66,7 +66,7 @@ def forward(speed = 60):
 
 
 
-def backwards(speed = 20):
+def backwards(speed = 70):
     GPIO.output(AForwardPin, GPIO.LOW)
     GPIO.output(ABackwardsPin, GPIO.HIGH)
     GPIO.output(BForwardPin, GPIO.LOW)
@@ -102,8 +102,8 @@ def turnRightNinety():
     GPIO.output(ABackwardsPin, GPIO.LOW)
     GPIO.output(BForwardPin, GPIO.LOW)
     GPIO.output(BBackwardsPin, GPIO.HIGH)
-    pwma.ChangeDutyCycle(100)
-    pwmb.ChangeDutyCycle(100)
+    pwma.ChangeDutyCycle(70)
+    pwmb.ChangeDutyCycle(70)
     time.sleep(4.8)
     pwma.ChangeDutyCycle(0)
     pwmb.ChangeDutyCycle(0)
@@ -125,8 +125,8 @@ def turnLeftNinety():
     GPIO.output(ABackwardsPin, GPIO.HIGH)
     GPIO.output(BForwardPin, GPIO.HIGH)
     GPIO.output(BBackwardsPin, GPIO.LOW)
-    pwma.ChangeDutyCycle(30)
-    pwmb.ChangeDutyCycle(30)
+    pwma.ChangeDutyCycle(70)
+    pwmb.ChangeDutyCycle(70)
     time.sleep(2.4)
     pwma.ChangeDutyCycle(0)
     pwmb.ChangeDutyCycle(0)
