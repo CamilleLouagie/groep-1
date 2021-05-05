@@ -89,9 +89,9 @@ def kruispunt(nummer):
 
 def oversteken(kanaal=0):
     print('vooruit over stopstreep')
-    motor.rightmotorspeed(90.5)
-    motor.leftmotorspeed(82)
-    time.sleep(3)
+    motor.rightmotorspeed(90)
+    motor.leftmotorspeed(80)
+    time.sleep(6)
     print('uit zoeklijn')
 
     while not zoeklijn():
@@ -100,9 +100,13 @@ def oversteken(kanaal=0):
             print(adc.getAfstand(kanaal))
             motor.stopMotor()
             time.sleep(1)
-        motor.rightmotorspeed(90)
-        motor.leftmotorspeed(82)
 
+        motor.rightmotorspeed(95)
+        motor.leftmotorspeed(30)
+        time.sleep(0.2)
+        motor.rightmotorspeed(75)
+        motor.leftmotorspeed(90)
+        time.sleep(0.2)
 
 def rechtsInslaan(kanaal=0, tijd=1):
     motor.rightmotorspeed(90)
@@ -123,14 +127,19 @@ def rechtsInslaan(kanaal=0, tijd=1):
         while adc.getAfstand(kanaal) <= 12:
             motor.stopMotor()
             time.sleep(1)
-        motor.rightmotorspeed(90)
-        motor.leftmotorspeed(82)
+
+        motor.rightmotorspeed(93)
+        motor.leftmotorspeed(30)
+        time.sleep(0.2)
+        motor.rightmotorspeed(75)
+        motor.leftmotorspeed(90)
+        time.sleep(0.2)
 
 
-def linksInslaan(kanaal=0, tijd=3.4):
+def linksInslaan(kanaal=0, tijd=3.1):
     motor.rightmotorspeed(90)
     motor.leftmotorspeed(82)
-    time.sleep(3)
+    time.sleep(1)
 
     while adc.getAfstand(kanaal) <= 12:
         motor.stopMotor()
@@ -146,6 +155,13 @@ def linksInslaan(kanaal=0, tijd=3.4):
         while adc.getAfstand(kanaal) <= 12:
             motor.stopMotor()
             time.sleep(1)
-        motor.rightmotorspeed(90)
-        motor.leftmotorspeed(82)
+
+        motor.forward()
+        time.sleep(1)
+        motor.rightmotorspeed(93)
+        motor.leftmotorspeed(60)
+        time.sleep(0.2)
+        motor.rightmotorspeed(80)
+        motor.leftmotorspeed(90)
+        time.sleep(0.2)
 

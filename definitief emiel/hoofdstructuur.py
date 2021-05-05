@@ -94,7 +94,7 @@ def main():
 
     # override is en blijft False totdat er een bericht 'start' binnenkomt uit de manuele override
     override = False
-    kruispuntnr = 1
+    kruispuntnr = 2
     einde = False   # True waarde nog te implementeren
     GPIO.setmode(GPIO.BOARD)
 

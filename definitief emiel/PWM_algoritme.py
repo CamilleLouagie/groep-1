@@ -61,7 +61,7 @@ def forward(speed = 82):
     GPIO.output(BBackwardsPin, GPIO.LOW)
     
     pwma.ChangeDutyCycle(speed)
-    pwmb.ChangeDutyCycle(speed + 11)
+    pwmb.ChangeDutyCycle(speed + 6.9)
 
 
 
@@ -125,7 +125,7 @@ def turnLeftNinety():
     GPIO.output(BBackwardsPin, GPIO.LOW)
     pwma.ChangeDutyCycle(70)
     pwmb.ChangeDutyCycle(70)
-    time.sleep(1.72)
+    time.sleep(1.40)
     pwma.ChangeDutyCycle(0)
     pwmb.ChangeDutyCycle(0)
         

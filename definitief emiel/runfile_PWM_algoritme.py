@@ -61,7 +61,7 @@ def forward(speed = 70):
     GPIO.output(BBackwardsPin, GPIO.LOW)
     
     pwma.ChangeDutyCycle(speed)
-    pwmb.ChangeDutyCycle(speed)
+    pwmb.ChangeDutyCycle(speed + 6.9)
 
 
 
@@ -154,26 +154,5 @@ if __name__ == '__main__':
     motorinitialisatie()
 
     forward()
-    time.sleep(1)
-    stopMotor()
-
-
-    print("linkshoek_negentig")
-    turnLeftNinety()
-    time.sleep(0.1)
-
-    print("rechtshoek_negentig")
-    turnRightNinety()
-    time.sleep(2)
-
-    print("links")
-    turnLeft()
-    time.sleep(2)
-
-    print("rechts")
-    turnRight()
-    time.sleep(2)
-
-    forward()
-    stopMotor()
+    time.sleep(10)
     motorcleanup()

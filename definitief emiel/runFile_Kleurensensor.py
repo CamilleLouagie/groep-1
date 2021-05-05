@@ -16,10 +16,10 @@ GPIO.setmode(GPIO.BOARD)
 
 sensor = Adafruit_TCS34725.TCS34725()
 print(sensor.get_gain())
-sensor.set_gain(0x03)
+sensor.set_gain(0x02)
 print(sensor.get_gain())
 print(sensor.get_integration_time())
-sensor.set_integration_time(0xC0)
+sensor.set_integration_time(0xF6)
 print(sensor.get_integration_time())
 
 def detectiekleuren(sensor):
@@ -55,17 +55,9 @@ def detectiekleuren(sensor):
     else:
         return 'rood'
 
+start = time.time()
+waarden = []
+while (time.time() - start) < 120:
+    waarden.append(sensor.get_raw_data()[0])
 
-while True:
-    waarden = []
-    time.sleep(0.1)
-    for i in range(10):
-        waarden.append(sensor.get_raw_data()[0])
-
-    print(waarden)
-    a = np.fft.fft(waarden)
-    gemiddelde = 0
-    for waarde in a:
-        gemiddelde += waarde
-        gemiddelde = gemiddelde/10
-    print(gemiddelde)
+print(waarden)
