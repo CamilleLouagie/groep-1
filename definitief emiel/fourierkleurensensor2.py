@@ -41,9 +41,6 @@ def verkeerslicht(sensor):
         return "rood"
 
 
-if __name__ == '__main__':
-    while True:
-        verkeerslicht(sensor)
 
 
 

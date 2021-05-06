@@ -2,6 +2,7 @@ from PWM_algoritme import forward, turnLeft, turnRight, motorinitialisatie, stop
 import socket
 import RPi.GPIO as GPIO
 
+
 class Server(object):
     """A server to send and receive UDP message. Sending of messages is only
     possible when a message has been received.
