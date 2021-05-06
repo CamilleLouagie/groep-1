@@ -94,7 +94,7 @@ def main():
 
     # override is en blijft False totdat er een bericht 'start' binnenkomt uit de manuele override
     override = False
-    kruispuntnr = 2
+    kruispuntnr = 1
     einde = False   # True waarde nog te implementeren
     GPIO.setmode(GPIO.BOARD)
 
@@ -117,7 +117,6 @@ def main():
     while not einde:
         bericht = server.listen(timeout=0.250)
         print(bericht)
-        print('bericht')
         mesg = str(bericht)
         if mesg.find('start') >= 0:
             kruispunt_reserve = kruispuntnr
