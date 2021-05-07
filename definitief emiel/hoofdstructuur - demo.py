@@ -1,7 +1,6 @@
 import afstandssensor as adc
 from Lijnsensor_pycharm import volglijn, lijninterpretatie, calibrate, zoeklijn
 #from opkuisen import opkuis
-from kruispunt import kruispunt
 from PWM_algoritme import forward, turnLeft, turnRight, motorinitialisatie, stopMotor, backwards, motorcleanup, rightmotorspeed, leftmotorspeed, turnRightNinety, turnLeftNinety # Een functie voor achterwaarts te gaan moet nog geïmp
 from fourierkleurensensor2 import verkeerslicht
 
@@ -346,7 +345,6 @@ def main():
         print(bericht)
         mesg = str(bericht)
         if mesg.find('start') >= 0:
-            kruispunt_reserve = kruispuntnr
             override = True
 
         # Manuele override
@@ -388,8 +386,7 @@ def main():
 
                 if kruispunt_manueel != 0:
                     kruispuntnr = kruispunt_manueel
-                else:
-                    kruispuntnr = kruispunt_reserve
+
 
                 finaalBericht = str(kruispuntnr)
                 server.send('Kruispunt = ' + finaalBericht)

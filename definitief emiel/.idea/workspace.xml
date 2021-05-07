@@ -47,7 +47,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.hoofdstructuur - demo">
+  <component name="RunManager" selected="Python.test (1)">
     <configuration name="hoofdstructuur - demo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="definitief emiel" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -160,8 +160,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.hoofdstructuur - demo" />
         <item itemvalue="Python.test (1)" />
+        <item itemvalue="Python.hoofdstructuur - demo" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.hoofdstructuur" />
         <item itemvalue="Python.kruispunt" />
@@ -184,6 +184,7 @@
       <workItem from="1620322445433" duration="907000" />
       <workItem from="1620326452301" duration="107000" />
       <workItem from="1620326595841" duration="6395000" />
+      <workItem from="1620367336107" duration="562000" />
     </task>
     <servers />
   </component>
@@ -221,6 +222,7 @@
     <SUITE FILE_PATH="coverage/hoofdstructuur_py$test.coverage" NAME="test Coverage Results" MODIFIED="1620319513196" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/definitief_emiel$PWM_algoritme.coverage" NAME="PWM_algoritme Coverage Results" MODIFIED="1620220277420" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/hoofdstructuur___demo_py$test.coverage" NAME="test Coverage Results" MODIFIED="1620328557647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/runfile_Lijnsensor_pycharm_py$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1620367766820" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../Manuele override - backup" />
     <SUITE FILE_PATH="coverage/hoofdstructuur___demo_py$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1620329037567" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../Manuele override - backup" />
     <SUITE FILE_PATH="coverage/hoofdstructuur_py$hoofdstructuur.coverage" NAME="hoofdstructuur Coverage Results" MODIFIED="1620318831456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
