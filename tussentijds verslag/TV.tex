@@ -157,7 +157,7 @@ Wij kozen voor de 30:1 HP motor aangezien deze met een snelheid van ca. zes km p
 		\label{fig:f}
 	\end{subfigure}
 	\caption
-	{\small De deelfiguren tonen het bouwproces van de miniatuurwagen stap voor stap } 
+	{\small De deelfiguren tonen het bouwproces van de miniatuurwagen stap voor stap.} 
 	\label{fig:deelfiguren}
 \end{figure*}
 \textbf{\large De microcontroller} \\
@@ -170,19 +170,21 @@ De Raspberry Pi wordt geplaatst op vier afstandsbussen van 15 mm hoog waardoor h
 		\node [anchor=west] (Afstandssensor) at (-2,1) {\Large Afstandssensor};
 		\node [anchor=west] (Microcontroller) at (-2,3) {\Large Microcontroller};
 		\begin{scope}[xshift=1.5cm]
-			\node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.5\textwidth]{afbchassis}
+			\node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.5\textwidth]{6.PNG}
 				
 			};
 			\begin{scope}[x={(image.south east)},y={(image.north west)}]
 				%\draw[cyan,ultra thick,rounded corners] (0.4,0.55) rectangle (0.2,0.3);
 				\draw [-stealth, line width=3pt, cyan] (Batterij) -- ++(01.1,0.0);
 				%\draw[cyan,ultra thick,rounded corners] (0.4,0.55) rectangle (0.2,0.3);
-				\draw [-stealth, line width=3pt, cyan] (Afstandssensor) -- ++(0.4,0.1);
-				\draw [-stealth, line width=3pt, cyan] (Microcontroller) -- ++(0.4,0.0);
+				\draw [-stealth, line width=3pt, cyan] (Afstandssensor) -- ++(0.43,0.1);
+				\draw [-stealth, line width=3pt, cyan] (Microcontroller) -- ++(0.45,0.0);
 			\end{scope}
 			
 		\end{scope}
 	\end{tikzpicture}
+
+
 	
 	\caption{De volledige miniatuurwagen}\label{fig:afbchassis}
 \end{figure}
@@ -192,8 +194,8 @@ Het chassis is handmatig ontworpen naar de behoeften van het miniatuurwagentje e
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=.4\textwidth] {chassis3d}
-	\caption{CAD-model van het zelf ontworpen chassis.}
+	\includegraphics[width=.4\textwidth] {chascad}
+	\caption{CAD-model van het zelf-ontworpen-chassis.}
 	\label{fig:chassis}
 \end{figure}
 
@@ -217,8 +219,8 @@ De kleurensensor zal bevestigt worden aan een MakerBeam-staaf op een hoogte van 
 				\draw [-stealth, line width=3pt, cyan] (Afstandsbussen) -- ++(0.55,0.0);
 				\draw [-stealth, line width=3pt, cyan] (Kleurensensor) -- ++(0.75,0.0);
 			\end{scope}
-			\draw[thick,->] (8.5,1.5) -- (8.5,0.5);
-			\draw[thick,->] (8.5,0.5) -- (8.5,1.5);
+			\draw[thick,->] (8.5,4.5) -- (8.5,0.5);
+			\draw[thick,->] (8.5,0.5) -- (8.5,4.5);
 		\end{scope}
 	\end{tikzpicture}
 	
@@ -295,8 +297,7 @@ Stel nu dat de lijn te links ligt, dan zal de huidige positie lager zijn dan 350
 
 Met een budget van 3500 kredietpunten hebben we alle onderdelen kunnen aankopen om een functionerende miniatuurwagen te kunnen bouwen. Van dit budget bleven 1217 kredietpunten over op het einde. Dit bedrag werd besteed aan voornamelijk wielen, motoren, een microcontroller, een powerbank, sensoren, een chassis en MakerBeam-onderdelen. Uit het financieel rapport bleek dat de motoren de grootste kost zijn en daarna de sensoren. 
 
-Uit dit project concluderen we dat er veel mogelijkheden zijn om een miniatuurwagen te maken en dat er veel keuzes gemaakt moeten worden. Dit project toont op kleine schaal aan dat een smart city en meer specifiek, zelfrijdende wagens minder utopie en meer werkelijkheid worden. Zelfrijdende wagens kennen zeker een toekomst en hebben hun nut al meermaals bewezen. De weg naar een wereld met autonome wagens is
-lang, maar wordt stilaan meer en meer bereden.
+Uit dit project concluderen we dat er veel mogelijkheden zijn om een miniatuurwagen te maken en dat er veel keuzes gemaakt moeten worden. Dit project toont op kleine schaal aan dat een smart city en meer specifiek, zelfrijdende wagens minder utopie en meer werkelijkheid worden. Zelfrijdende wagens kennen zeker een toekomst en hebben hun nut al meermaals bewezen. De weg naar een wereld met autonome wagens is lang, maar wordt stilaan meer en meer bereden.
 
 
 
@@ -310,8 +311,9 @@ lang, maar wordt stilaan meer en meer bereden.
 
 \includepdf[pages=-]{taakstructuur.pdf}
 
+
 \section{Budgetmanagement}
-\begin{table}[h]
+\begin{table}[h!]
 	\centering
 	
 	\begin{tabular}{|l|r|r|r|}\hline
@@ -356,32 +358,38 @@ De klant wenst een zelfrijdend wagentje dat zich volgens een voorgeprogrammeerde
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.45\textwidth]{kruispunt.png}
-	\caption{Bovenaanzicht van een kruispunt (figuur ontleend aan \cite{teamopdracht})}
+	\caption{Bovenaanzicht van een kruispunt (figuur ontleend aan \cite{opgave})}
 	\label{kruispunt}
 \end{figure}
 
 
 Het wagentje volgt hierbij een lijn van 25 mm dik aan de hand van een reflectiesensor, dit zijn de dunne rode lijnen op figuur \ref{kruispunt}. Deze volglijn is een donkere lijn op een heldere ondergrond of een heldere lijn op een donkere ondergrond. De lengte van een te volgen straat is 1 meter en de breedte ervan bedraagt 0.5 meter. Op deze baan bewegen de miniatuurwagens zich rechts in de heenrichting en links in de terugrichting. De maximale, totale breedte van het wagentje bedraagt dus 25 cm. Aan een kruispunt interpreteert het wagentje een rood-groen verkeerslicht. De verkeerslichten zijn gemonteerd op een tafelonderstel (zie figuur \ref{techtekkruispunt}). Aangezien de hoogte hiervan 300 mm is, is dit ook de maximale hoogte van het te bouwen wagentje. Het midden van het verkeerslicht bevindt zich op 7.5 cm boven de grond. Zoals te zien op de technische tekening \ref{verkeerslicht} is dit ook de plaats waar de kleurled zich in het verkeerslicht bevindt. Het verkeerslicht is gemonteerd aan de voorkant van de tafelpoot, zodat de wagen het verkeerslicht langs de rechterkant moet detecteren, zoals ook figuur \ref{kruispunt} suggereert.  Indien het verkeerslicht rood is, stopt het miniatuurwagentje bij de stopstreep. Deze stopstreep is 50 mm dik en 25 cm lang, zoals we kunnen afleiden uit de rode dikke lijnen in figuur \ref{kruispunt}. Indien het verkeerslicht groen is, rijdt het wagentje door of slaat het af, naargelang de gevraagde voorgeprogrammeerde route.
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.65\textwidth]{tafelstel.png}
-	\caption{Technische tekening van een kruispunt (figuur ontleend aan \cite{teamopdracht})}
-	\label{techtekkruispunt}
-\end{figure}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.6\textwidth]{verkeerslicht.png}
-	\caption{Technische tekening van een verkeerslicht (figuur ontleend aan \cite{teamopdracht} )}
-	\label{verkeerslicht}
-\end{figure}
 
 Het wagentje kan ook voorliggers detecteren via een afstandssensor. Indien het een voorligger detecteert, vertraagt het wagentje of stopt het om zo een botsing te vermijden.
 Het te volgen traject wordt een week op voorhand bekend gemaakt en kan dan al geprogrammeerd worden.
 De componenten van het prototype mogen verbonden worden via een breadboard. De definitieve versie van het wagentje moet wel via een printplaat kunnen functioneren. Voor de microcontroller dient gebruik te worden gemaakt van een NI myRIO of Raspberry Pi. Tussen de microcontroller en de motoren dient een motorshield te worden aangebracht, gezien dit een terugloopbeveiliging bevat die beschadiging van de microcontroller voorkomt. Het wagentje haalt zijn energie uit een batterij. De maximale kostprijs van het prototype bedraagt 3500 virtuele eenheden.
 
 De klant wenst ook dat er een draadloze informatieoverdracht is tussen het wagentje en een computer op afstand. Deze draadloze informatieoverdracht verloopt via LabVIEW en er is ook een grafische interface beschikbaar. Via deze interface kan een noodstop worden uitgevoerd of de volledige besturing van het miniatuurwagentje overgenomen worden.
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.65\textwidth]{tafelstel.png}
+	\caption{Technische tekening van een kruispunt (figuur ontleend aan \cite{opgave})}
+	\label{techtekkruispunt}
+\end{figure}
+
+%\begin{figure}[h!]
+%	\centering
+%	\includegraphics[width=0.6\textwidth]{verkeerslicht.png}
+%	\caption{Technische tekening van een verkeerslicht (figuur ontleend aan \cite{opgave} )}
+%	\label{verkeerslicht}
+%\end{figure}
+
+\section{Circuit diagram}
+\includepdf[pages=-]{circuit_diagram.pdf}
 
 \end{appendices}
 
