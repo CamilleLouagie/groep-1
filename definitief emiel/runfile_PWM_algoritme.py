@@ -61,7 +61,8 @@ def forward(speed = 70):
     GPIO.output(BBackwardsPin, GPIO.LOW)
     
     pwma.ChangeDutyCycle(speed)
-    pwmb.ChangeDutyCycle(speed)
+    pwmb.ChangeDutyCycle(speed + 6.9)
+
 
 
 
@@ -70,6 +71,7 @@ def backwards(speed = 70):
     GPIO.output(ABackwardsPin, GPIO.HIGH)
     GPIO.output(BForwardPin, GPIO.LOW)
     GPIO.output(BBackwardsPin, GPIO.HIGH)
+
     pwma.ChangeDutyCycle(speed)
     pwmb.ChangeDutyCycle(speed)
 
@@ -102,7 +104,7 @@ def turnRightNinety():
     GPIO.output(BBackwardsPin, GPIO.HIGH)
     pwma.ChangeDutyCycle(70)
     pwmb.ChangeDutyCycle(70)
-    time.sleep(0.5)
+    time.sleep(1.75)
     pwma.ChangeDutyCycle(0)
     pwmb.ChangeDutyCycle(0)
         
@@ -125,7 +127,7 @@ def turnLeftNinety():
     GPIO.output(BBackwardsPin, GPIO.LOW)
     pwma.ChangeDutyCycle(70)
     pwmb.ChangeDutyCycle(70)
-    time.sleep(0.5)
+    time.sleep(1.75)
     pwma.ChangeDutyCycle(0)
     pwmb.ChangeDutyCycle(0)
         
@@ -148,9 +150,9 @@ def motorcleanup():
     pwmb.stop()
 
 
+if __name__ == '__main__':
+    motorinitialisatie()
 
-#motorinitialisatie()
-
-#forward(10)
-#time.sleep(10)
-#motorcleanup()
+    forward()
+    time.sleep(10)
+    motorcleanup()

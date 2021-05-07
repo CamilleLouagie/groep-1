@@ -200,7 +200,7 @@ def zoeklijn():
     tijdsdatalijst = lijndataTabel()
     herschaaltabel = herschaalwaarde(tijdsdatalijst, MINIMUM, MAXIMUM)
     for waarde in herschaaltabel:
-        if waarde > 300:
+        if waarde > 600:
             return True
 
     return False

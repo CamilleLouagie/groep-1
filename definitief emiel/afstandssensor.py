@@ -48,7 +48,7 @@ def getAfstand(adcnum):
     # Eerste versie van de linearisering van de tweede grafiek in de bijgeleverde documenten bij de sensor,
     # waarschijnlijk nog aan te passen.
     if voltage == 0:
-        return 0
+        return 100
     else:
         afstand = 27/voltage
         return afstand

@@ -114,6 +114,7 @@ def calibrate(): #autootje rijdt ongeveer 5 seconden vooruit, laat hem over wit 
 
 
 
+
     #begin met hem op wit te zetten, we laten hem over de zwarte lijn rijden
     """
     forward(30)
@@ -162,21 +163,21 @@ def volglijn(tijdsdatalijst):
     KP = 80 #nog in te vullen
     KD = 10 #nog in te vullen
     SETPOINTPOSITIE = 3500 # 3*1000*sensor3 + 4*1000*sensor4 /(sensor3 + sensor 4)
-    LINKSBASISSPEED = 100
-    RECHTSBASISSPEED = 100
+    LINKSBASISSPEED = 78
+    RECHTSBASISSPEED = 78
 
 
 
     positie = readpositie(tijdsdatalijst, MINIMUM, MAXIMUM) #de gekalibreerde positiewaarde
-    print("positie:", positie)
+    #print("positie:", positie)
     error = (positie-SETPOINTPOSITIE)/1000.
-    print("error", error)
+    #print("error", error)
 
     #print last_error
 
 
-    correctiespeedlinks = LINKSBASISSPEED + KP*error + KD*(error - last_error)
-    correctiespeedrechts = RECHTSBASISSPEED - KP*error + KD*(error - last_error)
+    correctiespeedlinks = LINKSBASISSPEED + KP*error  #+ KD*(error - last_error)
+    correctiespeedrechts = RECHTSBASISSPEED - KP*error  #+ KD*(error - last_error)
     if correctiespeedlinks > 100:
         correctiespeedlinks = 100
     if correctiespeedrechts < 0:
@@ -188,7 +189,7 @@ def volglijn(tijdsdatalijst):
     leftmotorspeed(correctiespeedlinks)
     rightmotorspeed(correctiespeedrechts)
 
-    last_error = error
+    #last_error = error
 
 
 
@@ -199,11 +200,15 @@ def zoeklijn():
     MAXIMUM = CALIBRATEDMAXIMUM  # nog in te vullen
     tijdsdatalijst = lijndataTabel()
     herschaaltabel = herschaalwaarde(tijdsdatalijst, MINIMUM, MAXIMUM)
+    waarden = []
     for waarde in herschaaltabel:
-        if waarde > 300:
-            return True
+        if waarde > 600:
+            waarden.append(waarde)
 
-    return False
+    if len(waarden) >= 2:
+        return True
+    else:
+        return False
 
 
 
@@ -212,18 +217,18 @@ def zoeklijn():
 
 
 #voorlopig programmaatje
-motorinitialisatie()
-calibrate()
-last_error = 0
+#motorinitialisatie()
+#calibrate()
+#last_error = 0
 
-for k in range(2000):
-    data = lijndataTabel()
-    print(data)
-    print(herschaalwaarde(data, CALIBRATEDMINIMUM, CALIBRATEDMAXIMUM))
-    print(readpositie(data, CALIBRATEDMINIMUM, CALIBRATEDMAXIMUM))
-    print
+#for k in range(2000):
+#    data = lijndataTabel()
+#    print data
+#    print herschaalwaarde(data, CALIBRATEDMINIMUM, CALIBRATEDMAXIMUM)
+#    print(readpositie(data, CALIBRATEDMINIMUM, CALIBRATEDMAXIMUM))
+#    print
 
-    volglijn(data)
+#    volglijn(data)
 
-GPIO.cleanup()
-motorcleanup()
+#GPIO.cleanup()
+#motorcleanup()

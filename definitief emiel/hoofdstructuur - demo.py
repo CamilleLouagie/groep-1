@@ -1,9 +1,9 @@
 import afstandssensor as adc
-from Lijnsensor_pycharm import volglijn, lijninterpretatie, calibrate
+from Lijnsensor_pycharm import volglijn, lijninterpretatie, calibrate, zoeklijn
 #from opkuisen import opkuis
-from kruispunt import kruispunt
-from PWM_algoritme import forward, turnLeft, turnRight, motorinitialisatie, stopMotor, backwards, motorcleanup # Een functie voor achterwaarts te gaan moet nog geïmp
-from Kleurensensor import detectiekleuren
+from PWM_algoritme import forward, turnLeft, turnRight, motorinitialisatie, stopMotor, backwards, motorcleanup, rightmotorspeed, leftmotorspeed, turnRightNinety, turnLeftNinety # Een functie voor achterwaarts te gaan moet nog geïmp
+from fourierkleurensensor2 import verkeerslicht
+
 
 import socket
 import RPi.GPIO as GPIO
@@ -90,7 +90,233 @@ class Server(object):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+def kruispunt(nummer):
+    # Wanneer groen
+    #bij elk kruispuntnummer moet oversteken(), rechtsInslaan() of linksInslaan() gebruikt worden
+    if nummer == 1:
+        oversteken()
+
+    elif nummer == 2:
+        linksInslaan()
+
+    elif nummer == 3:
+        linksInslaan()
+
+    elif nummer == 4:
+        rechtsInslaan()
+
+    elif nummer == 5:
+        rechtsInslaan()
+
+    elif nummer == 6:
+        rechtsInslaan()
+
+    elif nummer == 7:
+        oversteken()
+
+    elif nummer == 8:
+        linksInslaan()
+
+    elif nummer == 9:
+        linksInslaan()
+
+    elif nummer == 10:
+        oversteken()
+
+    elif nummer == 11:
+        linksInslaan()
+
+    elif nummer == 12:
+        linksInslaan()
+
+    elif nummer == 13:
+        linksInslaan()
+
+    elif nummer == 14:
+        rechtsInslaan()
+
+    elif nummer == 15:
+        rechtsInslaan()
+
+    elif nummer == 16:
+        oversteken()
+
+    elif nummer == 17:
+        rechtsInslaan()
+
+    elif nummer == 18:
+        oversteken()
+
+    elif nummer == 19:
+        rechtsInslaan()
+
+    elif nummer == 20:
+        oversteken()
+
+    elif nummer == 21:
+        rechtsInslaan()
+
+    elif nummer == 22:
+        linksInslaan()
+
+    elif nummer == 23:
+        oversteken()
+
+    elif nummer == 24:
+        oversteken()
+
+    elif nummer == 25:
+        linksInslaan()
+
+    elif nummer == 26:
+        rechtsInslaan()
+
+
+def oversteken(kanaal=0):
+    global override
+    override = False
+    print('vooruit over stopstreep')
+
+    for i in range(6):
+
+        rightmotorspeed(90)
+        leftmotorspeed(80)
+        time.sleep(1)
+        ber3 = server.listen(timeout=0.250)
+        ber3 = str(ber3)
+        if ber3.find('start') >= 0:
+            override = True
+            break
+
+    print('op kruispunt')
+
+    while not zoeklijn() and override == False:
+        ber4 = server.listen(timeout=0.250)
+        ber4 = str(ber4)
+        if ber4.find('start') >= 0:
+            override = True
+            break
+
+        if adc.getAfstand(kanaal) <= 12:
+            print('adc')
+            print(adc.getAfstand(kanaal))
+            stopMotor()
+            time.sleep(2)
+        else:
+            rightmotorspeed(95)
+            leftmotorspeed(30)
+            time.sleep(0.2)
+            rightmotorspeed(75)
+            leftmotorspeed(90)
+            time.sleep(0.2)
+
+
+def rechtsInslaan(kanaal=0, tijd=1):
+    global override
+    override = False
+    print('rechts inslaan')
+
+    rightmotorspeed(90)
+    leftmotorspeed(82)
+    time.sleep(2)
+
+    time.sleep(tijd)
+    stopMotor()
+    turnRightNinety()
+    stopMotor()
+
+    while not zoeklijn() and override == False:
+        ber5 = server.listen(timeout=0.250)
+        ber5 = str(ber5)
+        if ber5.find('start') >= 0:
+            override = True
+            break
+
+
+
+        if adc.getAfstand(kanaal) <= 12:
+            stopMotor()
+            time.sleep(1)
+        else:
+
+            rightmotorspeed(93)
+            leftmotorspeed(30)
+            time.sleep(0.2)
+            rightmotorspeed(75)
+            leftmotorspeed(90)
+            time.sleep(0.2)
+
+
+def linksInslaan(kanaal=0, tijd=3.1):
+    print('rechts inslaan')
+    global override
+    override = False
+
+    rightmotorspeed(90)
+    leftmotorspeed(82)
+    time.sleep(1)
+
+    if adc.getAfstand(kanaal) <= 12:
+        stopMotor()
+        time.sleep(2)
+
+    rightmotorspeed(90)
+    leftmotorspeed(82)
+    time.sleep(tijd)
+    stopMotor()
+    turnLeftNinety()
+    stopMotor()
+
+    while not zoeklijn() and override == False:
+        ber5 = server.listen(timeout=0.250)
+        ber5 = str(ber5)
+        if ber5.find('start') >= 0:
+            override = True
+            break
+
+        if adc.getAfstand(kanaal) <= 12:
+            stopMotor()
+            time.sleep(1)
+        else:
+            forward()
+            time.sleep(1)
+            rightmotorspeed(93)
+            leftmotorspeed(60)
+            time.sleep(0.2)
+            rightmotorspeed(80)
+            leftmotorspeed(90)
+            time.sleep(0.2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def main():
+
+    global server
+    global override
+
 
     # override is en blijft False totdat er een bericht 'start' binnenkomt uit de manuele override
     override = False
@@ -115,10 +341,10 @@ def main():
 
     last_error = 0  # Nodig voor de eerst keer volglijn uit te voeren
     while not einde:
-        bericht = server.listen(timeout=0.01)
+        bericht = server.listen(timeout=0.250)
+        print(bericht)
         mesg = str(bericht)
         if mesg.find('start') >= 0:
-            kruispunt_reserve = kruispuntnr
             override = True
 
         # Manuele override
@@ -160,8 +386,7 @@ def main():
 
                 if kruispunt_manueel != 0:
                     kruispuntnr = kruispunt_manueel
-                else:
-                    kruispuntnr = kruispunt_reserve
+
 
                 finaalBericht = str(kruispuntnr)
                 server.send('Kruispunt = ' + finaalBericht)
@@ -176,15 +401,32 @@ def main():
 
 
         # Volg de lijn 20 keer
-        for i in range(20):
-            print("lijnvolg")
+        for i in range(9):
+            #print("lijnvolg")
             returnwaarde = lijninterpretatie()
-            print(returnwaarde)
             if returnwaarde == "stopstreep":
                 print("kruispunt")
                 stopMotor()
+                print(kruispuntnr)
+                while True:
+                    kleur = verkeerslicht(kleurensensor)
+                    if kleur == "groen":
+                        break
 
-                kruispunt(kruispuntnr)
+                    #indien we altijd door rood rijden: bovenstaande 3 lijntjes verwijderen
+
+                    ber = server.listen(timeout=0.200)
+                    ber = str(ber)
+                    if ber.find('groen') >= 0:
+                        break
+
+                    if ber.find('start') >=0:
+                        override = True
+                        break
+
+                if override == False:
+                    kruispunt(kruispuntnr)
+
                 kruispuntnr += 1
                 server.send(str(kruispuntnr))
                 if kruispuntnr >= 26:
@@ -199,7 +441,13 @@ def main():
             print("afstandssensor")
             stopMotor()
             while adc.getAfstand(kanaal) < 20:
-                print('nog steeds')
+                print('korte afstand')
+                bericht_afstand = server.listen(timeout=0.250)
+                bericht_afstand = str(bericht_afstand)
+                if bericht_afstand.find('start') >= 0:
+                    override = True
+                    break
+
                 pass
 
     raise Exception("Fout in de code.")

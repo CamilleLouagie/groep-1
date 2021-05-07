@@ -115,7 +115,8 @@ def main():
 
     last_error = 0  # Nodig voor de eerst keer volglijn uit te voeren
     while not einde:
-        bericht = server.listen(timeout=0.01)
+        bericht = server.listen(timeout=0.250)
+        print(bericht)
         mesg = str(bericht)
         if mesg.find('start') >= 0:
             kruispunt_reserve = kruispuntnr
@@ -176,14 +177,14 @@ def main():
 
 
         # Volg de lijn 20 keer
-        for i in range(20):
-            print("lijnvolg")
+        for i in range(9):
+            #print("lijnvolg")
             returnwaarde = lijninterpretatie()
-            print(returnwaarde)
             if returnwaarde == "stopstreep":
                 print("kruispunt")
                 stopMotor()
-
+                time.sleep(0.5)
+                print(kruispuntnr)
                 kruispunt(kruispuntnr)
                 kruispuntnr += 1
                 server.send(str(kruispuntnr))

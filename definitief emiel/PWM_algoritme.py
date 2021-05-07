@@ -40,8 +40,8 @@ def motorinitialisatie():
 
 
     #pwm initialisatie (indien met de L293B kan dit op enable pin )
-    pwma = GPIO.PWM(EnablePinA, 100)
-    pwmb = GPIO.PWM(EnablePinB, 100)
+    pwma = GPIO.PWM(EnablePinA, 150)
+    pwmb = GPIO.PWM(EnablePinB, 150)
     
     
     pwma.start(0) #pwm.start(snelheidsfrequentie)
@@ -54,18 +54,18 @@ def motorinitialisatie():
 
 
 #vooruit
-def forward(speed = 70):
+def forward(speed = 82):
     GPIO.output(AForwardPin, GPIO.HIGH)
     GPIO.output(ABackwardsPin, GPIO.LOW)
     GPIO.output(BForwardPin, GPIO.HIGH)
     GPIO.output(BBackwardsPin, GPIO.LOW)
     
     pwma.ChangeDutyCycle(speed)
-    pwmb.ChangeDutyCycle(speed)
+    pwmb.ChangeDutyCycle(speed + 6.9)
 
 
 
-def backwards(speed = 70):
+def backwards(speed = 80):
     GPIO.output(AForwardPin, GPIO.LOW)
     GPIO.output(ABackwardsPin, GPIO.HIGH)
     GPIO.output(BForwardPin, GPIO.LOW)
@@ -88,8 +88,8 @@ def turnRight(): #voor de server
     GPIO.output(ABackwardsPin, GPIO.LOW)
     GPIO.output(BForwardPin, GPIO.LOW)
     GPIO.output(BBackwardsPin, GPIO.HIGH)
-    pwma.ChangeDutyCycle(70)
-    pwmb.ChangeDutyCycle(70)
+    pwma.ChangeDutyCycle(80)
+    pwmb.ChangeDutyCycle(80)
 
 
 
@@ -102,7 +102,7 @@ def turnRightNinety():
     GPIO.output(BBackwardsPin, GPIO.HIGH)
     pwma.ChangeDutyCycle(70)
     pwmb.ChangeDutyCycle(70)
-    time.sleep(0.5)
+    time.sleep(1.70)
     pwma.ChangeDutyCycle(0)
     pwmb.ChangeDutyCycle(0)
         
@@ -125,7 +125,7 @@ def turnLeftNinety():
     GPIO.output(BBackwardsPin, GPIO.LOW)
     pwma.ChangeDutyCycle(70)
     pwmb.ChangeDutyCycle(70)
-    time.sleep(0.5)
+    time.sleep(1.40)
     pwma.ChangeDutyCycle(0)
     pwmb.ChangeDutyCycle(0)
         
