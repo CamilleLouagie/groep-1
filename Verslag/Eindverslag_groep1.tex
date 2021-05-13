@@ -318,18 +318,18 @@ else:
 	return afstand	# In cm
 \end{lstlisting}
 
-Hierbij is \texttt{3.3} de spanning over de ADC. De deler in dezelfde lijn code, \texttt{1024}, is de resolutie van de ADC in bits, deze is 10 bit zo is \(2^10 = 1024\). Het gevalonderscheid werd toegevoegd zodat ons programma niet zo crashen indien de afstandssensor 0 V zou teruggeven. We gebruikten deze code als functie in het hoofdprogramma (vandaar de return statements in de code hierboven), hierbij werd per keer dat het robotwagentje 20 keer de lijn volgde de afstandssensor uitgelezen en werd er gecontroleerd of de afstand niet kleiner was dan 15 cm. Indien dit toch het geval was, stopte het wagentje met rijden en werd de afstandssensor continu uitgelezen. Indien de afstand groter werd dan 20 cm begon het robotwagentje terug te rijden. 
+Hierbij is \texttt{3.3} de spanning over de ADC. De deler in dezelfde lijn code, \texttt{1024}, is de resolutie van de ADC in bits, deze is 10 bit zo is \(2^{10} = 1024\). Het gevalonderscheid werd toegevoegd zodat ons programma niet zou crashen indien de afstandssensor 0V zou teruggeven. We gebruikten deze code als functie in het hoofdprogramma (vandaar de return statements in de code hierboven), hierbij werd per keer dat het robotwagentje 20 keer de lijn volgde de afstandssensor uitgelezen en werd er gecontroleerd of de afstand niet kleiner was dan 15cm. Indien dit toch het geval was, stopte het wagentje met rijden en werd de afstandssensor continu uitgelezen. Indien de afstand groter werd dan 20cm begon het robotwagentje terug te rijden. 
 
 \textbf{\large De kleurensensor}\\
-Om de kleurensensor uit te lezen, maakten we gebruik van code geschreven door Adafruit zelf. We verhoogden ook de integratietijd naar 154 milliseconden en de versterking van de sensor met een factor 16, zodat de sensor betere waarden geeft voor onze situatie met relatief weinig licht en zodat deze gevoeliger wordt. We bevestigen ook een papieren koker  om de sensor bevestigd zodat er minder verstoring door omgevingslicht kan plaatsvinden. De ruwe data van de sensor is een lijst van 4 waarden: de roodwaarde, de groenwaarde, de blauwwaarde en de intensiteit. 
+Om de kleurensensor uit te lezen, maakten we gebruik van code geschreven door Adafruit zelf. We verhoogden ook de integratietijd naar 154 milliseconden en de versterking van de sensor met een factor 16, zodat de sensor betere waarden geeft voor onze situatie met relatief weinig licht en zodat deze gevoeliger wordt. We bevestigen ook een papieren koker rond de sensor bevestigd, zodat er minder verstoring door omgevingslicht kan plaatsvinden. De ruwe data van de sensor is een lijst van 4 waarden: de roodwaarde, de groenwaarde, de blauwwaarde en de intensiteit. 
 
 De data van de kleurensensor wordt enkel uitgelezen en geïnterpreteerd wanneer ons robotwagentje een stopstreep detecteert. We merkten bij het opnemen van de data dat de groenwaarde amper wijzigt naarmate de verkeerslichten veranderden dit in tegenstelling tot de roodwaarde, die wel daalde bij een groen verkeerslicht. Daarom is de interpretatie van het verkeerslicht eerder `rood' en 'veel minder rood' dan `rood' of `groen'. We besloten ook om de data uit te filteren om meer representatieve waarden uit de meting te bekomen.
 
-Wanneer het robotwagentje bij een stopstreep staat, worden er twee metingen voor roodwaarden gehouden van 3 seconden elk. Onze keuze voor 3 seconden was een compromis tussen voldoende roodwaarden bekomen en niet te lang wachten wanneer het al groen is. Op de twee metingen passen we dan een Fast Fourier transform toe, zodat de roodwaarden worden omgezet in `magnitudes' voor alle aanwezige frequenties in de meting. Uit elke meting halen we de magnitude voor de frequentie 1 hertz, aangezien dit de frequentie is waarmee de verkeerslichten knipperen.
+Wanneer het robotwagentje bij een stopstreep staat, worden er twee metingen voor roodwaarden gehouden van 3 seconden elk. Onze keuze voor 3 seconden was een compromis tussen voldoende roodwaarden bekomen en niet te lang wachten wanneer het al groen is. Op de twee metingen passen we dan een Fast Fourier transform toe, zodat de roodwaarden worden omgezet in `magnitudes' voor alle aanwezige frequenties in de meting. Uit elke meting halen we de magnitude voor de frequentie 1 Hertz, aangezien dit de frequentie is waarmee de verkeerslichten knipperen.
 
-We bekomen dus twee waarden voor een periode van 6 seconden wat veel gemakkelijker te vergelijken valt dan de ruwe data van de sensor zelf. We weten als het verschil tussen de eerste en de tweede magnitude groot genoeg en positief is dat de het licht veranderde van rood naar groen, dus ons robotwagentje mag dan het kruispunt op. Er is echter een probleem de magnitude kan sterk variëren over de 2 metingen indien het rood blijft, daarom maakten we voegden we een extra voorwaarde toe wanneer het verschil wordt bekeken, namelijk de magnitude van de tweede meting moet laag genoeg zijn.
+We bekomen dus twee waarden voor een periode van 6 seconden wat veel gemakkelijker te vergelijken valt dan de ruwe data van de sensor zelf. We weten dat als het verschil tussen de eerste en de tweede magnitude groot genoeg en positief is, het licht is veranderd van rood naar groen. Ons robotwagentje mag dan het kruispunt op. Er is echter een probleem. De magnitude kan sterk variëren over de 2 metingen indien het rood blijft, daarom voegden we een extra voorwaarde toe wanneer het verschil werd bekeken, namelijk de magnitude van de tweede meting moet laag genoeg zijn.
 
-Indien ons autootje stopt bij het kruispunt wanneer het licht al groen is zal het verschil tussen de twee magnitudes niet groot genoeg zijn. Om enigszinds te vermijden dat de robotwagen moet wachten dat het licht van groen naar rood naar groen moet gaan, stellen we dat het waarschijnlijk groen is, indien de magnitude van de tweede meting laag genoeg is (zelfs nog wat lager dan bij de verandering van rood naar groen) dat het verkeerslicht ook groen zal zijn. Hieronder staat ter illustratie het gevalonderscheid in onze Python-code:
+Indien ons autootje stopt bij het kruispunt wanneer het licht al groen is zal het verschil tussen de twee magnitudes niet groot genoeg zijn. Om enigszinds te vermijden dat de robotwagen moet wachten dat het licht van groen naar rood naar groen moet gaan, stellen we dat het waarschijnlijk groen is. Indien de magnitude van de tweede meting laag genoeg is, (zelfs nog wat lager dan bij de verandering van rood naar groen) zal het verkeerslicht ook groen zijn. Hieronder staat ter illustratie het gevalonderscheid in onze Python-code:
 
 \begin{lstlisting}[language=Python]
 if mag_1Hz[0] - mag_1Hz[1] > 550 and mag_1Hz[1] < 500 or mag_1Hz[1] < 450:
@@ -339,7 +339,11 @@ else:
 	return "rood"
 \end{lstlisting}
  
-De waarden \texttt{550}, \texttt{500} en \texttt{450} werden gekozen op basis van de meetwaarden geplot op figuur \ref{grafiek}.
+De waarden \texttt{550}, \texttt{500} en \texttt{450} werden gekozen op basis van de meetwaarden geplot op figuur \ref{grafiek}.\\
+
+\textbf{\large Het nemen van een kruispunt} \
+
+Het nemen van een kruispunt hebben we als volgt geïmplementeerd. Er zijn drie mogelijkheden voor het nemen van een kruispunt: oversteken, rechts inslaan en links inslaan. De eenvoudigste optie is het oversteken. Wanneer het licht op groen springt, rijden we een aantal seconden vooruit, waarna we afwisselend even naar links en even naar rechts afwijken, om de kans dat het wagentje bij de volglijn terechtkomt te vergroten. Om rechts in te slaan rijden we opnieuw eerst een aantal seconden vooruit, waarna we ongeveer 90 graden naar rechts draaien, om dan rechtdoor te rijden tot op de volglijn. Het links inslaan gebeurt door eerst enkele seconden rechtdoor te rijden, dan ongeveer 60 à 70 graden naar links draaien en dan terug rechtdoor te rijden. De reden dat we niet zoals bij het rechts inslaan 90 graden draaien, is omdat we de kans om de lijn te vinden kunnen vergroten door lichtjes schuin in de richting van de volglijn te rijden. 
 \section{Besluit}
 
 
@@ -429,20 +433,25 @@ De klant wenst ook dat er een draadloze informatieoverdracht is tussen het wagen
 	\label{techtekkruispunt}
 \end{figure}
 
-%\begin{figure}[h!]
-%	\centering
-%	\includegraphics[width=0.6\textwidth]{verkeerslicht.png}
-%	\caption{Technische tekening van een verkeerslicht (figuur ontleend aan \cite{opgave} )}
-%	\label{verkeerslicht}
-%\end{figure}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.6\textwidth]{verkeerslicht.png}
+	\caption{Technische tekening van een verkeerslicht (figuur ontleend aan \cite{opgave} )}
+	\label{verkeerslicht}
+\end{figure}
 
 \section{Circuit diagram}
 \includepdf[pages=-]{circuit_diagram.pdf}
 
+
 \section*{Grafiek Kleurensensor}
-\includepdf{magnitudes.pdf}
-\caption{De magnitudes van de roodwaarden voor metingen met interval 3 seconden voor 2 cycli van een verkeerslicht}
-\label{grafiek}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=.8\textwidth] {magnitudes.PNG}
+	\caption{ }
+	\label{grafiek}
+\end{figure}
+
 \end{appendices}
 
 
