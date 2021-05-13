@@ -99,8 +99,13 @@ for i in range(0,110,3):
 
 xx = np.linspace(0,120, cter)
 plt.plot(xx[1:36], Hz_list[1:])
-plt.plot(np.linspace(0,120,2),[500,500], 'g')
+#plt.plot(np.linspace(0,120,2),[500,500], 'g')
+plt.suptitle('1 Hz magnitudes van de roodwaarden (2 cycli van verkeerslicht)')
+plt.xlabel('tijd (s)')
+plt.ylabel('magnitude')
+plt.savefig('magnitudes.pdf')
 plt.show()
+plt.close()
 
 
 

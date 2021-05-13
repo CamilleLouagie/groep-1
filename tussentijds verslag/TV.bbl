@@ -1,7 +1,8 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
-\bibitem{woordenlijst}
-Het groene boekje.
+\bibitem{taaladvies}
+taalunie.
+\newblock https://taaladvies.net/taal/advies/vraag/1030/zogezegd\_zogenaamd/.
 
 \bibitem{sc}
 3bplus.
@@ -9,10 +10,34 @@ Het groene boekje.
 \newblock https://3bplus.nl/wat-een-smart-city-slimme-stad-een-introductie/,
   laatste wijziging 17 juni 2016.
 
+\bibitem{lawaai}
+Amplifon.
+\newblock Geregistreerde criminaliteit.
+\newblock amplifon.com/nl-be/nieuws-en-blog/te-veel-lawaai-op-straat, laatste
+  wijziging 4 maart 2020.
+
 \bibitem{smartcities}
 Pieter Ballon.
 \newblock {\em Smart Cities}.
 \newblock Lannoo, 2016.
+
+\bibitem{converter}
+Lulu's blog.
+\newblock
+  https://lucidar.me/en/unit-converter/revolutions-per-minute-to-kilometers-per-hour/.
+
+\bibitem{scept}
+TU~Delft.
+\newblock Autonome auto’s: de volgende grote technologische revolutie.
+\newblock
+  https://www.tudelft.nl/ewi/actueel/nodes/autonome-autos-de-volgende-grote-technologische-revolutie.
+
+\bibitem{rasp}
+Micha den Heijer.
+\newblock Wat is een raspberry pi? hoe werkt het?
+\newblock
+  https://prgrmmr.nl/wat-is-een-raspberry-pi-hoe-werkt-het.html#:~:text=Ten%20eerste%20heeft%20de%20Raspberry,het%20ook%20vrijwel%20geen%20stroom.,
+  laatste wijziging 29 februari 2020.
 
 \bibitem{opgave}
 Benjamin~Maveau en~Kevin~Truyaert.
@@ -33,12 +58,31 @@ kentekencheck.nu.
   https://www.kentekencheck.nu/wat-zijn-de-voor-en-nadelen-van-zelfrijdende-autos/:~:text=Zelfrijdende%20auto's%20kunnen%20files%20verminderen,automatisch%20houden%20aan%20de%20verkeersregels.,
   laatste wijziging 11 december 2019.
 
+\bibitem{milieu}
+milieudefensie.
+\newblock Dit zijn de oplossingen voor luchtvervuiling.
+\newblock
+  https://milieudefensie.nl/recht-op-gezonde-lucht/dit-zijn-de-oplossingen-voor-luchtvervuiling.
+
 \bibitem{proconsc}
 Primestone.
 \newblock Advantages and disadvantages of smart cities.
 \newblock
   https://primestone.com/en/advantages-and-disadvantages-of-smart-cities/,
   laatste wijziging 2 april 2020.
+
+\bibitem{vbn}
+Vlaamse Regering.
+\newblock Geconnecteerde en geautomatiseerde mobiliteit in vlaanderen.
+\newblock
+  https://www.ewi-vlaanderen.be/sites/default/files/conceptnota\_-\_geconnecteerde\_en\_geautomatiseerde\_mobiliteit\_in\_vlaanderen.pdf.
+
+\bibitem{crimi}
+StatistiekVlaanderen.
+\newblock Geregistreerde criminaliteit.
+\newblock
+  https://www.statistiekvlaanderen.be/nl/geregistreerde-criminaliteit-0,
+  laatste wijziging 27 augustus 2020.
 
 \bibitem{synoniemen}
 synoniemen.net.

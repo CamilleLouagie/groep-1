@@ -2,57 +2,48 @@ This is BibTeX, Version 0.99d (TeX Live 2020/W32TeX)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: TV.aux
 The style file: plain.bst
-Illegal, another \bibstyle command---line 50 of file TV.aux
- : \bibstyle
- :          {plain}
-I'm skipping whatever remains of this command
 Database file #1: bibliografietv.bib
-I was expecting a `,' or a `}'---line 97 of file bibliografietv.bib
- :  
- :  howpublished = {https://woordenlijst.org/#/?q=order}}
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
-Warning--to sort, need author or key in woordenlijst
+Warning--to sort, need author or key in taaladvies
 Warning--empty journal in opgave
-You've used 8 entries,
+You've used 15 entries,
             2118 wiz_defined-function locations,
-            531 strings with 5118 characters,
-and the built_in function-call counts, 1612 in all, are:
-= -- 147
-> -- 50
+            561 strings with 6312 characters,
+and the built_in function-call counts, 3055 in all, are:
+= -- 284
+> -- 99
 < -- 0
-+ -- 22
-- -- 14
-* -- 52
-:= -- 271
-add.period$ -- 21
-call.type$ -- 8
-change.case$ -- 29
++ -- 43
+- -- 28
+* -- 90
+:= -- 515
+add.period$ -- 42
+call.type$ -- 15
+change.case$ -- 56
 chr.to.int$ -- 0
-cite$ -- 10
-duplicate$ -- 64
-empty$ -- 173
-format.name$ -- 14
-if$ -- 351
+cite$ -- 17
+duplicate$ -- 113
+empty$ -- 327
+format.name$ -- 28
+if$ -- 670
 int.to.chr$ -- 0
-int.to.str$ -- 8
+int.to.str$ -- 15
 missing$ -- 3
-newline$ -- 40
-num.names$ -- 14
-pop$ -- 63
+newline$ -- 75
+num.names$ -- 28
+pop$ -- 120
 preamble$ -- 1
-purify$ -- 23
+purify$ -- 44
 quote$ -- 0
-skip$ -- 59
+skip$ -- 109
 stack$ -- 0
-substring$ -- 40
-swap$ -- 7
+substring$ -- 75
+swap$ -- 14
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 30
+type$ -- 58
 warning$ -- 2
-while$ -- 14
-width$ -- 9
-write$ -- 73
-(There were 2 error messages)
+while$ -- 28
+width$ -- 17
+write$ -- 139
+(There were 2 warnings)
