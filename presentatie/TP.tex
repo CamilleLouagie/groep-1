@@ -8,7 +8,7 @@
 \usepackage[T1]{fontenc}
 \usefonttheme[onlymath]{serif}
 
-\title[Groep 1 - Safety First]{Miniatuurrobotwagen in een Smart City}
+\title[Groep 1 - Safety First]{Miniatuurwagen in een \textsl{smart city}}
 \subtitle{Probleemoplossen en ontwerpen, deel 2}
 \author{Camille Louagie, Emiel Vanspranghels, Otto Meerschman, Ruben Leenknecht, Staf Rys}
  
@@ -42,13 +42,14 @@
 	\begin{figure}
 		\centering
 		\includegraphics[width=.6\textwidth]{ruimtelijkestaat}
-		%rood= ruimtebeslag > drempelwaarde
+		%kaart van vlaanderen waarin rood= ruimtebeslag > drempelwaarde
 		
 		\label{fig:ruimtelijkestaat}
 	\end{figure}
 	\begin{itemize}
-	\item  De files stijgen gemiddeld met gemiddeld 2\% per jaar (voor Corona)
-	\item  Steden (0.5\% van de aardoppervlakte) consumeren 75\% van de natuurlijke middelen
+	\item  Steden (0.5\% van de aardoppervlakte) consumeren 75\% van de natuurlijke middelen 	
+	\item  De files stijgen gemiddeld met 2\% per jaar (voor Corona)
+	%we focussen ons in deze presentatie op de mobiliteitsproblemen
 \end{itemize}
 
 \end{frame}
@@ -61,11 +62,14 @@
 	Een stad die technologische innovatie gebruikt om de stedelijke werking efficiënt te laten verlopen
 	
 \end{block}	
+%een mogelijke oplossing voor deze mobiliteitsproblemen zijn slimme steden
 	\begin{itemize}
 		\large\item  Heeft als doel het verbeteren van interacties
 		\begin{itemize}
 			\normalsize\item Door op te wegen tegen fysieke beperkingen
+			%een vb: deze presentatie 
 			\item Door de levenskwaliteit te verhogen
+			%tijd besparen en handelingen vergemakkelijken 
 		\end{itemize}
 		\item  (Openbare) diensten vereenvoudigen
 	\end{itemize}
@@ -74,6 +78,7 @@
 
 
 \begin{frame}{{\Large Wegen de voordelen van zelfrijdende auto's op tegen de nadelen?}}
+	%zelfrijdende auto's als onderdeel van een slimme stad
 	\begin{columns}
 	\column{0.5\textwidth}\centering
 	{\bf{Voordelen}}\\[.2cm]
@@ -244,6 +249,94 @@
 
 \section{Evaluatie}
 
+\begin{frame}{\Large De demo}
+	\begin{columns}
+		\column{0.4\textwidth}\centering
+		
+		\begin{figure}
+			\centering
+			\includegraphics[width=.5\textwidth]{demo}
+			%rood= ruimtebeslag > drempelwaarde
+			
+			\label{fig:Demo}
+		\end{figure}
+		\column{0.6\textwidth}\centering
+		{\bf{Conclusies getrokken na de demo}}\\[.2cm]
+		
+		\begin{itemize}
+			\large\item Er is een grotere minimumafstand bij de afstandssensor nodig.
+			\item Iets 3D-printen voor rond de kleurensensor in plaats van papier
+			\item Het kabelmanagement verfijnen
+		\end{itemize}
+		
+	\end{columns}
+	
+	
+\end{frame}
+
+
+\begin{frame}{\Large De financiële situatie}
+	
+	\begin{centering}
+		\begin{tikzpicture}
+			
+			
+			
+			\pgfplotstableread[row sep=\\]{ % Read the data into a table macro
+				Label                                      First   \\
+				{Motor} 									  640	\\
+				{Sensoren} 									 460	\\
+				{Makerbeams}  								 115	\\
+				{Chassis} 									120		\\
+				{Microcontroller}							 240	\\
+				{Powerbank}									 180	\\
+				%{Wireframes}                                 0     \\
+			}\datatable
+			
+			\begin{axis}[
+				xbar stacked,   % Stacked horizontal bars
+				xmin=0,  xmax=700,       % Start x axis at 0
+				%title={\large \textbf {Gantt Chart }},
+				height=7cm, width=8cm,
+				bar width=0.7cm,
+				axis x line*=bottom,
+				axis y line*=left,
+				y axis line style={opacity=1},
+				enlarge y limits=true,
+				xmajorgrids={true},
+				grid style={
+					solid,
+					ultra thin,
+					gray
+				},
+				tick style={tickwidth=0cm,major tick length=0cm},
+				xlabel={\textbf{Kredietpunten}},
+				xtick ={100,200,300,400,500,600},
+				%xminorgrids={true},
+				%grid style={
+				%dashed,
+				%   ultra thin,
+				%   gray
+				%   },
+				%minor xtick ={1,3,5,7,9,11,13,15},
+				%grid =both,
+				yticklabel style={font=\small\bfseries},
+				ytick=data,     % Use as many tick labels as y coordinates
+				yticklabels from table={\datatable}{Label}  % Get the labels from the Label column of the \datatable
+				]
+				\addplot [draw=none,fill=blue] table [x=First, y expr=\coordindex] {\datatable};    % Plot the "First" column against the data index
+				\addplot [draw=none,fill=red]table [x=Second, y expr=\coordindex] {\datatable};
+				
+				
+			\end{axis}
+			
+			
+		\end{tikzpicture}
+		
+	\end{centering}
+	
+\end{frame}
+
 \begin{frame}{\Large Besluit}
 \begin{itemize}
 	\large \item Zelfrijdend wagentje: Legt zo goed als probleemloos een parcours af
@@ -254,92 +347,6 @@
 	
 \end{frame}
 
-\begin{frame}{\Large De demo}
-\begin{columns}
-	\column{0.4\textwidth}\centering
-	
-		\begin{figure}
-			\centering
-			\includegraphics[width=.5\textwidth]{demo}
-			%rood= ruimtebeslag > drempelwaarde
-			
-			\label{fig:Demo}
-		\end{figure}
-	\column{0.6\textwidth}\centering
-	{\bf{Conclusies getrokken na de demo}}\\[.2cm]
-	
-	\begin{itemize}
-		\large\item Er is een grotere minimumafstand bij de afstandssensor nodig.
-		\item Iets 3D-printen voor rond de kleurensensor in plaats van papier
-		\item Het kabelmanagement verfijnen
-	\end{itemize}
-	
-\end{columns}
-
-	
-\end{frame}
-
-\begin{frame}{\Large De financiële situatie}
-
-\begin{centering}
-	\begin{tikzpicture}
-		
-		
-		
-		\pgfplotstableread[row sep=\\]{ % Read the data into a table macro
-			Label                                      First   \\
-			{Motor} 									  640	\\
-			{Sensoren} 									 460	\\
-			{Makerbeams}  								 115	\\
-			{Chassis} 									120		\\
-			{Microcontroller}							 240	\\
-			{Powerbank}									 180	\\
-			%{Wireframes}                                 0     \\
-		}\datatable
-		
-		\begin{axis}[
-			xbar stacked,   % Stacked horizontal bars
-			xmin=0,  xmax=700,       % Start x axis at 0
-			%title={\large \textbf {Gantt Chart }},
-			height=7cm, width=8cm,
-			bar width=0.7cm,
-			axis x line*=bottom,
-			axis y line*=left,
-			y axis line style={opacity=1},
-			enlarge y limits=true,
-			xmajorgrids={true},
-			grid style={
-				solid,
-				ultra thin,
-				gray
-			},
-			tick style={tickwidth=0cm,major tick length=0cm},
-			xlabel={\textbf{Kredietpunten}},
-			xtick ={100,200,300,400,500,600},
-			%xminorgrids={true},
-			%grid style={
-			%dashed,
-			%   ultra thin,
-			%   gray
-			%   },
-			%minor xtick ={1,3,5,7,9,11,13,15},
-			%grid =both,
-			yticklabel style={font=\small\bfseries},
-			ytick=data,     % Use as many tick labels as y coordinates
-			yticklabels from table={\datatable}{Label}  % Get the labels from the Label column of the \datatable
-			]
-			\addplot [draw=none,fill=blue] table [x=First, y expr=\coordindex] {\datatable};    % Plot the "First" column against the data index
-			\addplot [draw=none,fill=red]table [x=Second, y expr=\coordindex] {\datatable};
-			
-			
-		\end{axis}
-		
-		
-	\end{tikzpicture}
-	
-\end{centering}
-	
-\end{frame}
 
 	
 \section*{Referenties}
